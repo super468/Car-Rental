@@ -1,0 +1,42 @@
+CS 6314 - Web Programming Languages - Final Project
+
+CAR-RENTAL
+Languages: JavaScript, Html, CSS
+Frameworks: MEAN Stack(MongoDB, Express.js, AngularJS, and Node.js)
+
+Project should include following major functionalities:
+
+Three types of users:
+
+Guest (Common functions):
+	Optional extensions: pay for the order as anonymous use. Could get order details by email. 
+		
+Registered users:
+♣	User signup: Register a new user to the system. 
+  o	Check the new username or email address if it’s already registered to the system using AJAX. 
+  o	Form validation: Check if all mandatory fields are filled out. (JQuery)
+  o	Check if password is strong enough. Define the rules of having a strong password. (JQuery). User passwords should be hashed and hashed version of passwords should be stored in the database.
+♣	User login, and could change their profiles in the system.
+♣	List available cars in the system. User should be able to filter the results based on at least one criterion (i.e. price, seats). Also, should be able to “Search” for a specific item.  Search and filtering should be integrated together.
+♣	You will have paging functionality for listing products/services.
+♣	Add item(s) to the cart and checkout. For the online shopping sites, pricing will be included but payment functionality doesn’t need to be implemented. However, you will keep track of inventory.
+♣	Automatically fill the basic information (name, address, payment type etc.) for registered users when checkout.
+♣	User should be able to update items in the cart (remove items from the cart, update their quantity, total balance will change when user selections are changed)
+♣	Show the history of purchases or saved lists for the user.
+
+Admin users:
+Admin user will have the same interface with regular users, except that he/she will be provided extra features (buttons/links) for update and deletion of products/services.
+  o	List all items
+  o	Add new item
+  o	Delete item
+  o	Update item
+Upload pictures for the items;
+Updating price, change pictures;
+For delete, soft-delete should be implemented.
+
+Optional extensions:
+	Query registered users list, monthly income, etc.
+	
+
+
+
