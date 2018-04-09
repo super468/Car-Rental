@@ -13,6 +13,8 @@ import { ProfileComponent } from './profile/profile.component';
 import {AuthenticationService} from "./services/authentication.service";
 import {AuthGuardService} from "./services/auth-guard.service";
 import {HttpClientModule} from "@angular/common/http";
+import { SearchComponent } from './search/search.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {HttpClientModule} from "@angular/common/http";
     HomeComponent,
     FooterComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
