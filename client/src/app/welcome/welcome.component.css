@@ -1,0 +1,17 @@
+.bg{
+  background-image: url("../../assets/welcome-car3.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.search{
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-top: 135px;
+}

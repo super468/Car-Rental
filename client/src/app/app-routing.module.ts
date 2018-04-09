@@ -6,12 +6,13 @@ import {HomeComponent} from "./home/home.component";
 import {RegisterComponent} from "./register/register.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AuthGuardService} from "./services/auth-guard.service";
+import {WelcomeComponent} from "./welcome/welcome.component";
 
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: WelcomeComponent
   },
   {
     path: 'login',
