@@ -15,6 +15,8 @@ import {AuthGuardService} from "./services/auth-guard.service";
 import {HttpClientModule} from "@angular/common/http";
 import { SearchComponent } from './search/search.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { BookingsComponent } from './bookings/bookings.component';
+import { AccountComponent } from './account/account.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
     RegisterComponent,
     ProfileComponent,
     SearchComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    BookingsComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

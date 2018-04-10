@@ -7,6 +7,8 @@ import {RegisterComponent} from "./register/register.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AuthGuardService} from "./services/auth-guard.service";
 import {WelcomeComponent} from "./welcome/welcome.component";
+import {BookingsComponent} from "./bookings/bookings.component";
+import {AccountComponent} from "./account/account.component";
 
 
 const routes: Routes = [
@@ -23,7 +25,25 @@ const routes: Routes = [
   },{
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    children:[
+      {
+        path: 'bookings',
+        component: BookingsComponent
+      },
+      {
+        path: 'account',
+        component: AccountComponent
+      }
+    ]
+  },
+  {
+    path: 'profile/bookings',
+    component: BookingsComponent
+  },
+  { path: '**',
+    redirectTo: '/',
+    pathMatch: 'full'
   }
 ];
 
