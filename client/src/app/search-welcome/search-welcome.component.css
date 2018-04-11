@@ -1,0 +1,28 @@
+input{
+    margin-bottom: 8px;  
+}
+
+.card{
+    opacity:0.8;
+}
+
+.datebar {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 42.5%;
+    margin-left:16px;
+  }
+  
+  .timebar{
+    margin-left:20px;
+    width :43.6%;
+  }
+
+  .tmbtn-width{
+      width:240%;
+  }
+
+  .scbtn-width{
+      width:100%;
+  }

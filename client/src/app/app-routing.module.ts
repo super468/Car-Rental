@@ -7,11 +7,6 @@ import {RegisterComponent} from "./register/register.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AuthGuardService} from "./services/auth-guard.service";
 import {WelcomeComponent} from "./welcome/welcome.component";
-import {BookingsComponent} from "./bookings/bookings.component";
-import {AccountComponent} from "./account/account.component";
-import {UpcbookingsComponent} from "./upcbookings/upcbookings.component";
-import {PastbookingsComponent} from "./pastbookings/pastbookings.component";
-import {CncldbookingsComponent} from "./cncldbookings/cncldbookings.component";
 
 
 const routes: Routes = [
@@ -28,31 +23,11 @@ const routes: Routes = [
   },{
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuardService],
-    children:[
-      {
-        path: 'bookings',
-        component: BookingsComponent,
-        children:[
-          {
-            path: 'upcbookings',
-            component: UpcbookingsComponent,
-          },
-          {
-            path: 'pastbookings',
-            component: PastbookingsComponent,
-          },
-          {
-            path: 'cncldbookings',
-            component: CncldbookingsComponent,
-          }
-        ]
-      },
-      {
-        path: 'account',
-        component: AccountComponent
-      }
-    ]
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   }
 ];
 

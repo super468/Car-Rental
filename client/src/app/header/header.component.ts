@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService, UserDetails} from "../services/authentication.service";
 
 @Component({
   selector: 'app-header',
@@ -7,16 +6,10 @@ import {AuthenticationService, UserDetails} from "../services/authentication.ser
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  details: UserDetails;
 
-  constructor(public auth:AuthenticationService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.auth.profile().subscribe(user => {
-      this.details = user;
-    }, (err) => {
-      console.error(err);
-    });
   }
 
 }
