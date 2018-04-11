@@ -1,4 +1,8 @@
 <app-header></app-header>
-<h1>Welcome to Car-Rental!</h1>
-<a routerLink="/login">Login</a> or <a routerLink="/register">Register</a>
+<app-search [dataset]="dataset"></app-search>
+<div class="row">
+    <app-filter class = "col-md-3"></app-filter>
+    <app-carlists class = "col-md-9"></app-carlists>
+</div>
+
 <app-footer></app-footer>
