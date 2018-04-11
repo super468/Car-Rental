@@ -9,6 +9,9 @@ import {AuthGuardService} from "./services/auth-guard.service";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {BookingsComponent} from "./bookings/bookings.component";
 import {AccountComponent} from "./account/account.component";
+import {UpcbookingsComponent} from "./upcbookings/upcbookings.component";
+import {PastbookingsComponent} from "./pastbookings/pastbookings.component";
+import {CncldbookingsComponent} from "./cncldbookings/cncldbookings.component";
 
 
 const routes: Routes = [
@@ -29,21 +32,27 @@ const routes: Routes = [
     children:[
       {
         path: 'bookings',
-        component: BookingsComponent
+        component: BookingsComponent,
+        children:[
+          {
+            path: 'upcbookings',
+            component: UpcbookingsComponent,
+          },
+          {
+            path: 'pastbookings',
+            component: PastbookingsComponent,
+          },
+          {
+            path: 'cncldbookings',
+            component: CncldbookingsComponent,
+          }
+        ]
       },
       {
         path: 'account',
         component: AccountComponent
       }
     ]
-  },
-  {
-    path: 'profile/bookings',
-    component: BookingsComponent
-  },
-  { path: '**',
-    redirectTo: '/',
-    pathMatch: 'full'
   }
 ];
 

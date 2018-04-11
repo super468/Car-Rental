@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +20,11 @@ import { SearchComponent } from './search/search.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { AccountComponent } from './account/account.component';
+import {BookingsService} from "./services/bookings.service";
+import { UpcbookingsComponent } from './upcbookings/upcbookings.component';
+import { PastbookingsComponent } from './pastbookings/pastbookings.component';
+import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component';
+
 
 
 @NgModule({
@@ -31,17 +39,26 @@ import { AccountComponent } from './account/account.component';
     SearchComponent,
     WelcomeComponent,
     BookingsComponent,
-    AccountComponent
+    AccountComponent,
+    UpcbookingsComponent,
+    PastbookingsComponent,
+    CncldbookingsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTabsModule
   ],
   providers: [
     AuthenticationService,
-    AuthGuardService],
+    AuthGuardService,
+    BookingsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
