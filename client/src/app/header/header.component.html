@@ -1,11 +1,11 @@
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" style = "margin-left : 50px ;margin-right : 15%" href="#">
+  <a class="navbar-brand" style = "margin-left : 50px ;margin-right : 15%" href="/">
     <img src="/assets/car.jpg" width = "12%" height = "12%" alt="">
   </a>
 
     <button *ngIf="!auth.isLoggedIn()" type="button" class="btn btn-outline-primary" routerLink="/register">Register</button>
     <p *ngIf="!auth.isLoggedIn()">or</p>
     <button *ngIf="!auth.isLoggedIn()" type="button" class="btn btn-outline-primary" routerLink="/login">Sign in</button>
-  <a *ngIf="auth.isLoggedIn()">Hi, {{details?.name}}</a>
+  <a *ngIf="auth.isLoggedIn()" routerLink="/profile">Hi, {{details?.name}}</a>
   <button *ngIf="auth.isLoggedIn()" type="button" class="btn btn-outline-primary" (click)="auth.logout()">Log out</button>
 </nav>
