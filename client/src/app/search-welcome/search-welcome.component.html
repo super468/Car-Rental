@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Search for a car rental</h5>
+    <input [(ngModel)]= "slt_pickplace" type="text" class="form-control" placeholder="Pick up location">
+    <input [(ngModel)]= "slt_dropplace" type="text" class="form-control" placeholder="Drop off location">
+    <div class = "row">
+      <input [(ngModel)]= "slt_pickdate" class = "datebar form-control form-control-sm" type="date"/> 
+      <select [(ngModel)]="slt_picktime" class = "form-control form-control-sm timebar" style = "height:33px">
+        <option *ngFor="let pickuptime of times" [value]="pickuptime.viewValue">
+          {{ pickuptime.viewValue }}
+        </option>
+      </select>
+    </div>
+
+    <div class = "row">
+      <input [(ngModel)]= "slt_dropdate" class = "datebar form-control form-control-sm" type="date"/> 
+      <select [(ngModel)]="slt_droptime" class = "form-control form-control-sm timebar" style = "height:33px">
+        <option *ngFor="let dropofftime of times" [value]="dropofftime.viewValue">
+          {{ dropofftime.viewValue }}
+        </option>
+      </select>
+    </div>
+    <button type="button" class="btn btn-warning scbtn-width" routerLink="/home" [queryParams]="{pickup_place:slt_pickplace,dropoff_place:slt_dropplace,pickup_date:slt_pickdate,dropoff_date:slt_dropdate,pickup_time:slt_picktime,dropoff_time:slt_droptime}">SEARCH NOW</button>
+    </div>
+</div>

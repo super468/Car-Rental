@@ -1,0 +1,25 @@
+<form action="">
+  <hr>
+  <nav class="navbar navbar-light bg-light">
+    <div class="row" style = "width:100%;margin-left:5px">
+      <input [value]="dataset[0]" type="text" class="place form-control" style="width:180px" placeholder="Pick up location">  
+      <p>→</p>
+      <input [value]="dataset[1]" type="text" class="place form-control" placeholder="Drop off location">
+      <input type="date" class = "division form-control form-control-sm" [value]="dataset[2]"/> 
+      <select [(value)]="selectedpk" class = "division form-control form-control-sm" style = "height:38px">
+          <option *ngFor="let pickuptime of times" [value]="pickuptime.viewValue">
+            {{pickuptime.viewValue}}
+          </option>
+      </select>
+      <input type="date" class="division form-control form-control-sm" [value]="dataset[3]"/> 
+      <select [(value)]="selecteddr" class = "division form-control form-control-sm" style = "height:38px">
+          <option *ngFor="let dropofftime of times" [value]="dropofftime.viewValue">
+            {{ dropofftime.viewValue }}
+          </option>
+        </select>
+      <button type="button" class="search btn btn-warning scbtn-width">SEARCH</button>
+    </div>
+        <p>{{dataset}}</p>
+
+  </nav>
+</form>
