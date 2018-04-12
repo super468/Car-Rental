@@ -1,3 +1,43 @@
-<div class="filter">
-    <p>Filter component</p>
+<aside class="control-sidebar control-sidebar-dark">
+
+  <p>PRICE SCOPE (1 day)</p>
+  <!--<select id="pricelist" class="form-control">-->
+    <!--<option value="all">-ALL-</option>-->
+    <!--<option value="one">Under 50$</option>-->
+    <!--<option value="two">50$ - 100$</option>-->
+    <!--<option value="three">100$ - 150$</option>-->
+    <!--<option value="four">150$ - 200$</option>-->
+    <!--<option value="five">Above 200$</option>-->
+  <!--</select>-->
+
+  <select class="form-control">
+    <option *ngFor="let price of pricelist" value="{{price.id}}">{{price.text}}</option>
+  </select>
+
+
+  <br><br>
+  <div>
+    <p>CAR TYPE</p>
+    <label><input type="checkbox"  id="alltypes" [checked]="isAllChecked()" (change)="checkAll($event)">Select All Type</label>
+    <label *ngFor="let op of options" class="form-check">
+      <input type="checkbox"   [(ngModel)]="op.state"  value="{{op.id}}"/>{{op.text}}
+      <!--[id]="op.id"-->
+    </label>
   </div>
+
+  <br><br>
+  <p>PASSENGER NUMBER: {{psgervalue}}</p>
+  <div class="passenger">
+    <input type="range" min="2" max="7"  [(ngModel)]="psgervalue" class="slider" id="myRange">
+  </div>
+
+  <br><br>
+  <p>DRIVER'S AGE</p>
+  <div>
+    <div class="passenger">
+    <input type="radio" name="age" value="larger18" checked> ADULT<br>
+    <input type="radio" name="age" value="less18"> Under 18<br>
+    </div>
+  </div>
+
+</aside>
