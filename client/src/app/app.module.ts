@@ -43,7 +43,7 @@ import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component'
     WelcomeComponent,
     FilterComponent,
     CarlistsComponent,
-    SearchWelcomeComponent
+    SearchWelcomeComponent,
     BookingsComponent,
     AccountComponent,
     UpcbookingsComponent,

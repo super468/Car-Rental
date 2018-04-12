@@ -12,6 +12,7 @@ import {AccountComponent} from "./account/account.component";
 import {UpcbookingsComponent} from "./upcbookings/upcbookings.component";
 import {PastbookingsComponent} from "./pastbookings/pastbookings.component";
 import {CncldbookingsComponent} from "./cncldbookings/cncldbookings.component";
+import {SearchWelcomeComponent} from "./search-welcome/search-welcome.component";
 
 
 const routes: Routes = [
