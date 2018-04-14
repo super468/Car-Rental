@@ -1,4 +1,22 @@
 <div class = "layout">
     <!-- Content here -->
     <p>Car Information</p>
+  <button (click)="getCarlists()" >REQ</button>
+
+  <div>
+    <p>DATA:</p>
+    <ul *ngFor="let car of showinglist">
+      <li> NAME:{{car.name}} PRICE:{{car.price}} </li>
+    </ul>
+  </div>
+
+  <app-pagination
+    (goPage)="goToPage($event)"
+    (goNext)="onNext()"
+    (goPrev)="onPrev()"
+    [pagesToShow]="3"
+    [page]="page"
+    [perPage]="limit"
+    [count]="total"></app-pagination>
+
   </div>

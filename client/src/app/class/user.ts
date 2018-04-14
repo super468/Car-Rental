@@ -8,3 +8,17 @@ export class User {
   ) {  }
 
 }
+
+export class Car {
+
+  constructor(
+    public name:string,
+    public type:string,
+    public passengers:number,
+    public price:number,
+    public luggage:number,
+    public isAuto:boolean,
+    public ACsup:boolean,
+    public pickuploc:string
+  ) {  }
+}

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -27,6 +27,8 @@ import {BookingsService} from "./services/bookings.service";
 import { UpcbookingsComponent } from './upcbookings/upcbookings.component';
 import { PastbookingsComponent } from './pastbookings/pastbookings.component';
 import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component';
+import {ProductService} from "./services/product.service";
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 
@@ -48,13 +50,15 @@ import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component'
     AccountComponent,
     UpcbookingsComponent,
     PastbookingsComponent,
-    CncldbookingsComponent
+    CncldbookingsComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -63,7 +67,8 @@ import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component'
   providers: [
     AuthenticationService,
     AuthGuardService,
-    BookingsService
+    BookingsService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
