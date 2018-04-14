@@ -16,7 +16,7 @@ export class CarlistsComponent implements OnInit {
   loading = false;
   total = 0;
   page = 1;
-  limit = 3;
+  limit = 2;
   // end for paginate
 
   cars: Car[];

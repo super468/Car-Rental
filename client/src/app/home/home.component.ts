@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
+import {FilterOptions} from "../filter/filter.component";
 
 @Component({
   selector: 'app-home',
@@ -26,5 +27,10 @@ export class HomeComponent implements OnInit {
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.dropdate,this.picktime,this.droptime];
 
   }
-  
+
+  getFilter($event: FilterOptions) {
+    console.log('---home get filter value from filter--');
+    console.log($event);
+
+  }
 }
