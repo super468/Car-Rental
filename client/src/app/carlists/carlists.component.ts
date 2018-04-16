@@ -3,6 +3,7 @@ import {Observable} from "rxjs/Observable";
 import {ProductService} from "../services/product.service";
 import {HttpClient} from "@angular/common/http";
 import {Car} from "../class/user";
+import { CARES } from '../car';
 
 @Component({
   selector: 'app-carlists',
@@ -10,7 +11,7 @@ import {Car} from "../class/user";
   styleUrls: ['./carlists.component.css']
 })
 export class CarlistsComponent implements OnInit {
-
+    cares = CARES;
   //****for paginate
 
   loading = false;

@@ -29,6 +29,7 @@ import { PastbookingsComponent } from './pastbookings/pastbookings.component';
 import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component';
 import {ProductService} from "./services/product.service";
 import { PaginationComponent } from './pagination/pagination.component';
+import { CardComponent } from './card/card.component';
 
 
 
@@ -51,7 +52,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     UpcbookingsComponent,
     PastbookingsComponent,
     CncldbookingsComponent,
-    PaginationComponent
+    PaginationComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
