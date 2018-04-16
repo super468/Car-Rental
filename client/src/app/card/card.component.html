@@ -1,13 +1,13 @@
-<div class="container" >
+<div class="container" id = 'card'>
     <div class="row" id = 'main_row'>
     <div class="col-sm-10 ">
         <div class="row" id ="model_name">
         {{car.model}}
         </div>
         <div class="row">
-            <div class="col-sm-4">
-                <div class="row">
-                    <img class = "img" mat-card-image src="{{car.image}}">
+            <div class="col-sm-4" id = 'L_col'>
+                <div class="row" >
+                    <img class = "img" mat-card-image src="{{car.image}}" id = 'image'>
                 </div>
                 <div class="row">
                     <div class="col-sm">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8" id = 'R_col'>
                 <div class="row">
                     <img src="https://www.autoescape.com/images-cms/images/SUPPLIERS/TARSIER/65bb10e6e11aeaf4d88f9514491c6801_h25.png">
                 </div>
