@@ -9,7 +9,7 @@ var carsSchema = new mongoose.Schema({
     luggage:Number,
     isAuto:Boolean,
     ACsup:Boolean,
-    pickuploc:String,
+    pickupLoc:String,
     insurance:Number,
     imageName:String,
     isavailable:Boolean
