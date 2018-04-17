@@ -9,9 +9,13 @@ li{
   position:relative;
 }
 
+/*.img{*/
+  /*transition: transform 0.25s ease;;*/
+/*}*/
 .highlight{
   transform: scale(1.05);
-  color:lightskyblue;
+  color:orange;
+  font-family:'STKaiti';
   /*-ms-transform: scale(1.1);*/
   /*-webkit-transform: scale(1.1);*/
   /*-moz-transform: scale(1.1);*/
