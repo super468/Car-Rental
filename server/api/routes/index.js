@@ -23,9 +23,9 @@ router.post('/login', ctrlAuth.login);
 router.get('/account/:email',ctrlacc.accountReadByEmail);
 router.post('/account',ctrlacc.createaccount);
 router.post('/account/:email',ctrlacc.updateaccountByEmail);
-// router.post('/carlist', carList.getCarLists);
-router.get('/carlists', carList.getCarLists);
+// routers for car CRUD service;
+router.get('/carlists', carList.readAllCarInfo);
 router.post('/carlists', carList.postCarInfor);
-
+router.get('/carlists/post', carList.createCarContext);
 
 module.exports = router;

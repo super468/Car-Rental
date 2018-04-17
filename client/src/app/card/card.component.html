@@ -2,25 +2,25 @@
     <div class="row" id = 'main_row'>
     <div class="col-sm-10 ">
         <div class="row" id ="model_name">
-        {{car.model}}
+        {{car.name}}
         </div>
         <div class="row">
             <div class="col-sm-4" id = 'L_col'>
                 <div class="row" >
-                    <img class = "img" mat-card-image src="{{car.image}}" id = 'image'>
+                    <img class = "img" mat-card-image src="{{car.imageName}}" id = 'image'>
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        {{car.people}}
+                        {{car.passengers}}
                     </div>
                     <div class="col-sm">
                         {{car.luggage}}
                     </div>
                     <div class="col-sm">
-                        {{car.AC}}
+                        {{car.ACsup}}
                     </div>
                     <div class="col-sm">
-                        {{car.Transmission}}
+                        {{car.isAuto}}
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-sm-6">
                         <p id= 'pickuptext'>Pick-up:</p>
-                        <p>{{car.PickupLoc}}</p>
+                        <p>{{car.pickupLoc}}</p>
                     </div>
                 </div>
 
@@ -45,7 +45,7 @@
         </div>
     </div>
     <div  class = "col-sm-2" id = 'col_r'>
-            <li>{{car.Price}}</li>
+            <li>{{car.price}}</li>
             <button id = 'continue_button' type="button" name="button">CONTINUE</button>
     </div>
     </div>

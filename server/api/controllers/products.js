@@ -10,15 +10,73 @@ var router = express.Router();
 // var db = monk('localhost:27017/vidzy');
 
 
-carlists = [
-    {name:'my car1', type:'luxury', passengers:5, price:230,luggage:2, isAuto:true, ACsup: true, pickuploc:'Dallas' },
-    {name:'my car2', type:'compact', passengers:7, price:30,luggage:2, isAuto:true, ACsup: true, pickuploc:'Dallas' },
-    {name:'my car3', type:'compact', passengers:4, price:130,luggage:4, isAuto:false, ACsup: false, pickuploc:'Plano' },
-    {name:'my car4', type:'SUV', passengers:4, price:90,luggage:3, isAuto:true, ACsup: false, pickuploc:'Dallas' },
-    {name:'my car5', type:'Van', passengers:7, price:60,luggage:2, isAuto:true, ACsup: true, pickuploc:'Plano' }
-
-
-];
+// CARS = [
+//     {
+//         name: 'Nissan Altima',
+//         type: 'Standard',
+//         imageName: '/assets/carimages/nissan_altima_standard_brl_287x164.jpg',
+//         passengers: 5,
+//         luggage: 2,
+//         price: 40.00,
+//         ACsup:true,
+//         isAuto: true,
+//         pickupLoc: 'DALLAS LOVE FIELD - Dallas Love Field',
+//         isavailable:true,
+//         insurance:10.00
+//     },
+//     {
+//         name: 'Chevrolet Sonica',
+//         type: 'Economy',
+//         imageName: '/assets/carimages/chevrolet_sonic_economy_brl_287x164.jpg',
+//         passengers: 5,
+//         luggage: 2,
+//         price: 40.00,
+//         ACsup:true,
+//         isAuto: true,
+//         pickupLoc: 'Plano high school',
+//         isavailable:true,
+//         insurance:10.00
+//     },
+//     {
+//         name: 'Chevrolet Cruze',
+//         type: 'Standard',
+//         imageName: '/assets/carimages/chevrolet_cruze_intermediate_brl_287x164.jpg',
+//         passengers: 5,
+//         luggage: 2,
+//         price: 60.00,
+//         ACsup:true,
+//         isAuto: true,
+//         pickupLoc: 'Richardison Bell street',
+//         isavailable:true,
+//         insurance:12.00
+//     },
+//     {
+//         name: 'Chevrolet Suburban',
+//         type: 'SUV',
+//         imageName: '/assets/carimages/chevrolet_suburban_suv_brl_287x164.jpg',
+//         passengers: 7,
+//         luggage: 3,
+//         price: 120.00,
+//         ACsup:true,
+//         isAuto: true,
+//         pickupLoc: 'UTD',
+//         isavailable:true,
+//         insurance:20.00
+//     },
+//     {
+//         name: 'Hrysler_300',
+//         type: 'Luxury',
+//         imageName: '/assets/carimages/chrysler_300_luxury_brl_287x164.jpg',
+//         passengers: 5,
+//         luggage: 3,
+//         price: 210.00,
+//         ACsup:true,
+//         isAuto: true,
+//         pickupLoc: 'UTD',
+//         isavailable:true,
+//         insurance:30.00
+//     }
+// ];
 // router.get('/', function(req, res) {
 //     // var collection = db.get('videos');
 //     // collection.find({}, function(err, videos){
@@ -32,22 +90,32 @@ carlists = [
 // });
 
 
-module.exports.getCarLists = function(req, res) {
-    // var collection = db.get('videos');
-    // collection.find({}, function(err, videos){
-    //     if (err) throw err;
-    //     res.json(videos);
-    // });
+// module.exports.getCarLists = function(req, res) {
+//     // var collection = db.get('videos');
+//     // collection.find({}, function(err, videos){
+//     //     if (err) throw err;
+//     //     res.json(videos);
+//     // });
+//
+//     // res.send(carlists);
+//     // if (!req.payload._id) {
+//     //     res.status(401).json({
+//     //         "message" : "UnauthorizedError: private profile"
+//     //     });
+//     // } else {
+//     //
+//     // }
+//     res.json(CARS);
+// };
 
-    // res.send(carlists);
-    // if (!req.payload._id) {
-    //     res.status(401).json({
-    //         "message" : "UnauthorizedError: private profile"
-    //     });
-    // } else {
-    //
-    // }
-    res.json(carlists);
+module.exports.readAllCarInfo = function(req, res) {
+
+    Cars.find(function (err, carList) {
+        if (err)
+            res.send(err);
+        res.json(carList);
+    });
+
 };
 module.exports.postCarInfor = function(req, res) {
     console.log("receive post request");
@@ -57,3 +125,25 @@ module.exports.postCarInfor = function(req, res) {
     console.log(carlists);
     res.json(carlists);
 }
+
+module.exports.createCarContext = function (req, res) {
+    // var carInfor = new Car(req.body);
+
+    var carInfor = new Cars(CARS[4]);
+    carInfor.save(function (err) {
+        if(err){
+            return res.send(err);
+        }
+        console.log("New Car Context Created");
+
+        res.json(carInfor);
+    })
+};
+
+module.exports.carsReadByName = function (req,res) {
+    Cars.findOne({name:"Nissan Altima"}, function (err, cars) {
+        if (err)
+            res.send(err);
+        res.json(cars);
+    });
+};

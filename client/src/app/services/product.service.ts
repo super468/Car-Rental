@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import "rxjs/Rx";
-import {Car} from "../class/user";
+import {Car} from "../class/car";
 import {map} from "rxjs/operators/map";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 

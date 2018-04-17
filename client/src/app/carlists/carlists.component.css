@@ -1,5 +1,10 @@
 .layout{
-    background-color: paleturquoise;
-    height:500px;
+    /*height:500px;*/
+}
+ul{
+  list-style-type: none;
 }
 
+li{
+  position:relative;
+}
