@@ -27,6 +27,8 @@ import {BookingsService} from "./services/bookings.service";
 import { UpcbookingsComponent } from './upcbookings/upcbookings.component';
 import { PastbookingsComponent } from './pastbookings/pastbookings.component';
 import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component';
+import {AccountService} from "./services/account.service";
+import { FavoritelistComponent } from './favoritelist/favoritelist.component';
 
 
 
@@ -48,7 +50,8 @@ import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component'
     AccountComponent,
     UpcbookingsComponent,
     PastbookingsComponent,
-    CncldbookingsComponent
+    CncldbookingsComponent,
+    FavoritelistComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component'
   providers: [
     AuthenticationService,
     AuthGuardService,
-    BookingsService
+    BookingsService,
+    AccountService
   ],
   bootstrap: [AppComponent]
 })
