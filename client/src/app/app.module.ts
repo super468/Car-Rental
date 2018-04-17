@@ -54,7 +54,7 @@ import { CardComponent } from './card/card.component';
     UpcbookingsComponent,
     PastbookingsComponent,
     CncldbookingsComponent,
-    FavoritelistComponent
+    FavoritelistComponent,
     CncldbookingsComponent,
     PaginationComponent,
     CardComponent

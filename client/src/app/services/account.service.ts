@@ -36,7 +36,6 @@ export class AccountDetail{
     this.city = city;
     this.state =state;
     this.zip = zip;
-
   }
 
 }
@@ -47,6 +46,7 @@ interface TokenResponse {
 
 export class AccountPayload {
 
+  email:string;
   name:string;
   phone:string;
   address1:string;
@@ -56,6 +56,7 @@ export class AccountPayload {
   zip:number;
 
   constructor(
+    email:string,
   name:string,
   phone:string,
   address1:string,
@@ -64,7 +65,7 @@ export class AccountPayload {
   state:string,
   zip:number
   ){
-
+    this.email = email;
     this.name = name;
     this.phone = phone;
     this.address1 = address1;
@@ -102,6 +103,10 @@ export class AccountService {
 
   updateAccountByEmail(payload:AccountPayload,email:string):Observable<any>{
     return this.http.post(`/api/account/${email}`,payload);
+  }
+
+  createAccount(payload:AccountPayload):Observable<any>{
+    return this.http.post(`/api/account`,payload);
   }
 
 }

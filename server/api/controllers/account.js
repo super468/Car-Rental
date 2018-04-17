@@ -59,7 +59,7 @@ module.exports.accountReadByEmail = function (req,res) {
 };
 
 module.exports.updateaccountByEmail = function (req,res) {
-    Account.findOne({email:req.params.email}, function (err, account) {
+    Account.findOne({email: req.params.email}, function (err, account) {
         if (err)
             res.send(err);
         for (var prop in req.body) {
@@ -67,15 +67,26 @@ module.exports.updateaccountByEmail = function (req,res) {
         }
 
         // save the movie
-        account.save(function(err) {
+        account.save(function (err) {
             if (err) {
                 return res.send(err);
             }
 
-            res.json({ message: 'Account updated!' });
+            res.json({message: 'Account updated!'});
         });
 
 
     });
-    
-}
+};
+
+module.exports.createaccount = function (req, res) {
+    var account = new Account(req.body);
+
+    account.save(function (err) {
+        if(err){
+            return res.send(err);
+        }
+
+        res.json({message: 'Account created'})
+    })
+};

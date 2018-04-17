@@ -21,6 +21,7 @@ router.post('/login', ctrlAuth.login);
 
 //router.get('/account',ctrlacc.accountRead);
 router.get('/account/:email',ctrlacc.accountReadByEmail);
+router.post('/account',ctrlacc.createaccount);
 router.post('/account/:email',ctrlacc.updateaccountByEmail);
 // router.post('/carlist', carList.getCarLists);
 router.get('/carlists', carList.getCarLists);
