@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -29,6 +29,9 @@ import { PastbookingsComponent } from './pastbookings/pastbookings.component';
 import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component';
 import {AccountService} from "./services/account.service";
 import { FavoritelistComponent } from './favoritelist/favoritelist.component';
+import {ProductService} from "./services/product.service";
+import { PaginationComponent } from './pagination/pagination.component';
+import { CardComponent } from './card/card.component';
 
 
 
@@ -52,12 +55,16 @@ import { FavoritelistComponent } from './favoritelist/favoritelist.component';
     PastbookingsComponent,
     CncldbookingsComponent,
     FavoritelistComponent
+    CncldbookingsComponent,
+    PaginationComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -67,7 +74,8 @@ import { FavoritelistComponent } from './favoritelist/favoritelist.component';
     AuthenticationService,
     AuthGuardService,
     BookingsService,
-    AccountService
+    AccountService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })

@@ -10,6 +10,8 @@ var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/authentication');
 var ctrlacc = require('../controllers/account');
 
+var carList = require('../controllers/products');
+
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
 
@@ -20,4 +22,7 @@ router.post('/login', ctrlAuth.login);
 //router.get('/account',ctrlacc.accountRead);
 router.get('/account/:email',ctrlacc.accountReadByEmail);
 router.post('/account/:email',ctrlacc.updateaccountByEmail);
+// router.post('/carlist', carList.getCarLists);
+router.get('/carlists', carList.getCarLists);
+
 module.exports = router;
