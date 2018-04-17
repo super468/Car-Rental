@@ -1,3 +1,5 @@
+
+
 export class User {
 
   constructor(
@@ -10,6 +12,7 @@ export class User {
 }
 
 export class Car {
+  // public _id:string;
 
   constructor(
     public name:string,
@@ -19,6 +22,22 @@ export class Car {
     public luggage:number,
     public isAuto:boolean,
     public ACsup:boolean,
-    public pickuploc:string
+    public pickuploc:string,
+    public insurance:number,
+    public imageName:string,
+    public isavailable:boolean
+  ) {  }
+}
+
+
+export class Boooking {
+  // public _id:string;
+
+  constructor(
+    public car_ID:string,
+    public startDate:Date,
+    public finishDate:Date,
+    public pickupLocation:string,
+    public returnLocation:string
   ) {  }
 }

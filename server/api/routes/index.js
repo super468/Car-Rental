@@ -20,5 +20,7 @@ router.post('/login', ctrlAuth.login);
 
 // router.post('/carlist', carList.getCarLists);
 router.get('/carlists', carList.getCarLists);
+router.post('/carlists', carList.postCarInfor);
+
 
 module.exports = router;

@@ -27,36 +27,25 @@ export class ProductService {
   }
 
 
-  getProduct():Observable<Car[]>{
+  getAllProduct():Observable<Car[]>{
     console.log("sent request 1")
 
     return this.http.get<Car[]>('/api/carlists');
-    // this.http.post('/api/carlists', {
-    //   id: '1'
-    // })
-    //   .subscribe(
-    //
-    //     res => {
-    //       console.log("get response");
-    //       console.log(res);
-    //     },
-    //     err => {
-    //       console.log("Error occured");
-    //     }
-    //   );
-    // console.log("sent request 2")
-
-    // let base = this.http.get('／api/carlists').map(data => _.values(data))
-    //   .do(console.log);
-    // ;
-    //
-    // const request = base;
-
-
-    // console.log(request);
-
   }
 
+  postCar(carInfor:Car):void {
 
+    console.log('postCar begin - in productservice');
+  this.http.post('/api/carlists', carInfor).subscribe(
+    res => {
+        console.log("get response after postcar");
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured when post car");
+      }
+    );
+    console.log('postCar finish - in productservice');
+  }
 
 }

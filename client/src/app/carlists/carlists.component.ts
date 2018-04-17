@@ -16,7 +16,7 @@ export class CarlistsComponent implements OnInit {
   loading = false;
   total = 0;
   page = 1;
-  limit = 2;
+  limit = 4  ;
   // end for paginate
 
   cars: Car[];
@@ -35,16 +35,24 @@ export class CarlistsComponent implements OnInit {
   getCarlists(){
     this.loading = true;
 
-    this.carService.getProduct().subscribe(res => {
+    this.carService.getAllProduct().subscribe(res => {
       this.cars = res;
       this.total = res.length;
       this.showinglist = this.cars.slice(0, this.limit);
       this.page = 1;
       this.loading = false;
     });
-    console.log(this.cars.length);
   }
 
+
+  postCarInfo(){
+    let car1:Car = new Car("new car1111","new type",
+  5, 23.11, 3, true, true,  'Dallas love field',
+  15, "/assets/carimages/chevrolet_tahoe_suv_brl_287x164.jpg", true);
+    this.carService.postCar(car1);
+    console.log('postCarInfo finish - in carlist');
+
+  }
   getFrom(): number {
     return ((this.limit * this.page) - this.limit);
   }
