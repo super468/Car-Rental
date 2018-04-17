@@ -5,8 +5,9 @@
   <button (click)="postCarInfo()" >post</button>
   <div>
     <p>Car Lists DATA:</p>
-    <ul *ngFor="let car of showinglist">
-      <li> <app-card [car]="car"> </app-card> </li>
+    <ul *ngFor="let car of showinglist, let i = index">
+      <li [ngClass]="{'highlight' : selected == i, 'not-highlight' : selected!=i}"
+          (click)="onSelect(i)" > <app-card [car]="car"> </app-card> </li>
     </ul>
   </div>
 
