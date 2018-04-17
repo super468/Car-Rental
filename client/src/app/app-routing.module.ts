@@ -13,6 +13,7 @@ import {UpcbookingsComponent} from "./upcbookings/upcbookings.component";
 import {PastbookingsComponent} from "./pastbookings/pastbookings.component";
 import {CncldbookingsComponent} from "./cncldbookings/cncldbookings.component";
 import {SearchWelcomeComponent} from "./search-welcome/search-welcome.component";
+import {FavoritelistComponent} from "./favoritelist/favoritelist.component";
 
 
 const routes: Routes = [
@@ -52,6 +53,10 @@ const routes: Routes = [
       {
         path: 'account',
         component: AccountComponent
+      },
+      {
+        path: 'favoritelist',
+        component: FavoritelistComponent
       }
     ]
   },

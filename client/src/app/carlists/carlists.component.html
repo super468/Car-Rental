@@ -4,9 +4,9 @@
   <button (click)="getCarlists()" >REQ</button>
   <button (click)="postCarInfo()" >post</button>
   <div>
-    <p>DATA:</p>
-    <ul *ngFor="let car of showinglist">
-      <li> NAME:{{car.name}} PRICE:{{car.price}} </li>
+    <p>Car Lists DATA:</p>
+    <ul *ngFor="let car of cares">
+      <li> <app-card [car]="car"> </app-card> </li>
     </ul>
   </div>
 

@@ -27,8 +27,11 @@ import {BookingsService} from "./services/bookings.service";
 import { UpcbookingsComponent } from './upcbookings/upcbookings.component';
 import { PastbookingsComponent } from './pastbookings/pastbookings.component';
 import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component';
+import {AccountService} from "./services/account.service";
+import { FavoritelistComponent } from './favoritelist/favoritelist.component';
 import {ProductService} from "./services/product.service";
 import { PaginationComponent } from './pagination/pagination.component';
+import { CardComponent } from './card/card.component';
 
 
 
@@ -51,7 +54,10 @@ import { PaginationComponent } from './pagination/pagination.component';
     UpcbookingsComponent,
     PastbookingsComponent,
     CncldbookingsComponent,
-    PaginationComponent
+    FavoritelistComponent
+    CncldbookingsComponent,
+    PaginationComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +74,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     AuthenticationService,
     AuthGuardService,
     BookingsService,
+    AccountService,
     ProductService
   ],
   bootstrap: [AppComponent]
