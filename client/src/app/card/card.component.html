@@ -11,16 +11,36 @@
                 </div>
                 <div class="row">
                     <div class="col-sm">
+                        <div class="row">
+                        <svg-icon src = "../assets/icons/Person.svg"></svg-icon>
+                        </div>
+                        <div class="row">
                         {{car.passengers}}
+                        </div>
                     </div>
                     <div class="col-sm">
+                        <div class="row">
+                        <svg-icon src = "../assets/icons/luggage.svg"></svg-icon>
+                        </div>
+                        <div class="row">
                         {{car.luggage}}
+                        </div>
                     </div>
                     <div class="col-sm">
+                        <div class="row">
+                        <svg-icon src = "../assets/icons/AC.svg"></svg-icon>
+                        </div>
+                        <div class="row">
                         {{car.ACsup}}
+                        </div>
                     </div>
                     <div class="col-sm">
+                        <div class="row">
+                        <svg-icon src = "../assets/icons/Auto.svg" ></svg-icon>
+                        </div>
+                        <div class="row">
                         {{car.isAuto}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -31,12 +51,12 @@
                 <div class="row">
                     <div class="col-sm-6">
                             <li>Features</li>
-                            <li>Pay at Pick-Up</li>
-                            <li>Free cancellation</li>
-                            <li>Unlimited mileage</li>
+                            <li><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >Pay at Pick-Up</li>
+                            <li><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >Free cancellation</li>
+                            <li><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >Unlimited mileage</li>
                     </div>
                     <div class="col-sm-6">
-                        <p id= 'pickuptext'>Pick-up:</p>
+                        <p id= 'pickuptext'><svg-icon src = "../assets/icons/Airports.svg"></svg-icon>Pick-up:</p>
                         <p>{{car.pickupLoc}}</p>
                     </div>
                 </div>
@@ -45,8 +65,15 @@
         </div>
     </div>
     <div  class = "col-sm-2" id = 'col_r'>
-            <li>{{car.price}}</li>
-            <button id = 'continue_button' type="button" name="button">CONTINUE</button>
-    </div>
+            <div class="row">
+                <p>Pay at Pick-Up</p>
+            </div>
+            <li id = "price_text">${{car.price}}/day</li>
+            <!-- <li><button mat-mini-fab>
+    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+  </button></li> -->
+            <div class="row" id = "button_row">
+                <button id = 'continue_button' type="button" class = "btn btn-primary btn-lg" >CONTINUE</button>
+            </div>
     </div>
 </div>
