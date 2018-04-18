@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs/Observable";
 import {ProductService} from "../services/product.service";
-import {HttpClient} from "@angular/common/http";
-import {Car} from "../class/user";
-import { CARES } from '../car';
+import {Car} from "../class/car";
+
 
 @Component({
   selector: 'app-carlists',
@@ -11,7 +9,8 @@ import { CARES } from '../car';
   styleUrls: ['./carlists.component.css']
 })
 export class CarlistsComponent implements OnInit {
-    cares = CARES;
+
+  selected: number = -1;
   //****for paginate
 
   loading = false;
@@ -52,6 +51,18 @@ export class CarlistsComponent implements OnInit {
   15, "/assets/carimages/chevrolet_tahoe_suv_brl_287x164.jpg", true);
     this.carService.postCar(car1);
     console.log('postCarInfo finish - in carlist');
+
+  }
+
+  onSelect(e){
+    console.log(e);
+    console.log(this.showinglist[e]);
+    if(e != this.selected){
+      this.selected = e;
+    }
+    else{
+      this.selected = -1;
+    }
 
   }
   getFrom(): number {
