@@ -54,14 +54,14 @@ module.exports.bookingsReadByEmail = function (req,res) {
 //     });
 // };
 
-module.exports.createaccount = function (req, res) {
-    var account = new Account(req.body);
+module.exports.createBooking = function (req, res) {
+    var booking = new Booking(req.body);
 
-    account.save(function (err) {
+    booking.save(function (err) {
         if(err){
             return res.send(err);
         }
 
-        res.json({message: 'Account created'})
+        res.json({message: 'Booking created'})
     })
 };

@@ -29,6 +29,9 @@ router.get('/carlists', carList.readAllCarInfo);
 router.post('/carlists', carList.postCarInfor);
 
 router.get('/booking/:email',ctrlBooking.bookingsReadByEmail);
+router.post('/booking', ctrlBooking.createBooking);
+
 router.get('/carlists/post', carList.createCarContext);
+
 
 module.exports = router;
