@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService, UserDetails} from "../services/authentication.service";
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-profile',
@@ -18,10 +19,14 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
     //console.log(this.auth.Ifadmin());
 
+  }
+
+  onclick(event){
+    $('li').removeClass("active");
+    event.target.className='list-group-item active';
+    console.log(event.target);
   }
 
 
