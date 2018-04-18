@@ -1,10 +1,15 @@
 <div class = "layout">
     <!-- Content here -->
-    <p>Car Information</p>
-  <button (click)="getCarlists()" >REQ</button>
-  <button (click)="postCarInfo()" >post</button>
-  <div>
-    <p>Car Lists DATA:</p>
+  <!--<p>Car Information</p>-->
+  <!--<button (click)="getCarlists()" >REQ</button>-->
+  <!--<button (click)="postCarInfo()" >post</button>-->
+  <div class="adminpanel">
+  <br>
+  <app-admincontrolpanel *ngIf="isAdmin" (getAll)="getCarlists()" [seletedCar]="selectedCar_p"></app-admincontrolpanel>
+  <br>
+  </div>
+  <div *ngIf="showCards">
+    <!--<p>Car Lists DATA:</p>-->
     <ul *ngFor="let car of showinglist, let i = index">
       <li [ngClass]="{'highlight' : selected == i, 'not-highlight' : selected!=i}"
           (click)="onSelect(i)" > <app-card [car]="car"> </app-card> </li>

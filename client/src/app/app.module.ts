@@ -32,6 +32,8 @@ import { FavoritelistComponent } from './favoritelist/favoritelist.component';
 import {ProductService} from "./services/product.service";
 import { PaginationComponent } from './pagination/pagination.component';
 import { CardComponent } from './card/card.component';
+import { AdmincontrolpanelComponent } from './admincontrolpanel/admincontrolpanel.component';
+import { DeletedialogComponent } from './deletedialog/deletedialog.component';
 
 
 
@@ -57,7 +59,9 @@ import { CardComponent } from './card/card.component';
     FavoritelistComponent,
     CncldbookingsComponent,
     PaginationComponent,
-    CardComponent
+    CardComponent,
+    AdmincontrolpanelComponent,
+    DeletedialogComponent
   ],
   imports: [
     BrowserModule,

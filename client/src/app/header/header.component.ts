@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   details: UserDetails;
   imgSrc = "/assets/XXAR_800x400.png";
   imgs:string[] = ["/assets/XXAR_800x400.png",'/assets/carcool.png'];
+
   i = 0;
   visiblityState = 'shown';
 
@@ -48,8 +49,8 @@ export class HeaderComponent implements OnInit {
       this.visiblityState = 'hidden';
     setTimeout(()=>{ this.imgSrc = this.imgs[this.i]; this.visiblityState = 'shown';}, 1000);
 
-
   }
+
   resetImg(){
     this.imgSrc = this.imgs[0];
     this.i = 0;
