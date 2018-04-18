@@ -1,7 +1,7 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {AuthenticationService, TokenPayload} from "../services/authentication.service";
 import {AccountDetail, AccountPayload, AccountService, PassWord} from "../services/account.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-account',
@@ -25,27 +25,22 @@ export class AccountComponent implements OnInit {
   //   email: this.email
   // };
 
-  constructor(private auth:AuthenticationService, private acc: AccountService, private router: Router) {
+  constructor(private auth:AuthenticationService, private acc: AccountService, private router: Router,private routerIonfo:ActivatedRoute) {
 
-
-    this.auth.profile().subscribe(user => {
-      this.email = user.email;
-      this.acc.getAccountByEmail(this.email).subscribe(
-        data => {
-          if(data!= null){
-            this.flag = true;
-            this.account = data
-          }
-          else{
-            this.flag = false;
-          }
-        },
-        err => console.error(err),
-        () => console.log(this.account)
-      );
-    }, (err) => {
-      console.error(err);
-    });
+    this.email=this.routerIonfo.snapshot.queryParams["email"];
+    this.acc.getAccountByEmail(this.email).subscribe(
+      data => {
+        if(data!= null){
+          this.flag = true;
+          this.account = data
+        }
+        else{
+          this.flag = false;
+        }
+      },
+      err => console.error(err),
+      () => console.log(this.account)
+    );
 
   }
 

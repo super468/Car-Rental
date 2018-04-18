@@ -11,6 +11,7 @@ var ctrlAuth = require('../controllers/authentication');
 var ctrlacc = require('../controllers/account');
 
 var carList = require('../controllers/products');
+var ctrlBooking = require('../controllers/booking');
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -26,6 +27,8 @@ router.post('/account/:email',ctrlacc.updateaccountByEmail);
 // routers for car CRUD service;
 router.get('/carlists', carList.readAllCarInfo);
 router.post('/carlists', carList.postCarInfor);
+
+router.get('/booking/:email',ctrlBooking.bookingsReadByEmail);
 router.get('/carlists/post', carList.createCarContext);
 
 module.exports = router;

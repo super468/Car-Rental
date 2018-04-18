@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService, UserDetails} from "../services/authentication.service";
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-profile',
@@ -9,14 +10,23 @@ import {AuthenticationService, UserDetails} from "../services/authentication.ser
 export class ProfileComponent implements OnInit {
   details: UserDetails;
 
-  constructor(private auth: AuthenticationService) {}
-
-  ngOnInit() {
+  constructor(private auth: AuthenticationService) {
     this.auth.profile().subscribe(user => {
       this.details = user;
     }, (err) => {
       console.error(err);
     });
+  }
+
+  ngOnInit() {
+    //console.log(this.auth.Ifadmin());
+
+  }
+
+  onclick(event){
+    $('li').removeClass("active");
+    event.target.className='list-group-item active';
+    console.log(event.target);
   }
 
 

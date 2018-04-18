@@ -20,10 +20,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <ul>
-        <li routerLink="/profile/bookings">My Booking</li>
-        <li routerLink="/profile/account">Account Details</li>
-        <li routerLink="/profile/favoritelist">Favorite List</li>
+      <ul class="list-group">
+        <li class="list-group-item active" (click)="onclick($event)" routerLink="/profile/bookings" [queryParams]="{email:details.email}">My Booking</li>
+        <li class="list-group-item" (click)="onclick($event)" routerLink="/profile/account" [queryParams]="{email:details.email}">Account Details</li>
+        <li class="list-group-item" (click)="onclick($event)" routerLink="/profile/favoritelist" [queryParams]="{email:details.email}">Favorite List</li>
       </ul>
     </div>
     <div class="col-md-9">
@@ -32,3 +32,4 @@
   </div>
 </div>
 <app-footer></app-footer>
+
