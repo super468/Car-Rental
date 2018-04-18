@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {driverinfo} from "../bookingdetail/bookingdetail.component";
 
 @Injectable()
 export class BookingsService {
@@ -11,43 +12,48 @@ export class BookingsService {
 
   }
 
-  getUpcBooking(): Booking{
-    return new Booking(
-      'bookingid',
-      '2017-08-1',
-      '2017-08-04',
-      'DFW',
-      'DFW',
-      355,
-      'carid',
-      'useid'
-    );
-  }
-  getPastBooking(): Booking{
-    return new Booking(
-      'bookingid',
-      '2017-01-1',
-      '2017-01-04',
-      'DFW',
-      'DFW',
-      255,
-      'carid',
-      'useid'
-    );
+  createBookingByEmail(){
+
   }
 
-  getCncldBooking(): Booking{
-    return new Booking(
-      'bookingid',
-      '2017-04-1',
-      '2017-04-04',
-      'DFW',
-      'DFW',
-      333,
-      'carid',
-      'useid'
-    );
-  }
+  // getUpcBooking(): Booking{
+  //   return new Booking(
+  //     'bookingid',
+  //     '2017-08-1',
+  //     '2017-08-04',
+  //     'DFW',
+  //     'DFW',
+  //     355,
+  //     'carid',
+  //     'useid'
+  //   );
+  // }
+  // getPastBooking(): Booking{
+  //   return new Booking(
+  //     'bookingid',
+  //     '2017-01-1',
+  //     '2017-01-04',
+  //     'DFW',
+  //     'DFW',
+  //     255,
+  //     'carid',
+  //     'useid'
+  //   );
+  // }
+  //
+  // getCncldBooking(): Booking{
+  //   return new Booking(
+  //     'bookingid',
+  //     '2017-04-1',
+  //     '2017-04-04',
+  //     'DFW',
+  //     'DFW',
+  //     333,
+  //     'carid',
+  //     'useid'
+  //
+  //   );
+  // }
 }
 
 export class Booking{
@@ -60,6 +66,7 @@ export class Booking{
   price:number;
   carid:string;
   email:string;
+  driverinfo:driverinfo;
 
   constructor(
     _id:string,
@@ -69,7 +76,8 @@ export class Booking{
     dropoffloc:string,
     price:number,
     carid:string,
-    email:string
+    email:string,
+    driverinfo:driverinfo
   ){
     this._id = _id;
     this.pickupdate = pickupdate;
@@ -79,6 +87,7 @@ export class Booking{
     this.price = price;
     this.carid = carid;
     this.email = email;
+    this.driverinfo=driverinfo;
   }
 
 

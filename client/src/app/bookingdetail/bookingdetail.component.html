@@ -1,32 +1,71 @@
+<app-header></app-header>
 <div class="booking_page">
 <div class="container">
-  <h4 class="margin">Reserve your car now</h4>
+  <h4 class="margin" style="margin-bottom: 20px">Reserve your car now</h4>
   <div class="row margin">
     <div class="col-md-4 left">
       works
     </div>
-    <div class="col-md-8 right">
+    <div class="col-md-8">
       <div class="row">
         <div class="white-panel">
           <div class="price_detail">
             <h3>Total amount of your booking</h3>
             <div class="price_total">
               <span class="pay_now">Pay Now Special</span>
-              $109.8
-              <sup>81</sup>
+              ${{price.total | number:'1.2-2'}}
+              <!--<sup>81</sup>-->
+            </div>
+            <div class="new_form">
+              <h3>Recommended Options</h3>
+              <ul class="new_list">
+                <li class="new_item">
+                  <div></div>
+                  <div class="new_label">Loss Damage Waiver</div>
+                  <div class="new_price">${{price.loss | number:'1.2-2'}}/day</div>
+                  <div class="new_check">
+                    <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.loss">
+                  </div>
+                </li>
+                <li class="new_item">
+                  <div></div>
+                  <div class="new_label">Personal Accident Protection</div>
+                  <div class="new_price">${{price.pap | number:'1.2-2'}}/day</div>
+                  <div class="new_check">
+                    <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.pap">
+                  </div>
+                </li>
+                <li class="new_item">
+                  <div></div>
+                  <div class="new_label">Supplemental Liability Insurance</div>
+                  <div class="new_price">${{price.sli | number:'1.2-2'}}/day</div>
+                  <div class="new_check">
+                    <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.sli">
+                  </div>
+                </li>
+                <li class="new_item">
+                  <div></div>
+                  <div class="new_label">
+                    Extended Roadside Protection</div>
+                  <div class="new_price">${{price.erp | number:'1.2-2'}}/day</div>
+                  <div class="new_check">
+                    <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.erp">
+                  </div>
+                </li>
+              </ul>
             </div>
             <div class="tb">
               <div class="tb_row">
-                <div class="tb_cell bold">3 days @ $30.84/day</div>
-                <div class="tb_cell bold">$92.52</div>
+                <div class="tb_cell bold">{{price.day}} days @ ${{price.base | number:'1.2-2'}}/day</div>
+                <div class="tb_cell bold">${{price.day*price.base | number:'1.2-2'}}</div>
               </div>
               <div class="tb_row">
-                <div class="tb_cell bold">3 days @ $30.84/day</div>
-                <div class="tb_cell bold">$92.52</div>
+                <div class="tb_cell bold">Estimated Taxes & Fees</div>
+                <div class="tb_cell bold">${{price.tax | number:'1.2-2'}}</div>
               </div>
               <div class="tb_row">
-                <div class="tb_cell bold">3 days @ $30.84/day</div>
-                <div class="tb_cell bold">$92.52</div>
+                <div class="tb_cell bold">Total amount of your booking	</div>
+                <div class="tb_cell bold">${{price.total | number:'1.2-2'}}</div>
               </div>
             </div>
 
@@ -34,25 +73,25 @@
         </div>
         <div class="white-panel">
           <h3>Driver Information</h3>
-          <form>
+          <form ngForm>
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label>First Name:</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="driverinfo.firstname" name="first">
               </div>
               <div class="form-group col-md-4 second">
                 <label>Last Name:</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" [(ngModel)]="driverinfo.lastname" name="last">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label>Email Address:</label>
-                <input type="email" class="form-control">
+                <input type="email" class="form-control"  [(ngModel)]="driverinfo.email" name="email">
               </div>
               <div class="form-group col-md-4 second">
                 <label>Phone:</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control"  [(ngModel)]="driverinfo.phone" name="phone">
               </div>
             </div>
           </form>
@@ -116,7 +155,7 @@
               <label>First Name</label>
               <input class="form-control" type="text">
             </div>
-            <div class="col-md-4 form-group">
+            <div class="col-md-4 form-group second">
               <label>Last Name</label>
               <input class="form-control" type="text">
             </div>
@@ -126,7 +165,7 @@
                 <label>Billing Address</label>
                 <input class="form-control" type="text">
               </div>
-              <div class="col-md-4 form-group">
+              <div class="col-md-4 form-group second">
                 <label>Billing Address2</label>
                 <input class="form-control" type="text">
               </div>
@@ -136,7 +175,7 @@
                 <label>City</label>
                 <input class="form-control" type="text">
               </div>
-              <div class="col-md-4 form-group">
+              <div class="col-md-4 form-group second">
                 <label>Zip/Postal Code</label>
                 <input class="form-control" type="text">
               </div>
@@ -341,7 +380,7 @@
                   <option value="71">Zimbabwe</option>
                 </select>
               </div>
-              <div class="col-md-4 form-group">
+              <div class="col-md-4 form-group second">
                 <label>State</label>
                 <select class="form-control"><option value="">Please Choose State</option>
                   <option value="AL">Alabama (AL)</option>
@@ -403,21 +442,22 @@
             </div>
           </form>
         </div>
-        <div class="white-panel">
+        <div class="white-panel-last">
           <h3>Complete Your Reservation</h3>
           <ul class="points">
             <li>The name on the credit card used to make the reservation must match the driver's name.</li>
             <li>The same credit card must be presented at the counter upon pick-up.</li>
-            <li>Your card will be charged for the total cost of this reservation 109.81 (USD) when you reserve your car.</li>
+            <li>Your card will be charged for the total cost of this reservation {{price.total | number:'1.2-2'}} (USD) when you reserve your car.</li>
             <!----><!---->                    <li>This pre-paid reservation cannot be changed or refunded.</li>
             <!----><!----><!----><!----></ul>
           <hr>
-
+          <p class="agree">By clicking Reserve Now, I acknowledge that I have read and accept the <span id="terms">Terms of Use</span> and <span id="privacy">Privacy Policy</span>. I also may receive emails about special offers available on CarRentals.com.</p>
+          <button class="btn orange" (click)="onclick()">RESERVE NOW</button>
         </div>
       </div>
-      <div class="row">works</div>
     </div>
   </div>
 
 </div>
 </div>
+<app-footer></app-footer>

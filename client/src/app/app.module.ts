@@ -24,9 +24,6 @@ import { SearchWelcomeComponent } from './search-welcome/search-welcome.componen
 import { BookingsComponent } from './bookings/bookings.component';
 import { AccountComponent } from './account/account.component';
 import {BookingsService} from "./services/bookings.service";
-import { UpcbookingsComponent } from './upcbookings/upcbookings.component';
-import { PastbookingsComponent } from './pastbookings/pastbookings.component';
-import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component';
 import {AccountService} from "./services/account.service";
 import { FavoritelistComponent } from './favoritelist/favoritelist.component';
 import {ProductService} from "./services/product.service";
@@ -52,11 +49,7 @@ import { BookingdetailComponent } from './bookingdetail/bookingdetail.component'
     SearchWelcomeComponent,
     BookingsComponent,
     AccountComponent,
-    UpcbookingsComponent,
-    PastbookingsComponent,
-    CncldbookingsComponent,
     FavoritelistComponent,
-    CncldbookingsComponent,
     PaginationComponent,
     CardComponent,
     BookingdetailComponent
