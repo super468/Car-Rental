@@ -1,0 +1,28 @@
+<div>
+  <button (click)='getAllCarList()' class="btn btn-warning">LIST ALL</button>
+  <button class="btn btn-warning">ADD ONE</button>
+  <button [ngClass]="{ 'disabled': seletedCar == null }" (click)="editBtnClick()" class="btn btn-warning">EDIT INFO</button>
+  <button [ngClass]="{ 'disabled': seletedCar == null }" (click)="deleteBtnClick()" class="btn btn-warning">REMOVE</button>
+
+  <app-deletedialog [(visible)]="showDeleteDialog" *ngIf="seletedCar != null">
+    <div class='deleteconfirm'>
+      <p>Really want to delete this <b>{{seletedCar.name}}</b> (ID:{{seletedCar._id}}) from list? This operation is unrecoverable!</p>
+    <button (click)="confirmDelete()" class="btn btn-warning">YES</button>
+    <button (click)='closeDialog()' class="btn btn-warning">NO</button>
+    </div>
+  </app-deletedialog>
+
+  <app-deletedialog [(visible)]="showUpdataDialog" *ngIf="seletedCar != null">
+    <form>
+      <input type="image">
+      <br>
+      <input type="text">
+
+      <div class='deleteconfirm'>
+      <p>Really want to delete this {{seletedCar.name}} (ID:{{seletedCar._id}}) from list? This operation is unrecoverable!</p>
+      <button (click)="showUpdataDialog = !showUpdataDialog" class="btn btn-warning">YES</button>
+      <button (click)='closeDialog()' class="btn btn-warning">NO</button>
+      </div>
+    </form>
+  </app-deletedialog>
+</div>
