@@ -32,6 +32,7 @@ import { FavoritelistComponent } from './favoritelist/favoritelist.component';
 import {ProductService} from "./services/product.service";
 import { PaginationComponent } from './pagination/pagination.component';
 import { CardComponent } from './card/card.component';
+import { BookingdetailComponent } from './bookingdetail/bookingdetail.component';
 
 
 
@@ -57,7 +58,8 @@ import { CardComponent } from './card/card.component';
     FavoritelistComponent,
     CncldbookingsComponent,
     PaginationComponent,
-    CardComponent
+    CardComponent,
+    BookingdetailComponent
   ],
   imports: [
     BrowserModule,

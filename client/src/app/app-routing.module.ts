@@ -14,6 +14,7 @@ import {PastbookingsComponent} from "./pastbookings/pastbookings.component";
 import {CncldbookingsComponent} from "./cncldbookings/cncldbookings.component";
 import {SearchWelcomeComponent} from "./search-welcome/search-welcome.component";
 import {FavoritelistComponent} from "./favoritelist/favoritelist.component";
+import {BookingdetailComponent} from "./bookingdetail/bookingdetail.component";
 
 
 const routes: Routes = [
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'bookingdetail',
+    component: BookingdetailComponent
   }
 ];
 
