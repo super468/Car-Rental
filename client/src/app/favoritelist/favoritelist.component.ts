@@ -26,8 +26,6 @@ export class FavoritelistComponent implements OnInit {
 
     this.carService.getAllProduct().subscribe(res => {
       console.log(res);
-
-
       this.showinglist = res;
       this.loading = false;
     });

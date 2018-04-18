@@ -12,8 +12,8 @@ export class BookingsService {
 
   }
 
-  createBookingByEmail(){
-
+  createBooking(booking:Booking){
+    return this.http.post(`/api/booking`, booking);
   }
 
   // getUpcBooking(): Booking{
@@ -58,7 +58,6 @@ export class BookingsService {
 
 export class Booking{
 
-  _id:string;
   pickupdate:string;
   dropoffdate:string;
   pickuploc:string;
@@ -66,10 +65,9 @@ export class Booking{
   price:number;
   carid:string;
   email:string;
-  driverinfo:driverinfo;
+  driverinfo:object;
 
   constructor(
-    _id:string,
     pickupdate:string,
     dropoffdate:string,
     pickuploc:string,
@@ -77,9 +75,8 @@ export class Booking{
     price:number,
     carid:string,
     email:string,
-    driverinfo:driverinfo
+    driverinfo:object
   ){
-    this._id = _id;
     this.pickupdate = pickupdate;
     this.dropoffdate =dropoffdate;
     this.pickuploc = pickuploc;
@@ -89,6 +86,7 @@ export class Booking{
     this.email = email;
     this.driverinfo=driverinfo;
   }
+
 
 
 }

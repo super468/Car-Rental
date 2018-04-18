@@ -6,6 +6,6 @@
     <button *ngIf="!auth.isLoggedIn()" type="button" class="btn btn-outline-primary" routerLink="/register">Register</button>
     <p *ngIf="!auth.isLoggedIn()">or</p>
     <button *ngIf="!auth.isLoggedIn()" type="button" class="btn btn-outline-primary" routerLink="/login">Sign in</button>
-  <a *ngIf="auth.isLoggedIn()" routerLink="/profile/bookings" [queryParams]="{email:details.email}">Hi, {{details?.name}}</a>
+  <a *ngIf="auth.isLoggedIn()" routerLink="/profile/bookings" [queryParams]="{email:details?.email}">Hi, {{details?.name}}</a>
   <button *ngIf="auth.isLoggedIn()" type="button" class="btn btn-outline-primary" (click)="auth.logout()">Log out</button>
 </nav>

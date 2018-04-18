@@ -9,7 +9,8 @@ var bookingSchema = new mongoose.Schema(
         dropoffloc:String,
         price:Number,
         carid:String,
-        email:String
+        email:String,
+        driverinfo:Object
     }
 );
 

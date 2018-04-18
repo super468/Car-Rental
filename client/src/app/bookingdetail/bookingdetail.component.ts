@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgModel} from "@angular/forms";
-import {BookingsService} from "../services/bookings.service";
+import {Booking, BookingsService} from "../services/bookings.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-bookingdetail',
@@ -8,14 +9,17 @@ import {BookingsService} from "../services/bookings.service";
   styleUrls: ['./bookingdetail.component.css']
 })
 export class BookingdetailComponent implements OnInit {
-
-  driverinfo:driverinfo = new driverinfo('','','','');
+  driverinfo:driverinfo = {
+    firstname:'',
+    lastname:'',
+    email:'',
+    phone:''
+  }
   price:pricedetail = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 591.32);
   pricepayload:pricedetail = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 591.32);
-  ls:boolean=false;
-  checkboxValue:boolean=false;
+  booking:Booking = new Booking('2018-01-01','2018-01-02','DFW','DFW',0,'1','a@a.com',this.driverinfo);
 
-  constructor(private bookingservice:BookingsService) {
+  constructor(private bookingservice:BookingsService,private router: Router) {
 
   }
 
@@ -34,7 +38,18 @@ export class BookingdetailComponent implements OnInit {
   }
 
   onclick(){
+    this.booking.driverinfo = this.driverinfo;
+    console.log(this.booking);
+    this.bookingservice.createBooking(this.booking).subscribe(
+      (data)=>{
+        console.log(data);
+        this.router.navigateByUrl('/home');
 
+      },
+      (err)=>{
+        console.log(err);
+      }
+    );
   }
 }
 
@@ -70,13 +85,9 @@ export class pricedetail{
   }
 }
 
-export class driverinfo{
-  constructor(
+export interface driverinfo{
     firstname:string,
     lastname:string,
     email:string,
     phone:string
-  ){
-
-  }
 }
