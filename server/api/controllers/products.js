@@ -118,12 +118,12 @@ module.exports.readAllCarInfo = function(req, res) {
 
 };
 module.exports.postCarInfor = function(req, res) {
-    console.log("receive post request");
-    carlists.push(req.body);
-    console.log(carlists.toString());
-    console.log("------------");
-    console.log(carlists);
-    res.json(carlists);
+    // console.log("receive post request");
+    // //carlists.push(req.body);
+    // console.log(carlists.toString());
+    // console.log("------------");
+    // console.log(carlists);
+    // res.json(carlists);
 }
 
 module.exports.createCarContext = function (req, res) {
