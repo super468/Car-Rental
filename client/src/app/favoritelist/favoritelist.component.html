@@ -1,3 +1,22 @@
-<p>
-  favoritelist works!
-</p>
+<div class = "layout">
+  <!-- Content here -->
+  <p>Car Information</p>
+  <button (click)="getCarlists()" >REQ</button>
+  <button (click)="postCarInfo()" >post</button>
+  <div>
+    <p>Car Lists DATA:</p>
+    <ul *ngFor="let car of showinglist">
+      <li> <app-card [car]="car"> </app-card> </li>
+    </ul>
+  </div>
+
+  <app-pagination
+    (goPage)="goToPage($event)"
+    (goNext)="onNext()"
+    (goPrev)="onPrev()"
+    [pagesToShow]="8"
+    [page]="page"
+    [perPage]="limit"
+    [count]="total"></app-pagination>
+
+</div>

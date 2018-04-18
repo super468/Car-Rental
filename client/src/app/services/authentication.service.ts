@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
+import {isBoolean} from "util";
 
 export interface UserDetails {
   _id: string;
@@ -25,7 +26,7 @@ export interface TokenPayload {
 @Injectable()
 export class AuthenticationService {
   private token: string;
-
+  private flag:boolean;
   constructor(private http: HttpClient, private router: Router) {}
 
   private saveToken(token: string): void {
@@ -98,5 +99,19 @@ export class AuthenticationService {
     this.token = '';
     window.localStorage.removeItem('mean-token');
     this.router.navigateByUrl('/');
+  }
+
+  public Ifadmin():boolean{
+    const token = this.getToken();
+    let payload;
+    if (token) {
+      payload = token.split('.')[1];
+      payload = window.atob(payload);
+      let ans = JSON.parse(payload);
+      console.log(ans);
+      if (ans.level == "admin")
+        return true;
+    }
+    return false;
   }
 }

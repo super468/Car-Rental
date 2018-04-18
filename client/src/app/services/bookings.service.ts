@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class BookingsService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
+
+  getBookingsByEmail(email:string){
+    return this.http.get(`/api/booking/${email}`);
+
+  }
 
   getUpcBooking(): Booking{
     return new Booking(
@@ -45,16 +51,35 @@ export class BookingsService {
 }
 
 export class Booking{
-  constructor(
-    public _id:string,
-    public pickupdate:string,
-    public dropoffdate:string,
-    public pickuploc:string,
-    public dropoffloc:string,
-    public price:number,
-    public carid:string,
-    public user_id:string
-  ){
 
+  _id:string;
+  pickupdate:string;
+  dropoffdate:string;
+  pickuploc:string;
+  dropoffloc:string;
+  price:number;
+  carid:string;
+  email:string;
+
+  constructor(
+    _id:string,
+    pickupdate:string,
+    dropoffdate:string,
+    pickuploc:string,
+    dropoffloc:string,
+    price:number,
+    carid:string,
+    email:string
+  ){
+    this._id = _id;
+    this.pickupdate = pickupdate;
+    this.dropoffdate =dropoffdate;
+    this.pickuploc = pickuploc;
+    this.dropoffloc = dropoffloc;
+    this.price = price;
+    this.carid = carid;
+    this.email = email;
   }
+
+
 }

@@ -1,16 +1,38 @@
-<ul class="nav nav-tabs">
+<!--<ul class="nav nav-tabs">-->
 
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/profile/bookings/upcbookings">Upcoming Bookings</a>
-  </li>
+  <!--<li class="nav-item">-->
+    <!--<a class="nav-link" routerLink="/profile/bookings/upcbookings">Upcoming Bookings</a>-->
+  <!--</li>-->
 
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/profile/bookings/pastbookings">Past Bookings</a>
-  </li>
+  <!--<li class="nav-item">-->
+    <!--<a class="nav-link" routerLink="/profile/bookings/pastbookings">Past Bookings</a>-->
+  <!--</li>-->
 
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/profile/bookings/cncldbookings">Cancelled Bookings</a>
-  </li>
+  <!--<li class="nav-item">-->
+    <!--<a class="nav-link" routerLink="/profile/bookings/cncldbookings">Cancelled Bookings</a>-->
+  <!--</li>-->
 
-</ul>
-<router-outlet></router-outlet>
+<!--</ul>-->
+<!--<router-outlet></router-outlet>-->
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Pickup Location</th>
+      <th>Dropoff Location</th>
+      <th>Pickup Date</th>
+      <th>Dropoff Date</th>
+      <th>Price</th>
+      <th>Carid</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let booking of bookings">
+      <td>{{booking.pickuploc}}</td>
+      <td>{{booking.dropoffloc}}</td>
+      <td>{{booking.pickupdate}}</td>
+      <td>{{booking.dropoffdate}}</td>
+      <td>{{booking.price}}</td>
+      <td>{{booking.carid}}</td>
+    </tbody>
+  </table>
+</div>
