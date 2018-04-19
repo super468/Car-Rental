@@ -5,6 +5,9 @@
     font-weight: 700;
     font-size: 40px;
 }
+#model_name_r{
+    padding-top: 0px;
+}
 li{
   list-style: none;
 }
@@ -42,10 +45,14 @@ li{
     background-color: rgb(243,113,33);
 }
 
+#model_name_r{
+    padding-left: 0px;
+    text-align: left;
+}
 
 label {
   /* Presentation */
-  font-size: 48px
+  font-size: 30px
 }
 
 /* Required Styling */
@@ -55,22 +62,17 @@ label input[type="checkbox"] {
 }
 
 .custom-checkbox {
-  margin-left: 2em;
   position: relative;
   cursor: pointer;
 }
 
 .custom-checkbox .glyphicon {
-  color: gold;
   position: absolute;
-  top: 0.4em;
+  bottom:0.05px;
   left: -1.25em;
-  font-size: 0.75em;
 }
 
-.custom-checkbox .glyphicon-star-empty {
-  color: gray;
-}
+
 
 .custom-checkbox .glyphicon-star {
   opacity: 0;
