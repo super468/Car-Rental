@@ -28,7 +28,7 @@ export class ProductService {
 
 
   getAllProduct():Observable<Car[]>{
-    console.log("sent request 1")
+    console.log("sent request 1");
 
     return this.http.get<Car[]>('/api/carlists');
   }
@@ -54,6 +54,14 @@ export class ProductService {
 
 
     return this.http.get<Car[]>("/api/carlists/search/:_id");
+  }
+
+  createCar(car:Car){
+    return this.http.post(`/api/cars`,car);
+  }
+
+  deleteCarById(id:string){
+    return this.http.delete(`/api/cars/${id}`);
   }
 
 }

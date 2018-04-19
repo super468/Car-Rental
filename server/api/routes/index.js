@@ -38,6 +38,11 @@ router.delete('/favoritelist/:email&:carid', ctrlfavoritelist.DeleteFavorite);
 router.get('/favoritelist/:email', ctrlfavoritelist.CarsReadByEmail);
 router.get('/carlists/post', carList.createCarContext);
 
+//create car
+router.post('/car', carList.createCar);
+//delete a car
+router.delete('/car/:id', carList.deleteCarbyId);
+
 //router for car id
 router.get('/carlists/search/:_id', carList.searchCarbyID);
 

@@ -124,7 +124,7 @@ module.exports.postCarInfor = function(req, res) {
     // console.log("------------");
     // console.log(carlists);
     // res.json(carlists);
-}
+};
 
 module.exports.createCarContext = function (req, res) {
     // var carInfor = new Car(req.body);
@@ -161,4 +161,22 @@ module.exports.searchCarbyID = function(req, res) {
         res.json(cars);
 
     });
-}
+};
+
+module.exports.createCar =function (req, res) {
+    var car = new Cars(req.body);
+    car.save(function (err) {
+        if(err){
+            return res.send(err);
+        }
+        console.log('Car Created');
+    })
+};
+
+module.exports.deleteCarbyId = function (req, res) {
+    Cars.delete({_id:req.params.id}, function (err) {
+        if(err)
+            return res.send(err);
+        console.log('Car Delelted');
+    })
+};
