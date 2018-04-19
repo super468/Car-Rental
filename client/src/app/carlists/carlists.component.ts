@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {Car} from "../class/car";
 
@@ -25,12 +25,46 @@ export class CarlistsComponent implements OnInit {
   showinglist:Car[];
   selectedCar_p: Car;
 
+  searchCars: Car[];
+
+  @Input() public pickPlace:string;
+
+
   constructor(private carService:ProductService) {
   }
 
 
   ngOnInit(){
-    this.getCarlists();
+    console.log("carlist recieved!!~~");
+
+    this.searchCarlists();
+
+  }
+
+  footerRun(pickplace:string){
+    this.pickPlace = pickplace;
+    console.log("carlist run");
+    this.searchCarlists();
+  }
+
+  searchCarlists(){
+    this.loading = true;
+    this.carService.searchCarProduct(this.pickPlace).subscribe(res=>{
+      this.cars = res;
+      this.total = res.length;
+      this.showinglist = this.cars.slice(0, this.limit);
+      this.page = 1;
+      //init the selected status and seleted Car info for adminControl
+      this.selected = -1;
+      this.selectedCar_p = null;
+
+      this.loading = false;
+      console.log(this.searchCars);
+      },error1 => {
+         "search error!!!!!!"
+      }
+
+    );
   }
 
   // getMessages(): void {
@@ -47,6 +81,8 @@ export class CarlistsComponent implements OnInit {
       this.selectedCar_p = null;
 
       this.loading = false;
+      console.log('resquest');
+      console.log(this.cars);
     });
   }
 
