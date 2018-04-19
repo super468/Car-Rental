@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
     this.pTime = this.dataset[3];
     this.dDate = this.dataset[4];
     this.dTime = this.dataset[5];
-    this.searchCondi = [this.pLocation,this.dLocation,this.pDate,this.pTime,this.dDate,this.dTime];
+
   }
   times = [
     {value: 'time1', viewValue: '00:00'},
@@ -37,6 +37,7 @@ export class SearchComponent implements OnInit {
   ];
 
   fireEvent(){
+    this.searchCondi = [this.pLocation,this.dLocation,this.pDate,this.pTime,this.dDate,this.dTime];
     this.searchCar.emit(this.searchCondi);
 
   }

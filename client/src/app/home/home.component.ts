@@ -29,13 +29,19 @@ export class HomeComponent implements OnInit {
   }
 
   runParent(msg:string[]) {
-
-    console.log(msg);
+    this.pickplace=msg[0];
+    this.dropplace=msg[1];
+    this.pickdate=msg[2];
+    this.picktime=msg[3];
+    this.dropdate=msg[4];
+    this.droptime=msg[5];
+    this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
+    console.log(this.dataset);
   }
 
-  getFilter($event: FilterOptions) {
+  getFilter(options: FilterOptions) {
     console.log('---home get filter value from filter--');
-    console.log($event);
+    console.log(options);
 
   }
 }
