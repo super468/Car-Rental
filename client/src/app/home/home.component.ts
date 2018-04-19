@@ -28,6 +28,11 @@ export class HomeComponent implements OnInit {
 
   }
 
+  runParent(msg:string[]) {
+
+    console.log(msg);
+  }
+
   getFilter($event: FilterOptions) {
     console.log('---home get filter value from filter--');
     console.log($event);

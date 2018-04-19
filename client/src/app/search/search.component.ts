@@ -1,4 +1,5 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import {FilterOptions} from "../filter/filter.component";
 
 @Component({
   selector: 'app-search',
@@ -9,12 +10,14 @@ export class SearchComponent implements OnInit {
 
   constructor() { }
   @Input() public dataset;
+  @Output() public searchCar:EventEmitter<string[]> = new EventEmitter();
   public pLocation:string;
   public dLocation:string;
   public pDate:string;
   public pTime:string;
   public dDate:string;
   public dTime:string;
+  public searchCondi:string[];
   ngOnInit() {
 
 
@@ -24,6 +27,7 @@ export class SearchComponent implements OnInit {
     this.pTime = this.dataset[3];
     this.dDate = this.dataset[4];
     this.dTime = this.dataset[5];
+    this.searchCondi = [this.pLocation,this.dLocation,this.pDate,this.pTime,this.dDate,this.dTime];
   }
   times = [
     {value: 'time1', viewValue: '00:00'},
@@ -31,6 +35,11 @@ export class SearchComponent implements OnInit {
     {value: 'time3', viewValue: '01:00'},
     {value: 'time4', viewValue: '01:30'}
   ];
+
+  fireEvent(){
+    this.searchCar.emit(this.searchCondi);
+
+  }
 
 
 }
