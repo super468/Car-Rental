@@ -12,6 +12,7 @@ var ctrlacc = require('../controllers/account');
 
 var carList = require('../controllers/products');
 var ctrlBooking = require('../controllers/booking');
+var carImages = require('../controllers/carImages');
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -30,5 +31,8 @@ router.post('/carlists', carList.postCarInfor);
 
 router.get('/booking/:email',ctrlBooking.bookingsReadByEmail);
 router.get('/carlists/post', carList.createCarContext);
+
+
+router.post('/image/post', carImages.imageSave);
 
 module.exports = router;

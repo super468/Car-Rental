@@ -2,3 +2,7 @@
   color:orangered;
   text-align:center;
 }
+
+.ng-invalid:not(form){
+  border-left:5px solid red;
+}
