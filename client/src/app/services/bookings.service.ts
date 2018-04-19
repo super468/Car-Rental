@@ -7,6 +7,8 @@ export class BookingsService {
 
   constructor(private http:HttpClient) { }
 
+  booking:Booking;
+
   getBookingsByEmail(email:string){
     return this.http.get(`/api/booking/${email}`);
 
@@ -14,6 +16,14 @@ export class BookingsService {
 
   createBooking(booking:Booking){
     return this.http.post(`/api/booking`, booking);
+  }
+
+  setBooking(booking:Booking){
+    this.booking = booking;
+  }
+
+  getBooking(){
+    return this.booking;
   }
 
   // getUpcBooking(): Booking{

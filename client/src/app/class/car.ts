@@ -16,6 +16,7 @@ export class Car {
     public isavailable:boolean,
     public _id?:string
   ) {  }
+  
 }
 
 

@@ -12,6 +12,7 @@ var ctrlacc = require('../controllers/account');
 
 var carList = require('../controllers/products');
 var ctrlBooking = require('../controllers/booking');
+var carImages = require('../controllers/carImages');
 var ctrlfavoritelist = require('../controllers/favoritelist');
 
 // profile
@@ -33,6 +34,7 @@ router.get('/booking/:email',ctrlBooking.bookingsReadByEmail);
 router.post('/booking', ctrlBooking.createBooking);
 
 router.post('/favoritelist', ctrlfavoritelist.createFavorite);
+router.delete('/favoritelist/:email&:carid', ctrlfavoritelist.DeleteFavorite);
 router.get('/favoritelist/:email', ctrlfavoritelist.CarsReadByEmail);
 router.get('/carlists/post', carList.createCarContext);
 

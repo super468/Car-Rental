@@ -2,18 +2,13 @@
     <div class="row" id = 'main_row'>
     <div class="col-sm-10 ">
         <div class="row" id ="model_name">
-            <div class="col-sm-8">
-                {{car.name}}
-            </div>
-            <div class="col-sm-4" id = "model_name_r">
-                <label for="id-of-input" class="custom-checkbox">
-                <input type="checkbox" id="id-of-input"/>
-                <img class="glyphicon glyphicon-star-empty" src="../assets/icons/favorite_border.png">
-                <img class="glyphicon glyphicon-star" src="../assets/icons/favorite_black.png">
-                </label>
-            </div>
-
-
+        {{car.name}}
+            <!--<label for="id-of-input" class="custom-checkbox">-->
+              <input type="checkbox" id="id-of-input" (change)="onchange($event)" [(ngModel)]="check"/>
+          <label style="font-size: 1rem;color: #F66500;">Add to Favorite</label>
+              <!--<img class="glyphicon glyphicon-star-empty" src="../assets/icons/favorite_border.png">-->
+              <!--<img class="glyphicon glyphicon-star" src="../assets/icons/favorite_black.png">-->
+            <!--</label>-->
         </div>
         <div class="row">
             <div class="col-sm-4" id = 'L_col'>
@@ -82,7 +77,7 @@
             <li id = "price_text">${{car.price}}/day</li>
 
             <div class="row" id = "button_row">
-                <button id = 'continue_button' type="button" class = "btn btn-primary btn-lg" >CONTINUE</button>
+                <button id = 'continue_button' type="button" class = "btn btn-primary btn-lg" routerLink="/bookingdetail">CONTINUE</button>
             </div>
     </div>
 </div>

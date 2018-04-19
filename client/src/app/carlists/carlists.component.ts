@@ -1,6 +1,8 @@
 import { Component, OnInit,Input } from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {Car} from "../class/car";
+import {AuthenticationService} from "../services/authentication.service";
+import {favorite, FavoritelistService} from "../services/favoritelist.service";
 
 
 @Component({
@@ -23,6 +25,7 @@ export class CarlistsComponent implements OnInit {
 
   cars: Car[];
   showinglist:Car[];
+  favorites:favorite[];
   selectedCar_p: Car;
 
   searchCars: Car[];
@@ -30,7 +33,15 @@ export class CarlistsComponent implements OnInit {
   @Input() public pickPlace:string;
 
 
-  constructor(private carService:ProductService) {
+
+  constructor(private carService:ProductService, private favoriteservice:FavoritelistService, private auth:AuthenticationService) {
+    this.favoriteservice.getFavoritesByEmail(this.auth.getUserDetails().email).subscribe(
+      (data:any)=>{
+        this.favorites=data;
+      },(err)=>{
+        console.log(err);
+      }
+    );
   }
 
 
@@ -81,8 +92,6 @@ export class CarlistsComponent implements OnInit {
       this.selectedCar_p = null;
 
       this.loading = false;
-      console.log('resquest');
-      console.log(this.cars);
     });
   }
 

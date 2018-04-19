@@ -14,7 +14,7 @@ export class BookingdetailComponent implements OnInit {
     lastname:'',
     email:'',
     phone:''
-  }
+  };
   price:pricedetail = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 591.32);
   pricepayload:pricedetail = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 591.32);
   booking:Booking = new Booking('2018-01-01','2018-01-02','DFW','DFW',0,'1','a@a.com',this.driverinfo);
@@ -40,6 +40,7 @@ export class BookingdetailComponent implements OnInit {
   onclick(){
     this.booking.driverinfo = this.driverinfo;
     console.log(this.booking);
+    this.booking.price = this.price.total;
     this.bookingservice.createBooking(this.booking).subscribe(
       (data)=>{
         console.log(data);
