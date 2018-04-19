@@ -15,12 +15,12 @@ export class SearchWelcomeComponent implements OnInit {
   public slt_pickpdate: string;
   public slt_droppdate: string;
   ngOnInit() {
-    this.slt_pickpdate="2018-02-20";
     this.slt_droptime = this.times[0].viewValue;
     this.slt_picktime = this.times[0].viewValue;
     this.slt_pickplace;
     this.slt_dropplace;
-    this.slt_pickpdate ="01-01-2018";
+    this.slt_pickpdate;
+    this.slt_droppdate;
   }
   times = [
     {value: 'time1', viewValue: '00:00'},
@@ -29,5 +29,5 @@ export class SearchWelcomeComponent implements OnInit {
     {value: 'time4', viewValue: '01:30'}
   ];
 
- 
+
 }

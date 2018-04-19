@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -24,9 +24,6 @@ import { SearchWelcomeComponent } from './search-welcome/search-welcome.componen
 import { BookingsComponent } from './bookings/bookings.component';
 import { AccountComponent } from './account/account.component';
 import {BookingsService} from "./services/bookings.service";
-import { UpcbookingsComponent } from './upcbookings/upcbookings.component';
-import { PastbookingsComponent } from './pastbookings/pastbookings.component';
-import { CncldbookingsComponent } from './cncldbookings/cncldbookings.component';
 import {AccountService} from "./services/account.service";
 import { FavoritelistComponent } from './favoritelist/favoritelist.component';
 import {ProductService} from "./services/product.service";
@@ -35,6 +32,9 @@ import { CardComponent } from './card/card.component';
 import { BookingdetailComponent } from './bookingdetail/bookingdetail.component';
 import { AdmincontrolpanelComponent } from './admincontrolpanel/admincontrolpanel.component';
 import { DeletedialogComponent } from './deletedialog/deletedialog.component';
+import {AngularSvgIconModule} from 'angular-svg-icon';
+import {FavoritelistService} from "./services/favoritelist.service";
+
 
 
 
@@ -54,11 +54,7 @@ import { DeletedialogComponent } from './deletedialog/deletedialog.component';
     SearchWelcomeComponent,
     BookingsComponent,
     AccountComponent,
-    UpcbookingsComponent,
-    PastbookingsComponent,
-    CncldbookingsComponent,
     FavoritelistComponent,
-    CncldbookingsComponent,
     PaginationComponent,
     CardComponent,
     BookingdetailComponent,
@@ -75,14 +71,17 @@ import { DeletedialogComponent } from './deletedialog/deletedialog.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    AngularSvgIconModule
+
   ],
   providers: [
     AuthenticationService,
     AuthGuardService,
     BookingsService,
     AccountService,
-    ProductService
+    ProductService,
+    FavoritelistService
   ],
   bootstrap: [AppComponent]
 })

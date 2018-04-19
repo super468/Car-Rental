@@ -23,6 +23,7 @@
       <th>Pickup Date</th>
       <th>Dropoff Date</th>
       <th>Price</th>
+      <th>Driver Email</th>
       <th>Carid</th>
     </tr>
     </thead>
@@ -31,7 +32,8 @@
       <td>{{booking.dropoffloc}}</td>
       <td>{{booking.pickupdate}}</td>
       <td>{{booking.dropoffdate}}</td>
-      <td>{{booking.price}}</td>
+      <td>{{booking.price | number:'1.2-2'}}</td>
+      <td>{{booking.driverinfo.email}}</td>
       <td>{{booking.carid}}</td>
     </tbody>
   </table>

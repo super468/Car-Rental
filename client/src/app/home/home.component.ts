@@ -24,13 +24,24 @@ export class HomeComponent implements OnInit {
     this.dropplace=this.routerIonfo.snapshot.queryParams["dropoff_place"];
     this.pickdate=this.routerIonfo.snapshot.queryParams["pickup_date"];
     this.dropdate=this.routerIonfo.snapshot.queryParams["dropoff_date"];
-    this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.dropdate,this.picktime,this.droptime];
+    this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
 
   }
 
-  getFilter($event: FilterOptions) {
+  runParent(msg:string[]) {
+    this.pickplace=msg[0];
+    this.dropplace=msg[1];
+    this.pickdate=msg[2];
+    this.picktime=msg[3];
+    this.dropdate=msg[4];
+    this.droptime=msg[5];
+    this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
+    console.log(this.dataset);
+  }
+
+  getFilter(options: FilterOptions) {
     console.log('---home get filter value from filter--');
-    console.log($event);
+    console.log(options);
 
   }
 }
