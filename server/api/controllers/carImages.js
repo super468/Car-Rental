@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 // var imageSave = mongoose.model('carImages');
-var fs = require('fs');
-formidable = require('formidable');
-var IncomingForm = require('formidable').IncomingForm
+// var fs = require('fs');
+// formidable = require('formidable');
+// var IncomingForm = require('formidable').IncomingForm
 
-var qs = require('querystring');
-bodyParser = require("body-parser");
-const multer = require('multer');
+// var qs = require('querystring');
+// bodyParser = require("body-parser");
+// const multer = require('multer');
 
 // var url = require('url');
 
