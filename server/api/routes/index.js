@@ -44,7 +44,10 @@ router.post('/car', carList.createCar);
 router.delete('/car/:id', carList.deleteCarbyId);
 
 //router for car id
-router.get('/carlists/search/:_id', carList.searchCarbyID);
+router.get('/carlists/:_id', carList.searchCarbyID);
+
+//router for car search by serveral conditions
+router.get('/carlists/search/:pickupLoc', carList.searchCarProduct);
 
 
 module.exports = router;

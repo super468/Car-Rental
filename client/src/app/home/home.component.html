@@ -3,7 +3,7 @@
 <div class="row">
   <!--<div class = "col-md-1"></div>-->
     <app-filter #filter (carFilter)="getFilter($event)" class = "col-md-3"></app-filter>
-    <app-carlists #carlists class = "col-md-8"></app-carlists>
+    <app-carlists #carlists [pickPlace]="pickplace" class = "col-md-8"></app-carlists>
   <div class = "col-md-1"></div>
 </div>
 
