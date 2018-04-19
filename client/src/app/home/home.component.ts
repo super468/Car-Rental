@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     this.dropplace=this.routerIonfo.snapshot.queryParams["dropoff_place"];
     this.pickdate=this.routerIonfo.snapshot.queryParams["pickup_date"];
     this.dropdate=this.routerIonfo.snapshot.queryParams["dropoff_date"];
-    this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.dropdate,this.picktime,this.droptime];
+    this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
 
   }
 

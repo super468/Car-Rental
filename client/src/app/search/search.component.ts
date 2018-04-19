@@ -8,11 +8,22 @@ import { Component, OnInit,Input } from '@angular/core';
 export class SearchComponent implements OnInit {
 
   constructor() { }
-  public selectedpk:string;
-  public selecteddr:string;
+  @Input() public dataset;
+  public pLocation:string;
+  public dLocation:string;
+  public pDate:string;
+  public pTime:string;
+  public dDate:string;
+  public dTime:string;
   ngOnInit() {
-    this.selectedpk = this.dataset[4];
-    this.selecteddr = this.dataset[5];
+
+
+    this.pLocation = this.dataset[0];
+    this.dLocation = this.dataset[1];
+    this.pDate = this.dataset[2];
+    this.pTime = this.dataset[3];
+    this.dDate = this.dataset[4];
+    this.dTime = this.dataset[5];
   }
   times = [
     {value: 'time1', viewValue: '00:00'},
@@ -20,6 +31,6 @@ export class SearchComponent implements OnInit {
     {value: 'time3', viewValue: '01:00'},
     {value: 'time4', viewValue: '01:30'}
   ];
-  @Input() public dataset;
+
 
 }
