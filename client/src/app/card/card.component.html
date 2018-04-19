@@ -2,12 +2,18 @@
     <div class="row" id = 'main_row'>
     <div class="col-sm-10 ">
         <div class="row" id ="model_name">
-        {{car.name}}
-            <label for="id-of-input" class="custom-checkbox">
-              <input type="checkbox" id="id-of-input"/>
-              <img class="glyphicon glyphicon-star-empty" src="../assets/icons/favorite_border.png">
-              <img class="glyphicon glyphicon-star" src="../assets/icons/favorite_black.png">
-          </label>
+            <div class="col-sm-8">
+                {{car.name}}
+            </div>
+            <div class="col-sm-4" id = "model_name_r">
+                <label for="id-of-input" class="custom-checkbox">
+                <input type="checkbox" id="id-of-input"/>
+                <img class="glyphicon glyphicon-star-empty" src="../assets/icons/favorite_border.png">
+                <img class="glyphicon glyphicon-star" src="../assets/icons/favorite_black.png">
+                </label>
+            </div>
+
+
         </div>
         <div class="row">
             <div class="col-sm-4" id = 'L_col'>
