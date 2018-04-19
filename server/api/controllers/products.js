@@ -152,3 +152,13 @@ module.exports.carsReadByName = function (req,res) {
         res.json(cars);
     });
 };
+
+//search car info by id
+module.exports.searchCarbyID = function(req, res) {
+    Cars.find({'_id':req.params._id},function (err, cars){
+        if(err)
+            res.send(err);
+        res.json(cars);
+
+    });
+}

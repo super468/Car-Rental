@@ -48,4 +48,12 @@ export class ProductService {
     console.log('postCar finish - in productservice');
   }
 
+  //search car by car id conditions
+  searchCarId():Observable<Car[]>{
+    console.log("sent request for search by id");
+
+
+    return this.http.get<Car[]>("/api/carlists/search/:_id");
+  }
+
 }
