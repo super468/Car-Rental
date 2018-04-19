@@ -50,3 +50,4 @@ require('./users');
 require('./cars');
 require('./accounts');
 require('./bookings');
+require('./favoritelist');

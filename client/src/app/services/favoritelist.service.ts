@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
-export class favoritelist{
-  constructor(
-    _userid:string,
-    _carid:string[]
-  ){}
+export interface favorite{
+    email:string,
+    carid:string
 }
 
 @Injectable()
 export class FavoritelistService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
+  getFavoritesByEmail(email:string){
+    return this.http.get(`/api/favoritelist/${email}`);
+  }
+
+  createFavorite(favorite:favorite){
+    return this.http.post(`/api/favoritelist`,favorite);
+  }
 }
