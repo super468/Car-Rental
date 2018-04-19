@@ -33,6 +33,7 @@ import { BookingdetailComponent } from './bookingdetail/bookingdetail.component'
 import { AdmincontrolpanelComponent } from './admincontrolpanel/admincontrolpanel.component';
 import { DeletedialogComponent } from './deletedialog/deletedialog.component';
 import {AngularSvgIconModule} from 'angular-svg-icon';
+import {FavoritelistService} from "./services/favoritelist.service";
 
 
 
@@ -72,13 +73,15 @@ import {AngularSvgIconModule} from 'angular-svg-icon';
     MatCheckboxModule,
     MatTabsModule,
     AngularSvgIconModule
+
   ],
   providers: [
     AuthenticationService,
     AuthGuardService,
     BookingsService,
     AccountService,
-    ProductService
+    ProductService,
+    FavoritelistService
   ],
   bootstrap: [AppComponent]
 })

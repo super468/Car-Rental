@@ -13,7 +13,7 @@ module.exports.CarsReadByEmail = function (req,res) {
 module.exports.createFavorite = function (req, res) {
     var list = new List(req.body);
 
-    booking.save(function (err) {
+    list.save(function (err) {
         if(err){
             return res.send(err);
         }
@@ -21,3 +21,14 @@ module.exports.createFavorite = function (req, res) {
         res.json({message: 'Favorite created'})
     })
 };
+
+module.exports.DeleteFavorite = function (req, res) {
+    console.log(req.params);
+    List.remove({email:req.params.email,carid:req.params.carid},function (err) {
+        if(err)
+            res.send(err);
+        res.json({message:'Favorite deleted'});
+
+    })
+
+}

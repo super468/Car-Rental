@@ -3,7 +3,7 @@
   <div>
     <p>Car Lists DATA:</p>
     <ul *ngFor="let car of showinglist">
-      <li> <app-card [car]="car"> </app-card> </li>
+      <li> <app-card [car]="car" [favorites]="favorites"> </app-card> </li>
     </ul>
   </div>
 

@@ -18,4 +18,8 @@ export class FavoritelistService {
   createFavorite(favorite:favorite){
     return this.http.post(`/api/favoritelist`,favorite);
   }
+
+  deleteFavorite(favorite:favorite){
+    return this.http.delete(`/api/favoritelist/${favorite.email}&${favorite.carid}`);
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../services/product.service";
 import {Car} from "../class/car";
+import {favorite, FavoritelistService} from "../services/favoritelist.service";
 
 @Component({
   selector: 'app-favoritelist',
@@ -10,11 +11,12 @@ import {Car} from "../class/car";
 })
 export class FavoritelistComponent implements OnInit {
   private email:string;
-  showinglist:Car[];
+  showinglist:Car[]=[];
   loading = false;
-
-  constructor(private routerIonfo:ActivatedRoute,private carService:ProductService) {
+  favorites:favorite[];
+  constructor(private routerIonfo:ActivatedRoute,private carService:ProductService,private favoriteserivce:FavoritelistService) {
     this.email=this.routerIonfo.snapshot.queryParams["email"];
+
   }
 
   ngOnInit() {
@@ -26,7 +28,20 @@ export class FavoritelistComponent implements OnInit {
 
     this.carService.getAllProduct().subscribe(res => {
       console.log(res);
-      this.showinglist = res;
+      this.favoriteserivce.getFavoritesByEmail(this.email).subscribe(
+        (data:any)=>{
+          this.favorites=data;
+          for(let car of res){
+            for(let favorite of this.favorites){
+              if(car._id == favorite.carid){
+                this.showinglist.push(car);
+              }
+            }
+          }
+        },(err)=>{
+          console.log(err);
+        }
+      );
       this.loading = false;
     });
   }
