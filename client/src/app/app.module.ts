@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -32,6 +32,8 @@ import { CardComponent } from './card/card.component';
 import { BookingdetailComponent } from './bookingdetail/bookingdetail.component';
 import { AdmincontrolpanelComponent } from './admincontrolpanel/admincontrolpanel.component';
 import { DeletedialogComponent } from './deletedialog/deletedialog.component';
+import {AngularSvgIconModule} from 'angular-svg-icon';
+
 
 
 
@@ -68,7 +70,8 @@ import { DeletedialogComponent } from './deletedialog/deletedialog.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    AngularSvgIconModule
   ],
   providers: [
     AuthenticationService,
