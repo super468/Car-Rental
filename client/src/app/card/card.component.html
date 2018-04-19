@@ -3,6 +3,11 @@
     <div class="col-sm-10 ">
         <div class="row" id ="model_name">
         {{car.name}}
+            <label for="id-of-input" class="custom-checkbox">
+              <input type="checkbox" id="id-of-input"/>
+              <img class="glyphicon glyphicon-star-empty" src="../assets/icons/favorite_border.png">
+              <img class="glyphicon glyphicon-star" src="../assets/icons/favorite_black.png">
+          </label>
         </div>
         <div class="row">
             <div class="col-sm-4" id = 'L_col'>
@@ -69,9 +74,7 @@
                 <p>Pay at Pick-Up</p>
             </div>
             <li id = "price_text">${{car.price}}/day</li>
-            <!-- <li><button mat-mini-fab>
-    <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-  </button></li> -->
+
             <div class="row" id = "button_row">
                 <button id = 'continue_button' type="button" class = "btn btn-primary btn-lg" >CONTINUE</button>
             </div>
