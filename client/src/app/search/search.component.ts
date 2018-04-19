@@ -1,5 +1,6 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import {FilterOptions} from "../filter/filter.component";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -8,7 +9,7 @@ import {FilterOptions} from "../filter/filter.component";
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route:Router) { }
   @Input() public dataset;
   @Output() public searchCar:EventEmitter<string[]> = new EventEmitter();
   public pLocation:string;
@@ -39,7 +40,6 @@ export class SearchComponent implements OnInit {
   fireEvent(){
     this.searchCondi = [this.pLocation,this.dLocation,this.pDate,this.pTime,this.dDate,this.dTime];
     this.searchCar.emit(this.searchCondi);
-
   }
 
 
