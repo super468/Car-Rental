@@ -36,5 +36,8 @@ router.post('/favoritelist', ctrlfavoritelist.createFavorite);
 router.get('/favoritelist/:email', ctrlfavoritelist.CarsReadByEmail);
 router.get('/carlists/post', carList.createCarContext);
 
+//router for car id
+router.get('/carlists/search/:_id', carList.searchCarbyID);
+
 
 module.exports = router;
