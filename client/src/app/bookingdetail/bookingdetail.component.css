@@ -143,6 +143,35 @@
   height: auto;
 }
 
+#Person{
+  height:20%;
+  width: 10%;
+  margin: 0px;
+  padding-right:0px;
+  text-align:center;
+}
+#luggage{
+  margin: 0px;
+  padding:0px;
+  text-align:center;
+}
+#Auto{
+  margin: 0px;
+  padding:0px;
+  text-align:center;
+}
+
+#AC{
+  margin: 0px;
+  padding:0px;
+  text-align:center;
+}
+.feature {
+  font-size: .8125rem;
+  line-height: 1.3125rem;
+  list-style: none;
+  width: 100%;
+}
 .spec{
   color: #fff;
 }
@@ -152,6 +181,30 @@
   padding-left: 20px;
   font-size: .8125rem;
   line-height: 1.3125rem;
+}
+ul  {
+  margin:0px;
+  padding:0px;
+
+}
+.Important-info{
+  list-style: disc;
+  font-size: .8125rem;
+  line-height: 1.3125rem
+}
+#img {
+  height: 60%;
+  width: 60%;
+}
+
+#location{
+  list-style: disc;
+  padding-left: 20px;
+  font-size: .8125rem;
+  line-height: 1.3125rem;
+}
+#backtoResults{
+  cursor: pointer;
 }
 
 .agree{
