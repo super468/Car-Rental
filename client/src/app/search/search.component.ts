@@ -21,7 +21,6 @@ export class SearchComponent implements OnInit {
   public searchCondi:string[];
   ngOnInit() {
 
-
     this.pLocation = this.dataset[0];
     this.dLocation = this.dataset[1];
     this.pDate = this.dataset[2];
