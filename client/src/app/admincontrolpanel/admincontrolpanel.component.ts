@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {Car} from "../class/car";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { saveAs } from 'file-saver/FileSaver';
+//import { saveAs } from 'file-saver/FileSaver';
 import {observeOn} from "rxjs/operators";
 
 
