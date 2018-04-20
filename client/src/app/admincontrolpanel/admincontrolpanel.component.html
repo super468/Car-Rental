@@ -46,9 +46,12 @@
             <label for="name">Car name:</label>
 
             <input type="text" [(ngModel)]='formCarInfo.name' class="form-group col-xs-2" name="name" placeholder="Enter car name" required>
+            <div><label for="price">Price:</label>
+            <input  type="text" class="form-group col-xs-1" [(ngModel)]='formCarInfo.price' name="price" placeholder="Price per day" >
+
             <label for="insurance">Insurance:</label>
-            <input  type="text" class="form-group col-xs-2" [(ngModel)]='formCarInfo.insurance' name="insurance" placeholder="Insurance per day" >
-            <!--style="display:inline"-->
+            <input  type="text" class="form-group col-xs-1" [(ngModel)]='formCarInfo.insurance' name="insurance" placeholder="Insurance per day" >
+            </div><!--style="display:inline"-->
           </div>
 
           <div>
@@ -103,7 +106,7 @@
 
 
           <div class='updateconfirm'>
-            <button (click)="showUpdataDialog = !showUpdataDialog" class="btn btn-warning">SAVE</button>
+            <button (click)="confirmUpdateCarInfo()" class="btn btn-warning">SAVE</button>
             <button (click)='closeDialog()' class="btn btn-warning">CANCEL</button>
           </div>
 
@@ -113,7 +116,7 @@
   </app-deletedialog>
 
 
-  <app-deletedialog [(visible)]="showAddDialog" *ngIf="seletedCar != null">
+  <app-deletedialog [(visible)]="showAddDialog" >
     <div>
       <!--<div><p>Preview:</p>-->
       <!--{{imageName}}-->
@@ -147,8 +150,11 @@
             <label for="name">Car name:</label>
 
             <input type="text" [(ngModel)]='formCarInfo.name' class="form-group col-xs-2" name="name" placeholder="Enter car name" required>
+            <label for="price">Price:</label>
+            <input  type="text" class="form-group col-xs-1" [(ngModel)]='formCarInfo.price' name="price" placeholder="Price per day" >
+
             <label for="insurance">Insurance:</label>
-            <input  type="text" class="form-group col-xs-2" [(ngModel)]='formCarInfo.insurance' name="insurance" placeholder="Insurance per day" >
+            <input  type="text" class="form-group col-xs-1" [(ngModel)]='formCarInfo.insurance' name="insurance" placeholder="Insurance per day" >
             <!--style="display:inline"-->
           </div>
 
@@ -203,8 +209,8 @@
           </div>
 
 
-          <div class='updateconfirm'>
-            <button (click)="showAddDialog = !showAddDialog" class="btn btn-warning">SAVE</button>
+          <div class='addconfirm'>
+            <button (click)="clickToAddCar()" class="btn btn-warning">SAVE</button>
             <button (click)='closeDialog()' class="btn btn-warning">CANCEL</button>
           </div>
 

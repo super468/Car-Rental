@@ -69,11 +69,16 @@ export class ProductService {
   }
 
   createCar(car:Car){
-    return this.http.post(`/api/cars`,car);
+    return this.http.post(`/api/car`,car);
   }
 
   deleteCarById(id:string){
-    return this.http.delete(`/api/cars/${id}`);
+    return this.http.delete(`/api/car/${id}`);
   }
 
+  putCar(car:Car){
+    console.log('enter productservice putcar and car infor is:\n');
+    console.log(car);
+    return this.http.put(`/api/car`,car);
+  }
 }

@@ -80,6 +80,7 @@ export class CarlistsComponent implements OnInit {
 
   // getMessages(): void {
   getCarlists(){
+    console.log('--get all cars-');
     this.loading = true;
 
     this.carService.getAllProduct().subscribe(res => {

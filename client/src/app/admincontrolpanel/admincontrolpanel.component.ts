@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {Car} from "../class/car";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { saveAs } from 'file-saver/FileSaver';
+// import { saveAs } from 'file-saver/FileSaver';
 import {observeOn} from "rxjs/operators";
 
 
@@ -59,9 +59,19 @@ export class AdmincontrolpanelComponent implements OnInit {
   }
 
   confirmDelete(){
-    // this.productService.deleteACar();
-    console.log("confirm delete: "+ this.seletedCar._id+ this.seletedCar.name);
+    this.productService.deleteCarById(this.seletedCar._id).subscribe(
+      (data)=>{
+        // console.log(data);
+        console.log('*********');
+        // this.getAllCarList();
+      },(err)=>{
+        console.log(err);
+      }
+    );
     this.getAllCarList();
+    this.showDeleteDialog = false;
+    console.log("confirm delete: "+ this.seletedCar._id+ this.seletedCar.name);
+
   }
 
   getAllCarList(){
@@ -84,6 +94,7 @@ export class AdmincontrolpanelComponent implements OnInit {
 
   }
   editBtnClick() {
+    this.initCarForm();
     if(this.seletedCar != null){
       this.showUpdataDialog = true;
       this.formCarInfo = this.seletedCar;
@@ -120,7 +131,8 @@ export class AdmincontrolpanelComponent implements OnInit {
     };
 
     reader.readAsDataURL(this.fileToUpload);
-    this.formCarInfo.name = '/asset/uploadedImage/'+this.fileToUpload.name;
+    this.formCarInfo.imageName = '/assets/uploadedImage/'+this.fileToUpload.name;
+
     //
     // reader.onload = function(e) {
     //   var url = e.target;
@@ -210,4 +222,30 @@ export class AdmincontrolpanelComponent implements OnInit {
   //
   //
   // }
+  clickToAddCar() {
+    this.showAddDialog = false;
+    console.log(this.formCarInfo);
+    this.productService.createCar(this.formCarInfo).subscribe(
+      (data)=>{
+        console.log(data);
+      },(err)=>{
+        console.log(err);
+      }
+    );
+    this.getAllCarList();
+  }
+
+  confirmUpdateCarInfo() {
+    this.showUpdataDialog = false;
+    console.log('---updated infor---');
+    console.log(this.formCarInfo);
+    this.productService.putCar(this.formCarInfo).subscribe(
+      (data)=>{
+        console.log(data);
+      },(err)=>{
+        console.log(err);
+      }
+    );
+    this.getAllCarList();
+  }
 }
