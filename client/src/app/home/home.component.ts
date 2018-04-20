@@ -3,13 +3,14 @@ import { ActivatedRoute, Params} from '@angular/router';
 import {FilterOptions} from "../filter/filter.component";
 import {ProductService} from "../services/product.service";
 import {Car} from "../class/car";
+import { OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit{
   private picktime:string;
   private droptime:string;
   private pickplace:string;
@@ -37,6 +38,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private routerIonfo:ActivatedRoute,private carService:ProductService) { }
 
+
+
+
   ngOnInit() {
     this.picktime=this.routerIonfo.snapshot.queryParams["pickup_time"];
     this.droptime=this.routerIonfo.snapshot.queryParams["dropoff_time"];
@@ -46,13 +50,47 @@ export class HomeComponent implements OnInit {
     this.dropdate=this.routerIonfo.snapshot.queryParams["dropoff_date"];
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
     //this.searchCarlists();
-    console.log(this.dataset);
+    //console.log(this.dataset);
+    console.log(this.pickplace);
+    if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
+      //this.run(this.pickplace);
+      this.runAll();
+    }
+    else{
+      this.run(this.pickplace);
+    }
+
+  }
+  ngAfterViewInit(){
+    console.log("--filter:ngAfterViewInit--");
+
+    this.picktime=this.routerIonfo.snapshot.queryParams["pickup_time"];
+    this.droptime=this.routerIonfo.snapshot.queryParams["dropoff_time"];
+    this.pickplace=this.routerIonfo.snapshot.queryParams["pickup_place"];
+    this.dropplace=this.routerIonfo.snapshot.queryParams["dropoff_place"];
+    this.pickdate=this.routerIonfo.snapshot.queryParams["pickup_date"];
+    this.dropdate=this.routerIonfo.snapshot.queryParams["dropoff_date"];
+    this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
+    //this.searchCarlists();
+    //console.log(this.dataset);
+    console.log(this.pickplace);
+    if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
+      //this.run(this.pickplace);
+      this.runAll();
+    }
+    else{
+      this.run(this.pickplace);
+    }
 
   }
 
   run(pickplace:string){
     console.log("home run.")
-    this.footer.footerRun(pickplace);
+    this.footer.footerRunLoc(pickplace);
+  }
+  runAll(){
+    console.log("home run --search all carlist");
+    this.footer.footerRunAll();
   }
   runParent(msg:string[]) {
     this.pickplace=msg[0];
@@ -62,8 +100,16 @@ export class HomeComponent implements OnInit {
     this.dropdate=msg[4];
     this.droptime=msg[5];
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
-    console.log(this.dataset);
-    this.run(this.pickplace);
+    console.log(this.pickplace);
+    if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
+      //this.run(this.pickplace);
+      this.runAll();
+    }
+    else{
+      this.run(this.pickplace);
+    }
+
+
   }
 
   getFilter(options: FilterOptions) {

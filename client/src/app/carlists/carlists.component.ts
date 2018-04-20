@@ -52,16 +52,21 @@ export class CarlistsComponent implements OnInit {
 
   }
 
-  footerRun(pickplace:string){
+  footerRunLoc(pickplace:string){
     this.pickPlace = pickplace;
     console.log("carlist run");
     this.searchCarlists();
+  }
+  footerRunAll(){
+    this.getCarlists();
+
   }
 
   searchCarlists(){
     this.loading = true;
     this.carService.searchCarProduct(this.pickPlace).subscribe(res=>{
       this.cars = res;
+      //console.log(res("isavalible"));
       this.total = res.length;
       this.showinglist = this.cars.slice(0, this.limit);
       this.page = 1;
@@ -70,7 +75,6 @@ export class CarlistsComponent implements OnInit {
       this.selectedCar_p = null;
 
       this.loading = false;
-      console.log(this.searchCars);
       },error1 => {
          "search error!!!!!!"
       }
