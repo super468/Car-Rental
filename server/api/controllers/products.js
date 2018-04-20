@@ -165,7 +165,10 @@ module.exports.searchCarbyID = function(req, res) {
 
 //search car info by serveral conditions
 module.exports.searchCarProduct = function(req, res) {
-    Cars.find({pickupLoc:req.params.pickupLoc},function (err, cars){
+    var key=req.params.pickupLoc;
+    console.log("reg-----");
+    console.log(key);
+    Cars.find({pickupLoc:{$regex:key,$options:'i'}},function (err, cars){
         if(err)
             res.send(err);
         console.log(cars);
