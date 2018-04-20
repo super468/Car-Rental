@@ -78,7 +78,8 @@
             <li id = "price_text">${{car.price}}/day</li>
 
             <div class="row" id = "button_row">
-                <button id = 'continue_button' [disabled]="!car.isavailable" type="button" class = "btn btn-primary btn-lg" routerLink="/bookingdetail">CONTINUE</button>
+                <button id = 'continue_button' [disabled]="!car.isavailable" type="button"  (click)="btnContinueClick()" class = "btn btn-primary btn-lg"  routerLink="/bookingdetail">CONTINUE</button>
             </div>
+      <!--(click)="btnContinueClick()"-->
     </div>
 </div>
