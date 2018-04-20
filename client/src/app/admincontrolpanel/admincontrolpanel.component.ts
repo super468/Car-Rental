@@ -20,12 +20,12 @@ export class AdmincontrolpanelComponent implements OnInit {
 
   showDeleteDialog :boolean = false;
   showUpdataDialog :boolean = false;
+  showAddDialog :boolean = false;
   // imageName:string;
   imageUrl:string = '/assets/car-rental-logo.jpg';
   fileToUpload:File;
   formCarInfo:Car;
-  formCarInfo_isAuto: any;
-  formCarInfo_ACsup: any;
+
 
 
   constructor(private productService:ProductService, private http:HttpClient) {
@@ -37,40 +37,64 @@ export class AdmincontrolpanelComponent implements OnInit {
       this.formCarInfo = this.seletedCar;
     }
     else{
-      this.formCarInfo  =  new Car(
-        '',
-        'Standard',
-        2,
-        0,
-        2,
-        true,
-        true,
-         "",
-         0,
-        '/assets/car-rental-logo.jpg',
-        true
-      );
+      this.initCarForm();
     }
 
   }
 
+  initCarForm(){
+    this.formCarInfo  =  new Car(
+      '',
+      'Standard',
+      2,
+      0,
+      2,
+      true,
+      true,
+      "",
+      0,
+      '/assets/car-rental-logo.jpg',
+      true
+    );
+  }
+
   confirmDelete(){
-    // this.productService.deleteACar();
-    console.log("confirm delete: "+ this.seletedCar._id+ this.seletedCar.name);
+    this.productService.deleteCarById(this.seletedCar._id).subscribe(
+      (data)=>{
+        // console.log(data);
+        console.log('*********');
+        // this.getAllCarList();
+      },(err)=>{
+        console.log(err);
+      }
+    );
     this.getAllCarList();
+    this.showDeleteDialog = false;
+    console.log("confirm delete: "+ this.seletedCar._id+ this.seletedCar.name);
+
   }
 
   getAllCarList(){
     this.getAll.emit();
     this.showDeleteDialog = false;
+    this.showUpdataDialog = false;
+    this.showAddDialog = false;
   }
 
   closeDialog(){
     this.showDeleteDialog = false;
     this.showUpdataDialog = false;
+    this.showAddDialog = false;
   }
 
+  addBtnClicked() {
+
+    this.initCarForm();
+    this.showAddDialog = true;
+
+  }
   editBtnClick() {
+    this.initCarForm();
     if(this.seletedCar != null){
       this.showUpdataDialog = true;
       this.formCarInfo = this.seletedCar;
@@ -107,6 +131,8 @@ export class AdmincontrolpanelComponent implements OnInit {
     };
 
     reader.readAsDataURL(this.fileToUpload);
+    this.formCarInfo.imageName = '/assets/uploadedImage/'+this.fileToUpload.name;
+
     //
     // reader.onload = function(e) {
     //   var url = e.target;
@@ -196,4 +222,30 @@ export class AdmincontrolpanelComponent implements OnInit {
   //
   //
   // }
+  clickToAddCar() {
+    this.showAddDialog = false;
+    console.log(this.formCarInfo);
+    this.productService.createCar(this.formCarInfo).subscribe(
+      (data)=>{
+        console.log(data);
+      },(err)=>{
+        console.log(err);
+      }
+    );
+    this.getAllCarList();
+  }
+
+  confirmUpdateCarInfo() {
+    this.showUpdataDialog = false;
+    console.log('---updated infor---');
+    console.log(this.formCarInfo);
+    this.productService.putCar(this.formCarInfo).subscribe(
+      (data)=>{
+        console.log(data);
+      },(err)=>{
+        console.log(err);
+      }
+    );
+    this.getAllCarList();
+  }
 }
