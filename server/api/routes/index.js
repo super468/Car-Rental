@@ -42,6 +42,8 @@ router.get('/carlists/post', carList.createCarContext);
 router.post('/car', carList.createCar);
 //delete a car
 router.delete('/car/:id', carList.deleteCarbyId);
+console.log('---/car start---');
+router.put('/car', carList.updateCarInfo);
 
 //router for car id
 router.get('/carlists/:_id', carList.searchCarbyID);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgModel} from "@angular/forms";
 import {Booking, BookingsService} from "../services/bookings.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-bookingdetail',
@@ -19,7 +19,7 @@ export class BookingdetailComponent implements OnInit {
   pricepayload:pricedetail = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 591.32);
   booking:Booking = new Booking('2018-01-01','2018-01-02','DFW','DFW',0,'1','a@a.com',this.driverinfo);
 
-  constructor(private bookingservice:BookingsService,private router: Router) {
+  constructor(private bookingservice:BookingsService,private router: Router, private routerIonfo:ActivatedRoute) {
 
   }
 

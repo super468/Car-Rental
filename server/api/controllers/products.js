@@ -188,9 +188,46 @@ module.exports.createCar =function (req, res) {
 };
 
 module.exports.deleteCarbyId = function (req, res) {
-    Cars.delete({_id:req.params.id}, function (err) {
-        if(err)
+    // Cars.delete({_id:req.params.id}, function (err) {
+    //     if(err)
+    //         return res.send(err);
+    //     console.log('Car Delelted');
+    // })
+    console.log('enter delete');
+    console.log(req.params.id);
+    Cars.update({_id: req.params.id}, {
+        $set:{isavailable: false}
+        }, function(err, affected, resp) {
+        if(err){
             return res.send(err);
-        console.log('Car Delelted');
-    })
+        }
+    });
+    res.send("Delete Success!");
+
+}
+
+module.exports.updateCarInfo = function (req, res) {
+    console.log('---updateCarInfo ---');
+    console.log(req.body);
+    Cars.update({_id: req.body._id}, {
+        $set:{
+            name: req.body.name,
+        type: req.body.type,
+        imageName:req.body.imageName,
+        passengers: req.body.passengers,
+        luggage: req.body.luggage,
+        price: req.body.price,
+        ACsup:req.body.ACsup,
+        isAuto: req.body.isAuto,
+        pickupLoc: req.body.pickupLoc,
+        insurance:req.body.insurance
+        }
+    }, function(err, affected, resp) {
+        if(err){
+            return res.send(err);
+        }
+    });
+    console.log('update success');
+
+
 };

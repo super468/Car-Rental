@@ -12,7 +12,7 @@
     <!--<p>Car Lists DATA:</p>-->
     <ul *ngFor="let car of showinglist, let i = index">
       <li [ngClass]="{'highlight' : selected == i, 'not-highlight' : selected!=i}"
-          (click)="onSelect(i)" > <app-card [car]="car" [favorites]="favorites"> </app-card> </li>
+          (click)="car.isavailable &&  onSelect(i)" > <app-card [car]="car" [favorites]="favorites"> </app-card> </li>
     </ul>
   </div>
 

@@ -1,6 +1,6 @@
 <div>
   <button (click)='getAllCarList()' class="btn btn-warning">LIST ALL</button>
-  <button class="btn btn-warning">ADD ONE</button>
+  <button class="btn btn-warning" (click)="addBtnClicked()">ADD ONE</button>
   <button [ngClass]="{ 'disabled': seletedCar == null }" (click)="editBtnClick()" class="btn btn-warning">EDIT INFO</button>
   <button [ngClass]="{ 'disabled': seletedCar == null }" (click)="deleteBtnClick()" class="btn btn-warning">REMOVE</button>
 
@@ -46,9 +46,12 @@
             <label for="name">Car name:</label>
 
             <input type="text" [(ngModel)]='formCarInfo.name' class="form-group col-xs-2" name="name" placeholder="Enter car name" required>
+            <div><label for="price">Price:</label>
+            <input  type="text" class="form-group col-xs-1" [(ngModel)]='formCarInfo.price' name="price" placeholder="Price per day" >
+
             <label for="insurance">Insurance:</label>
-            <input  type="text" class="form-group col-xs-2" [(ngModel)]='formCarInfo.insurance' name="insurance" placeholder="Insurance per day" >
-            <!--style="display:inline"-->
+            <input  type="text" class="form-group col-xs-1" [(ngModel)]='formCarInfo.insurance' name="insurance" placeholder="Insurance per day" >
+            </div><!--style="display:inline"-->
           </div>
 
           <div>
@@ -103,7 +106,111 @@
 
 
           <div class='updateconfirm'>
-            <button (click)="showUpdataDialog = !showUpdataDialog" class="btn btn-warning">SAVE</button>
+            <button (click)="confirmUpdateCarInfo()" class="btn btn-warning">SAVE</button>
+            <button (click)='closeDialog()' class="btn btn-warning">CANCEL</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </app-deletedialog>
+
+
+  <app-deletedialog [(visible)]="showAddDialog" >
+    <div>
+      <!--<div><p>Preview:</p>-->
+      <!--{{imageName}}-->
+      <!--<input type="file" (change)="onFileSeleted($event)">-->
+      <!--<button type="button" (click)="onUpload()">Upload</button>-->
+      <!--</div>-->
+      <div class="row">
+        <div class="col s8 offset-1">
+          <div class="card-panel teal lighten-2">
+            <!--<h4 class="center white-text">Image Preview:</h4>-->
+          </div>
+          <form #imageForm = "ngForm" (ngSubmit)="onImageSubmit(imageForm.value)">
+
+            <img [src]='imageUrl'  style="width:150px; height:100px;">
+            <input class="form-group" type="file" #Image accept="image/*"  (change)="handleFileInput($event.target.files)">
+            <!--<button type="submit" [disabled]="Image.value ==''" class="btn-large btn-submit">SUBMIT</button>-->
+
+            <!--<div class="row">-->
+            <!--<label for="Caption">Caption</label>-->
+            <!--<input class="form-group" type="text" #Caption ngModel name="Caption" id="Caption" required placeholder="File name">-->
+            <!--</div>-->
+
+          </form>
+        </div>
+      </div>
+
+
+      <div class="col-md-10">
+        <form>
+          <div class="form-group" >
+            <label for="name">Car name:</label>
+
+            <input type="text" [(ngModel)]='formCarInfo.name' class="form-group col-xs-2" name="name" placeholder="Enter car name" required>
+            <label for="price">Price:</label>
+            <input  type="text" class="form-group col-xs-1" [(ngModel)]='formCarInfo.price' name="price" placeholder="Price per day" >
+
+            <label for="insurance">Insurance:</label>
+            <input  type="text" class="form-group col-xs-1" [(ngModel)]='formCarInfo.insurance' name="insurance" placeholder="Insurance per day" >
+            <!--style="display:inline"-->
+          </div>
+
+          <div>
+            <label for="type">Car Type</label>
+            <select name = 'type'  [(ngModel)]='formCarInfo.type' class="form-group">
+              <option value="Economy">Economy</option>
+              <option value="Compact">Compact</option>
+              <option value="Standard">Standard</option>
+              <option value="SUV">SUV</option>
+              <option value="Luxury">Luxury</option>
+
+            </select>
+
+            <label for="passengerNum">Seats</label>
+            <select name = 'passengers' [(ngModel)]='formCarInfo.passengers' class="form-group">
+              <option *ngFor="let i of [2,3,4,5,6,7]" value='{{i}}'>{{i}}</option>
+            </select>
+
+            <label for="luggage">Luggage</label>
+            <select name = 'luggage' [(ngModel)]='formCarInfo.luggage' class="form-group">
+              <option *ngFor="let i of [1,2,3,4]" value='{{i}}'>{{i}}</option>
+            </select>
+
+            <label for="isAuto">Auto</label>
+            <select [(ngModel)]='formCarInfo.isAuto' name = 'isAuto' class="form-group">
+              <option value = 'true' [selected]="{true:formCarInfo.isAuto == true, false: formCarInfo.isAuto == false}">YES</option>
+              <option value="false" [selected]="{true:formCarInfo.isAuto == true, false: formCarInfo.isAuto == false}">NO</option>
+            </select>
+
+            <label for="ACsup">A/C</label>
+            <select [(ngModel)]='formCarInfo.ACsup' name = 'ACsup' class="form-group">
+              <option value = 'true' [selected]="{true:formCarInfo.ACsup == true, false: formCarInfo.ACsup == false}">YES</option>
+              <option value="false" [selected]="{true:formCarInfo.ACsup == true, false: formCarInfo.ACsup == false}">NO</option>
+            </select>
+
+            <!--<label for="ACsup">A/C</label>-->
+            <!--<select (change)="setACsup($event)" name = 'ACsup' class="form-group">-->
+            <!--<option *ngFor="let i of ['YES', 'NO']" value="{{i}}" [selected]="{true:formCarInfo.ACsup == true && i == 'YES', false:formCarInfo.ACsup == false && i == 'NO'}">{{i}}</option>-->
+            <!--</select>-->
+
+          </div>
+
+          <!--pickupLoc:String,-->
+          <!--insurance:Number,-->
+          <!--imageName:String,-->
+
+
+          <div class="form-group">
+            <label for="pickupLoc">Location:</label>
+            <input type="text"  [(ngModel)]='formCarInfo.pickupLoc'  class="form-control" name="pickupLoc" placeholder="Pick Up Location" >
+          </div>
+
+
+          <div class='addconfirm'>
+            <button (click)="clickToAddCar()" class="btn btn-warning">SAVE</button>
             <button (click)='closeDialog()' class="btn btn-warning">CANCEL</button>
           </div>
 

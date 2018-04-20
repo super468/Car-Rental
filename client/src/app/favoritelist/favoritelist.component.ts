@@ -31,10 +31,12 @@ export class FavoritelistComponent implements OnInit {
       this.favoriteserivce.getFavoritesByEmail(this.email).subscribe(
         (data:any)=>{
           this.favorites=data;
+          let set = new Set();
           for(let car of res){
             for(let favorite of this.favorites){
-              if(car._id == favorite.carid){
-                this.showinglist.push(car);
+              if(car._id == favorite.carid&& !set.has(car._id)){
+                    this.showinglist.push(car);
+                    set.add(car._id);
               }
             }
           }
