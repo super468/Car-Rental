@@ -49,6 +49,7 @@ export class CarlistsComponent implements OnInit {
     console.log("carlist recieved!!~~");
 
     this.searchCarlists();
+    this.isAdmin = this.auth.Ifadmin();
 
   }
 
