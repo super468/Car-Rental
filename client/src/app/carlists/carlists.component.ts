@@ -3,6 +3,7 @@ import {ProductService} from "../services/product.service";
 import {Car} from "../class/car";
 import {AuthenticationService} from "../services/authentication.service";
 import {favorite, FavoritelistService} from "../services/favoritelist.service";
+import {NewFilterOptions} from "../home/home.component";
 
 
 @Component({
@@ -31,6 +32,7 @@ export class CarlistsComponent implements OnInit {
   searchCars: Car[];
 
   @Input() public pickPlace:string;
+  public newOptions:NewFilterOptions;
 
 
 
@@ -55,12 +57,40 @@ export class CarlistsComponent implements OnInit {
 
   footerRunLoc(pickplace:string){
     this.pickPlace = pickplace;
-    console.log("carlist run");
+    //console.log("carlist run");
     this.searchCarlists();
   }
+
   footerRunAll(){
     this.getCarlists();
 
+  }
+
+  footerRunFilter(new_options:NewFilterOptions){
+    this.newOptions = new_options;
+    //console.log("footer run filter");
+    //console.log(this.newOptions);
+    this.searchCarFilter();
+  }
+
+  searchCarFilter(){
+    this.loading = true;
+    console.log(this.newOptions);
+    this.carService.searchCarwithFilter(this.newOptions).subscribe(res=>{
+        this.cars = res;
+        this.total = res.length;
+        this.showinglist = this.cars.slice(0, this.limit);
+        this.page = 1;
+        //init the selected status and seleted Car info for adminControl
+        this.selected = -1;
+        this.selectedCar_p = null;
+
+        this.loading = false;
+      },error1 => {
+        "search error!!!!!!"
+      }
+
+    );
   }
 
   searchCarlists(){

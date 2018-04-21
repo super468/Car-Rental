@@ -163,15 +163,48 @@ module.exports.searchCarbyID = function(req, res) {
     });
 }
 
-//search car info by serveral conditions
+//search car info by pick up locations
 module.exports.searchCarProduct = function(req, res) {
     var key=req.params.pickupLoc;
-    console.log("reg-----");
-    console.log(key);
     Cars.find({pickupLoc:{$regex:key,$options:'i'}},function (err, cars){
         if(err)
             res.send(err);
-        console.log(cars);
+        //console.log(cars);
+        res.json(cars);
+
+    });
+};
+
+//search car info by filter conditions
+// module.exports.searchCarwithFilter = function(req, res) {
+//     console.log("filter-----");
+//     var loc=req.params.pickupLoc;
+//     var types=req.params.carType;
+//     var cartypes=types.split(",");
+//     var psgnum=req.params.passNum;
+//     var primax=req.params.priceMax;
+//     var primin=req.params.priceMin;
+//     Cars.find({pickupLoc:{$regex:loc,$options:'i'},price:{"$gte":primin,"$lte":primax},passengers:{$lte:psgnum}},function (err, cars){
+//         if(err)
+//             res.send(err);
+//         //console.log(cars.length);
+//         res.json(cars);
+//
+//     });
+// };
+
+module.exports.searchCarwithFilter = function(req, res) {
+    console.log("filter-----");
+    var loc=req.params.pickupLoc;
+    var types=req.params.carType;
+    var cartypes=types.split(",");
+    var psgnum=req.params.passNum;
+    var primax=req.params.priceMax;
+    var primin=req.params.priceMin;
+    Cars.find({pickupLoc:{$regex:loc,$options:'i'},price:{"$gte":primin,"$lte":primax},type:{$in:cartypes},passengers:{$lte:psgnum}},function (err, cars){
+        if(err)
+            res.send(err);
+        //console.log(cars.length);
         res.json(cars);
 
     });

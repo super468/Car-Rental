@@ -11,35 +11,22 @@ import { OnChanges } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-  private picktime:string;
-  private droptime:string;
-  private pickplace:string;
-  private dropplace:string;
-  private pickdate:string;
-  private dropdate:string;
+  public picktime:string;
+  public droptime:string;
+  public pickplace:string;
+  public dropplace:string;
+  public pickdate:string;
+  public dropdate:string;
   public dataset;
   @ViewChild('carlists') footer;
 
-  selected: number = -1;//the selected card index;
-  isAdmin:boolean = true;// true:if user is admin;
-  showCards:boolean = true;
-  //****for paginate
-
-  loading = false;
-  total = 0;
-  page = 1;
-  limit = 4  ;
-  // end for paginate
-
-  cars: Car[];
-  showinglist:Car[];
-  selectedCar_p: Car;
-
+  public carTypes:string[];
+  public passengerNum:number;
+  public priceMax:number;
+  public priceMin:number;
+  public ifAdult:boolean;
 
   constructor(private routerIonfo:ActivatedRoute,private carService:ProductService) { }
-
-
-
 
   ngOnInit() {
     this.picktime=this.routerIonfo.snapshot.queryParams["pickup_time"];
@@ -51,7 +38,7 @@ export class HomeComponent implements OnInit{
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
     //this.searchCarlists();
     //console.log(this.dataset);
-    console.log(this.pickplace);
+    //console.log(this.pickplace);
     if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
       //this.run(this.pickplace);
       this.runAll();
@@ -71,9 +58,8 @@ export class HomeComponent implements OnInit{
     this.pickdate=this.routerIonfo.snapshot.queryParams["pickup_date"];
     this.dropdate=this.routerIonfo.snapshot.queryParams["dropoff_date"];
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
-    //this.searchCarlists();
-    //console.log(this.dataset);
-    console.log(this.pickplace);
+
+    //console.log(this.pickplace);
     if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
       //this.run(this.pickplace);
       this.runAll();
@@ -85,13 +71,18 @@ export class HomeComponent implements OnInit{
   }
 
   run(pickplace:string){
-    console.log("home run.")
     this.footer.footerRunLoc(pickplace);
   }
+
   runAll(){
-    console.log("home run --search all carlist");
     this.footer.footerRunAll();
   }
+
+  runFilter(newoptions:NewFilterOptions){
+    this.footer.footerRunFilter(newoptions);
+
+  }
+
   runParent(msg:string[]) {
     this.pickplace=msg[0];
     this.dropplace=msg[1];
@@ -100,21 +91,51 @@ export class HomeComponent implements OnInit{
     this.dropdate=msg[4];
     this.droptime=msg[5];
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
+    console.log("strong test");
     console.log(this.pickplace);
-    if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
-      //this.run(this.pickplace);
-      this.runAll();
-    }
-    else{
-      this.run(this.pickplace);
-    }
-
+    // if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
+    //   //this.run(this.pickplace);
+    //   this.runAll();
+    // }
+    // else{
+    //   //this.run(this.pickplace);
+    //   this.runFilter(new NewFilterOptions(this.pickplace,this.priceMax,this.priceMin,this.carTypes,this.passengerNum,this.ifAdult));
+    // }
+    this.runFilter(new NewFilterOptions(this.pickplace,this.priceMax,this.priceMin,this.carTypes,this.passengerNum,this.ifAdult));
 
   }
 
   getFilter(options: FilterOptions) {
     console.log('---home get filter value from filter--');
     console.log(options);
+
+    this.carTypes = options.carType;
+    this.passengerNum = options.pasgerNum_max;
+    this.priceMax = options.price_max;
+    this.priceMin=options.price_min;
+    this.ifAdult=options.isAdult;
+
+    let newOptions = new NewFilterOptions(this.pickplace,this.priceMax,this.priceMin,this.carTypes,this.passengerNum,this.ifAdult);
+    // if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
+    //   //this.run(this.pickplace);
+    //   this.runAll();
+    // }
+    // else{
+    //   this.runFilter(newOptions);
+    //}
+    this.runFilter(newOptions);
+    console.log(newOptions);
+  }
+}
+
+export class NewFilterOptions{
+  constructor(public pickLocation:string,
+              public priceMax:number,
+              public priceMin:number,
+              public carType:string[],
+              public passengerNumMax:number,
+              public ifAdult:boolean
+  ){
 
   }
 }
