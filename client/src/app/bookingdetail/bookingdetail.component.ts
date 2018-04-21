@@ -4,6 +4,7 @@ import {Booking, BookingsService} from "../services/bookings.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Car} from "../class/car";
 import {DataBusService} from "../services/data-bus.service";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: 'app-bookingdetail',
@@ -25,14 +26,14 @@ export class BookingdetailComponent implements OnInit {
   searchInfo:string[];
 
 
-  constructor(private bookingservice:BookingsService,private router: Router, private dataBus:DataBusService) {
+  constructor(private bookingservice:BookingsService,private router: Router, private dataBus:DataBusService, private auth:AuthenticationService) {
       this.car = this.dataBus.getCarInfo();
       this.searchInfo = this.dataBus.getSearchCondi();
   }
 
   ngOnInit() {
     this.price.total = (this.price.base + this.price.tax) * this.price.day;
-
+    console.log(this.searchInfo);
     this.dataBus.carValueUpdate.subscribe(
       (val)=> {this.car = this.dataBus.getCarInfo();
         console.log('---init--get--car');
@@ -65,8 +66,16 @@ export class BookingdetailComponent implements OnInit {
 
   onclick(){
     this.booking.driverinfo = this.driverinfo;
-    console.log(this.booking);
+    this.booking.carid = this.car._id;
+    this.booking.pickuploc =this.car.pickupLoc;
+    this.booking.dropoffloc = this.searchInfo[1];
+    this.booking.pickupdate = this.searchInfo[2]+' '+this.searchInfo[3];
+    this.booking.dropoffdate = this.searchInfo[4]+' '+this.searchInfo[5];
+    if(this.auth.isLoggedIn()){
+      this.booking.email = this.auth.getUserDetails().email;
+    }
     this.booking.price = this.price.total;
+    console.log(this.booking);
     this.bookingservice.createBooking(this.booking).subscribe(
       (data)=>{
         console.log(data);

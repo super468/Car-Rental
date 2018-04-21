@@ -49,11 +49,8 @@ export class ProductService {
   }
 
   //search car by car id conditions
-  searchCarId():Observable<Car[]>{
-    console.log("sent request for search by id");
-
-
-    return this.http.get<Car[]>("/api/carlists/:_id");
+  searchCarId(id:string){
+    return this.http.get(`/api/car/${id}`);
   }
 
   //search by several conditions

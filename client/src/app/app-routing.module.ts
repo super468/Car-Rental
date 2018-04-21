@@ -12,12 +12,14 @@ import {AccountComponent} from "./account/account.component";
 import {SearchWelcomeComponent} from "./search-welcome/search-welcome.component";
 import {FavoritelistComponent} from "./favoritelist/favoritelist.component";
 import {BookingdetailComponent} from "./bookingdetail/bookingdetail.component";
+import {AdminServiceService} from "./services/admin-service.service";
 
 
 const routes: Routes = [
   {
     path: '',
-    component: WelcomeComponent
+    component: WelcomeComponent,
+    canActivate: [AdminServiceService]
   },
   {
     path: 'login',
@@ -47,6 +49,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+
   },
   {
     path: 'bookingdetail',

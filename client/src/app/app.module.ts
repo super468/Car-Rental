@@ -35,6 +35,7 @@ import { DeletedialogComponent } from './deletedialog/deletedialog.component';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {FavoritelistService} from "./services/favoritelist.service";
 import {DataBusService} from "./services/data-bus.service";
+import {AdminServiceService} from "./services/admin-service.service";
 
 
 
@@ -83,7 +84,8 @@ import {DataBusService} from "./services/data-bus.service";
     AccountService,
     ProductService,
     FavoritelistService,
-    DataBusService
+    DataBusService,
+    AdminServiceService
   ],
   bootstrap: [AppComponent]
 })

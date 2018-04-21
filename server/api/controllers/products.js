@@ -155,13 +155,13 @@ module.exports.carsReadByName = function (req,res) {
 
 //search car info by id
 module.exports.searchCarbyID = function(req, res) {
-    Cars.find({_id:req.params._id},function (err, cars){
+    Cars.findOne({_id:req.params.id},function (err, car){
         if(err)
             res.send(err);
-        res.json(cars);
+        res.json(car);
 
     });
-}
+};
 
 //search car info by serveral conditions
 module.exports.searchCarProduct = function(req, res) {

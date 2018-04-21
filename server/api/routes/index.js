@@ -46,7 +46,7 @@ console.log('---/car start---');
 router.put('/car', carList.updateCarInfo);
 
 //router for car id
-router.get('/carlists/:_id', carList.searchCarbyID);
+router.get('/car/:id', carList.searchCarbyID);
 
 //router for car search by serveral conditions
 router.get('/carlists/search/:pickupLoc', carList.searchCarProduct);
