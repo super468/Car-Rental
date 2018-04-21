@@ -4,6 +4,7 @@ import {FilterOptions} from "../filter/filter.component";
 import {ProductService} from "../services/product.service";
 import {Car} from "../class/car";
 import { OnChanges } from '@angular/core';
+import {DataBusService} from "../services/data-bus.service";
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,10 @@ export class HomeComponent implements OnInit{
   public priceMin:number;
   public ifAdult:boolean;
 
-  constructor(private routerIonfo:ActivatedRoute,private carService:ProductService) { }
+  constructor(private dataBus:DataBusService, private routerIonfo:ActivatedRoute,private carService:ProductService) { }
+
+
+
 
   ngOnInit() {
     this.picktime=this.routerIonfo.snapshot.queryParams["pickup_time"];
@@ -39,6 +43,8 @@ export class HomeComponent implements OnInit{
     //this.searchCarlists();
     //console.log(this.dataset);
     //console.log(this.pickplace);
+    this.dataBus.setSearchCondi(this.dataset);
+    console.log(this.pickplace);
     if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
       //this.run(this.pickplace);
       this.runAll();
@@ -60,6 +66,11 @@ export class HomeComponent implements OnInit{
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
 
     //console.log(this.pickplace);
+
+    this.dataBus.setSearchCondi(this.dataset);
+    //this.searchCarlists();
+    //console.log(this.dataset);
+    console.log(this.pickplace);
     if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
       //this.run(this.pickplace);
       this.runAll();
@@ -71,10 +82,12 @@ export class HomeComponent implements OnInit{
   }
 
   run(pickplace:string){
+    console.log("home run.")
     this.footer.footerRunLoc(pickplace);
   }
 
   runAll(){
+    console.log("home run --search all carlist");
     this.footer.footerRunAll();
   }
 
@@ -91,16 +104,10 @@ export class HomeComponent implements OnInit{
     this.dropdate=msg[4];
     this.droptime=msg[5];
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
-    console.log("strong test");
+
+    this.dataBus.setSearchCondi(this.dataset);
     console.log(this.pickplace);
-    // if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
-    //   //this.run(this.pickplace);
-    //   this.runAll();
-    // }
-    // else{
-    //   //this.run(this.pickplace);
-    //   this.runFilter(new NewFilterOptions(this.pickplace,this.priceMax,this.priceMin,this.carTypes,this.passengerNum,this.ifAdult));
-    // }
+
     this.runFilter(new NewFilterOptions(this.pickplace,this.priceMax,this.priceMin,this.carTypes,this.passengerNum,this.ifAdult));
 
   }

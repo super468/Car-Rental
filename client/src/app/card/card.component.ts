@@ -5,6 +5,7 @@ import {AuthenticationService} from "../services/authentication.service";
 import {forEach} from "@angular/router/src/utils/collection";
 import {Booking, BookingsService} from "../services/bookings.service";
 import {driverinfo} from "../bookingdetail/bookingdetail.component";
+import {DataBusService} from "../services/data-bus.service";
 
 @Component({
   selector: 'app-card',
@@ -30,7 +31,7 @@ export class CardComponent implements OnInit{
   email:string;
   check:any = false;
   booking: Booking;
-  constructor(private favoritelist:FavoritelistService,private auth:AuthenticationService,private bookingservice:BookingsService){
+  constructor(private dataBus:DataBusService, private favoritelist:FavoritelistService,private auth:AuthenticationService,private bookingservice:BookingsService){
     this.email = this.auth.getUserDetails().email;
   }
 
@@ -68,4 +69,9 @@ export class CardComponent implements OnInit{
     console.log(this.car.name);
   }
 
+  btnContinueClick() {
+
+    this.dataBus.setCarInfo(this.car);
+    console.log('car set carinfor to databus');
+  }
 }

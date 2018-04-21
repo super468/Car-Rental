@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {NgModel} from "@angular/forms";
 import {Booking, BookingsService} from "../services/bookings.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Car} from "../class/car";
+import {DataBusService} from "../services/data-bus.service";
 
 @Component({
   selector: 'app-bookingdetail',
@@ -19,14 +21,38 @@ export class BookingdetailComponent implements OnInit {
   pricepayload:pricedetail = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 591.32);
   booking:Booking = new Booking('2018-01-01','2018-01-02','DFW','DFW',0,'1','a@a.com',this.driverinfo);
 
-  constructor(private bookingservice:BookingsService,private router: Router, private routerIonfo:ActivatedRoute) {
+  car:Car;
+  searchInfo:string[];
 
+
+  constructor(private bookingservice:BookingsService,private router: Router, private dataBus:DataBusService) {
+      this.car = this.dataBus.getCarInfo();
+      this.searchInfo = this.dataBus.getSearchCondi();
   }
 
   ngOnInit() {
     this.price.total = (this.price.base + this.price.tax) * this.price.day;
+
+    this.dataBus.carValueUpdate.subscribe(
+      (val)=> {this.car = this.dataBus.getCarInfo();
+        console.log('---init--get--car');
+        console.log(this.car);
+      }
+    );
+    this.dataBus.carSearchCondiUpdate.subscribe(
+      (val)=> {this.searchInfo = this.dataBus.getSearchCondi();
+        console.log('---init--get--search Info');
+        console.log(this.searchInfo);
+      }
+    );
   }
 
+//   ngAfterContentChecked(){
+//     this.car = this.dataBus.getCarInfo();
+//     console.log('---ngAfterContentChecked');
+//     console.log(this.car);
+//
+// }
 
   onchange(event){
     if(event.target.checked){

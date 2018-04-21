@@ -34,6 +34,7 @@ import { AdmincontrolpanelComponent } from './admincontrolpanel/admincontrolpane
 import { DeletedialogComponent } from './deletedialog/deletedialog.component';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {FavoritelistService} from "./services/favoritelist.service";
+import {DataBusService} from "./services/data-bus.service";
 
 
 
@@ -81,7 +82,8 @@ import {FavoritelistService} from "./services/favoritelist.service";
     BookingsService,
     AccountService,
     ProductService,
-    FavoritelistService
+    FavoritelistService,
+    DataBusService
   ],
   bootstrap: [AppComponent]
 })
