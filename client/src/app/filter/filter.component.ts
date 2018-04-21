@@ -107,6 +107,9 @@ export class FilterComponent implements OnInit{
     let types:Array<string> = new Array<string>();
     for (let i in index) {
       if(index[i]){
+        if(this.options[i].text == 'Luxury' && this.formModel.value.age != 'larger18' ){
+            continue;
+        }
         types.push(this.options[i].text);
       }
     }
