@@ -9,7 +9,9 @@ import {Observable} from "rxjs/Observable";
 export class DataBusService {
 
   carInfo: Car;
+  searchCondi:string[];
   carValueUpdate:Subject<Car> = new Subject<Car>();
+  carSearchCondiUpdate:Subject<string[]> = new Subject<string[]>();
 
   constructor() { }
 
@@ -20,11 +22,21 @@ export class DataBusService {
 
   }
 
-  clearMessage() {
+  setSearchCondi(data:string[]){
+
+    this.searchCondi = data;
+    this.carSearchCondiUpdate.next(this.searchCondi);
+
+  }
+
+  clearCarMessage() {
     // this.carInfo = null;
     this.carValueUpdate.next();
   }
 
+  getSearchCondi():string[]{
+    return this.searchCondi;
+  }
 
   getCarInfo():Car{
     return this.carInfo;

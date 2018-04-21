@@ -4,6 +4,7 @@ import {FilterOptions} from "../filter/filter.component";
 import {ProductService} from "../services/product.service";
 import {Car} from "../class/car";
 import { OnChanges } from '@angular/core';
+import {DataBusService} from "../services/data-bus.service";
 
 @Component({
   selector: 'app-home',
@@ -36,7 +37,7 @@ export class HomeComponent implements OnInit{
   selectedCar_p: Car;
 
 
-  constructor(private routerIonfo:ActivatedRoute,private carService:ProductService) { }
+  constructor(private dataBus:DataBusService, private routerIonfo:ActivatedRoute,private carService:ProductService) { }
 
 
 
@@ -51,6 +52,7 @@ export class HomeComponent implements OnInit{
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
     //this.searchCarlists();
     //console.log(this.dataset);
+    this.dataBus.setSearchCondi(this.dataset);
     console.log(this.pickplace);
     if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
       //this.run(this.pickplace);
@@ -71,6 +73,8 @@ export class HomeComponent implements OnInit{
     this.pickdate=this.routerIonfo.snapshot.queryParams["pickup_date"];
     this.dropdate=this.routerIonfo.snapshot.queryParams["dropoff_date"];
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
+
+    this.dataBus.setSearchCondi(this.dataset);
     //this.searchCarlists();
     //console.log(this.dataset);
     console.log(this.pickplace);
@@ -100,6 +104,8 @@ export class HomeComponent implements OnInit{
     this.dropdate=msg[4];
     this.droptime=msg[5];
     this.dataset = [this.pickplace,this.dropplace,this.pickdate,this.picktime,this.dropdate,this.droptime];
+
+    this.dataBus.setSearchCondi(this.dataset);
     console.log(this.pickplace);
     if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
       //this.run(this.pickplace);

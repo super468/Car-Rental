@@ -22,10 +22,12 @@ export class BookingdetailComponent implements OnInit {
   booking:Booking = new Booking('2018-01-01','2018-01-02','DFW','DFW',0,'1','a@a.com',this.driverinfo);
 
   car:Car;
+  searchInfo:string[];
 
 
   constructor(private bookingservice:BookingsService,private router: Router, private dataBus:DataBusService) {
       this.car = this.dataBus.getCarInfo();
+      this.searchInfo = this.dataBus.getSearchCondi();
   }
 
   ngOnInit() {
@@ -37,14 +39,20 @@ export class BookingdetailComponent implements OnInit {
         console.log(this.car);
       }
     );
+    this.dataBus.carSearchCondiUpdate.subscribe(
+      (val)=> {this.searchInfo = this.dataBus.getSearchCondi();
+        console.log('---init--get--search Info');
+        console.log(this.searchInfo);
+      }
+    );
   }
 
-  ngAfterContentChecked(){
-    this.car = this.dataBus.getCarInfo();
-    console.log('---ngAfterContentChecked');
-    console.log(this.car);
-
-}
+//   ngAfterContentChecked(){
+//     this.car = this.dataBus.getCarInfo();
+//     console.log('---ngAfterContentChecked');
+//     console.log(this.car);
+//
+// }
 
   onchange(event){
     if(event.target.checked){
