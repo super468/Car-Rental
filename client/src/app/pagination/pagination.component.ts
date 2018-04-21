@@ -52,7 +52,9 @@ export class PaginationComponent implements OnInit {
   }
 
   lastPage(): boolean {
-    return this.perPage * this.page > this.count;
+    // console.log(this.perPage);
+    // console.log(this.page);
+    return this.perPage * this.page >= this.count;
   }
 
   getPages(): number[] {
