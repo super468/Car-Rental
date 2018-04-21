@@ -5,6 +5,7 @@ import "rxjs/Rx";
 import {Car} from "../class/car";
 import {map} from "rxjs/operators/map";
 import {ReplaySubject} from "rxjs/ReplaySubject";
+import {NewFilterOptions} from "../home/home.component";
 
 
 @Injectable()
@@ -36,7 +37,7 @@ export class ProductService {
   postCar(carInfor:Car):void {
 
     console.log('postCar begin - in productservice');
-  this.http.post('/api/carlists', carInfor).subscribe(
+    this.http.post('/api/carlists', carInfor).subscribe(
     res => {
         console.log("get response after postcar");
         console.log(res);
@@ -64,6 +65,13 @@ export class ProductService {
      return this.http.get<Car[]>(`/api/carlists/search/${pickPlace}`);
 
   }
+
+  searchCarwithFilter(newOptions:NewFilterOptions): Observable<Car[]>{
+
+    return this.http.get<Car[]>(`/api/carlists/filter/${newOptions.pickLocation}&${newOptions.priceMax}&${newOptions.priceMin}&${newOptions.carType}&${newOptions.passengerNumMax}`);
+  }
+
+
 
   createCar(car:Car){
     return this.http.post(`/api/car`,car);

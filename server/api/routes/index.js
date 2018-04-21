@@ -48,8 +48,10 @@ router.put('/car', carList.updateCarInfo);
 //router for car id
 router.get('/car/:id', carList.searchCarbyID);
 
-//router for car search by serveral conditions
+//search car by pick location
 router.get('/carlists/search/:pickupLoc', carList.searchCarProduct);
 
+//search car by filter condition
+router.get('/carlists/filter/:pickupLoc&:priceMax&:priceMin&:carType&:passNum', carList.searchCarwithFilter);
 
 module.exports = router;
