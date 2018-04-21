@@ -32,7 +32,10 @@ export class CardComponent implements OnInit{
   check:any = false;
   booking: Booking;
   constructor(private dataBus:DataBusService, private favoritelist:FavoritelistService,private auth:AuthenticationService,private bookingservice:BookingsService){
-    this.email = this.auth.getUserDetails().email;
+    if(this.auth.isLoggedIn()){
+      this.email = this.auth.getUserDetails().email;
+    }
+
   }
 
   onchange(event){
