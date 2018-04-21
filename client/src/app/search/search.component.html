@@ -1,23 +1,23 @@
-<form action="">
+<form #search="ngForm" action="">
   <hr>
   <nav class="navbar navbar-light bg-light">
     <div class="row" style = "width:100%;margin-left:5px">
-      <input [(ngModel)]="pLocation" [ngModelOptions]="{standalone: true}" type="text" class="place form-control" style="width:180px" placeholder="Pick up location">
+      <input [(ngModel)]="pLocation" name="pickloc" type="text" class="place form-control" style="width:180px" placeholder="Pick up location" required>
       <p>→</p >
-      <input [(ngModel)]="dLocation" [ngModelOptions]="{standalone: true}" type="text" class="place form-control" placeholder="Drop off location">
-      <input [(ngModel)]="pDate" [ngModelOptions]="{standalone: true}" type="date" class = "division form-control form-control-sm" />
-      <select [(ngModel)]="pTime" [ngModelOptions]="{standalone: true}" class = "division form-control form-control-sm" style = "height:38px">
+      <input [(ngModel)]="dLocation"  name="droploc" type="text" class="place form-control" placeholder="Drop off location" required>
+      <input [(ngModel)]="pDate"  name="pickdate" type="date" class = "division form-control form-control-sm" required/>
+      <select [(ngModel)]="pTime" name="pricktime" class = "division form-control form-control-sm" style = "height:38px" required>
         <option *ngFor="let pickuptime of times" [value]="pickuptime.viewValue">
           {{pickuptime.viewValue}}
         </option>
       </select>
-      <input [(ngModel)]="dDate" [ngModelOptions]="{standalone: true}" type="date" class="division form-control form-control-sm" />
-      <select [(ngModel)]="dTime" [ngModelOptions]="{standalone: true}" class = "division form-control form-control-sm" style = "height:38px">
+      <input [(ngModel)]="dDate"  name="dropdate" type="date" class="division form-control form-control-sm" required/>
+      <select [(ngModel)]="dTime"  name="droptime" class = "division form-control form-control-sm" style = "height:38px" required>
         <option *ngFor="let dropofftime of times" [value]="dropofftime.viewValue">
           {{ dropofftime.viewValue }}
         </option>
       </select>
-      <button type="button" (click)="fireEvent()" class="search btn btn-warning scbtn-width">SEARCH</button>
+      <button type="button" [disabled]="!search.form.valid" (click)="fireEvent()" class="search btn btn-warning scbtn-width">SEARCH</button>
     </div>
 
   </nav>

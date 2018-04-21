@@ -24,17 +24,17 @@
       <th>Dropoff Date</th>
       <th>Price</th>
       <th>Driver Email</th>
-      <th>Carid</th>
+      <th>Car</th>
     </tr>
     </thead>
-    <tbody *ngFor="let booking of bookings">
-      <td>{{booking.pickuploc}}</td>
-      <td>{{booking.dropoffloc}}</td>
-      <td>{{booking.pickupdate}}</td>
-      <td>{{booking.dropoffdate}}</td>
-      <td>{{booking.price | number:'1.2-2'}}</td>
-      <td>{{booking.driverinfo.email}}</td>
-      <td>{{booking.carid}}</td>
+    <tbody *ngFor="let array of singlearray">
+      <td>{{array.booking.pickuploc}}</td>
+      <td>{{array.booking.dropoffloc}}</td>
+      <td>{{array.booking.pickupdate}}</td>
+      <td>{{array.booking.dropoffdate}}</td>
+      <td>{{array.booking.price | number:'1.2-2'}}</td>
+      <td>{{array.booking.driverinfo.email}}</td>
+      <td>{{array.car.name}}</td>
     </tbody>
   </table>
 </div>

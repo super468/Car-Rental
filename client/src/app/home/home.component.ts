@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit{
   }
 
   run(pickplace:string){
-    console.log("home run.")
+    console.log("home run.");
     this.footer.footerRunLoc(pickplace);
   }
 

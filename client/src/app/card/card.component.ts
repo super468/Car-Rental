@@ -18,12 +18,15 @@ export class CardComponent implements OnInit{
   @Input() public favorites: favorite[];
 
   ngOnInit(): void {
-    for(let car of this.favorites){
-      if(car.carid == this.car._id){
-        this.check = true;
-        break;
+    if(this.favorite != null){
+      for(let car of this.favorites){
+        if(car.carid == this.car._id){
+          this.check = true;
+          break;
+        }
       }
     }
+
   }
 
 
@@ -32,7 +35,10 @@ export class CardComponent implements OnInit{
   check:any = false;
   booking: Booking;
   constructor(private dataBus:DataBusService, private favoritelist:FavoritelistService,private auth:AuthenticationService,private bookingservice:BookingsService){
-    this.email = this.auth.getUserDetails().email;
+    if(this.auth.isLoggedIn()){
+      this.email = this.auth.getUserDetails().email;
+    }
+
   }
 
   onchange(event){

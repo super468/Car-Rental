@@ -37,13 +37,15 @@ export class CarlistsComponent implements OnInit {
 
 
   constructor(private carService:ProductService, private favoriteservice:FavoritelistService, private auth:AuthenticationService) {
-    this.favoriteservice.getFavoritesByEmail(this.auth.getUserDetails().email).subscribe(
-      (data:any)=>{
-        this.favorites=data;
-      },(err)=>{
-        console.log(err);
-      }
-    );
+    if(this.auth.isLoggedIn()) {
+      this.favoriteservice.getFavoritesByEmail(this.auth.getUserDetails().email).subscribe(
+        (data: any) => {
+          this.favorites = data;
+        }, (err) => {
+          console.log(err);
+        }
+      );
+    }
   }
 
 

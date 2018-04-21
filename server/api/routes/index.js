@@ -45,8 +45,8 @@ router.delete('/car/:id', carList.deleteCarbyId);
 console.log('---/car start---');
 router.put('/car', carList.updateCarInfo);
 
-//search by car id
-router.get('/carlists/:_id', carList.searchCarbyID);
+//router for car id
+router.get('/car/:id', carList.searchCarbyID);
 
 //search car by pick location
 router.get('/carlists/search/:pickupLoc', carList.searchCarProduct);
