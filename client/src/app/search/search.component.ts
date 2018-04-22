@@ -20,13 +20,27 @@ export class SearchComponent implements OnInit {
   public dTime:string;
   public searchCondi:string[];
   ngOnInit() {
+    if((typeof this.dataset[0] === 'undefined')){
+      var time = new Date();
+      var year = time.getFullYear();
+      var month = time.getMonth()+1;
+      var pickday = time.getDate();
+      var dropday = time.getDate()+3;
+      this.pDate = year+"-"+month+"-"+pickday;
+      this.dDate = year+"-"+month+"-"+dropday;
+      this.pTime = "00:00";
+      this.dTime = "00:00";
+      //console.log(this.dDate);
+    }else{
+      //console.log(typeof this.dataset[4]);
+      this.pLocation = this.dataset[0];
+      this.dLocation = this.dataset[1];
+      this.pDate = this.dataset[2];
+      this.pTime = this.dataset[3];
+      this.dDate = this.dataset[4];
+      this.dTime = this.dataset[5];
+    }
 
-    this.pLocation = this.dataset[0];
-    this.dLocation = this.dataset[1];
-    this.pDate = this.dataset[2];
-    this.pTime = this.dataset[3];
-    this.dDate = this.dataset[4];
-    this.dTime = this.dataset[5];
 
   }
   times = [
