@@ -197,11 +197,11 @@ module.exports.searchCarwithFilter = function(req, res) {
     console.log("filter-----");
     var loc=req.params.pickupLoc;
     var types=req.params.carType;
-
+    var cartypes=types.split(",");
     var psgnum=req.params.passNum;
     var primax=req.params.priceMax;
     var primin=req.params.priceMin;
-    if(types=="AllTypes"){
+    if(loc=="AllTypes"){
         Cars.find({price:{"$gte":primin,"$lte":primax},type:{$in:cartypes},passengers:{$lte:psgnum}},function (err, cars){
             if(err)
                 res.send(err);

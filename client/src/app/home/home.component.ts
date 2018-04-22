@@ -121,10 +121,16 @@ export class HomeComponent implements OnInit{
     this.priceMax = options.price_max;
     this.priceMin=options.price_min;
     this.ifAdult=options.isAdult;
+
     if ((typeof this.carTypes[0] === 'undefined')){
-      this.carTypes=["AllTypes"];
-      console.log(this.carTypes);
+      this.carTypes=["NoCarTypes"];
     }
+
+    if((typeof this.pickplace === 'undefined')){
+      this.pickplace = "AllTypes";
+    }
+
+
 
     let newOptions = new NewFilterOptions(this.pickplace,this.priceMax,this.priceMin,this.carTypes,this.passengerNum,this.ifAdult);
     // if((typeof this.pickplace === 'undefined')||(this.pickplace=="")){
