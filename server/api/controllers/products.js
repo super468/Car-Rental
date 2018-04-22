@@ -197,17 +197,26 @@ module.exports.searchCarwithFilter = function(req, res) {
     console.log("filter-----");
     var loc=req.params.pickupLoc;
     var types=req.params.carType;
-    var cartypes=types.split(",");
+
     var psgnum=req.params.passNum;
     var primax=req.params.priceMax;
     var primin=req.params.priceMin;
-    Cars.find({pickupLoc:{$regex:loc,$options:'i'},price:{"$gte":primin,"$lte":primax},type:{$in:cartypes},passengers:{$lte:psgnum}},function (err, cars){
-        if(err)
-            res.send(err);
-        //console.log(cars.length);
-        res.json(cars);
+    if(types=="AllTypes"){
+        Cars.find({price:{"$gte":primin,"$lte":primax},type:{$in:cartypes},passengers:{$lte:psgnum}},function (err, cars){
+            if(err)
+                res.send(err);
+            res.json(cars);
+        });
+    }
+    else{
+        var cartypes=types.split(",");
+        Cars.find({pickupLoc:{$regex:loc,$options:'i'},price:{"$gte":primin,"$lte":primax},type:{$in:cartypes},passengers:{$lte:psgnum}},function (err, cars){
+            if(err)
+                res.send(err);
+            res.json(cars);
+        });
+    }
 
-    });
 };
 
 module.exports.createCar =function (req, res) {

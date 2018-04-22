@@ -95,8 +95,11 @@ export class FilterComponent implements OnInit{
     }
   }
   getMaxPrice(index:string):number{
-      if(index == '0' || index == '1'){
+      if(index == '0'){
         return 5000;
+      }
+      else if(index == '1'){
+        return 50;
       }
       else{
         return this.getMinPrice(index) + 50;
