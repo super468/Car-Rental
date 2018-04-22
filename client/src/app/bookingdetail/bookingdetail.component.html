@@ -13,9 +13,9 @@
         </div>
         <div class="white-panel">
           <div class="Car_detail">
-            <h2>{{car.name }}  {{searchInfo[0]}}</h2>
+            <h2>{{car.name }}</h2>
             <div class="row" >
-              <img src="https://www.autoescape.com/images-new/cars/ford/ford_escape_brl_287x164.jpg" id= "img" >
+              <img src={{car.imageName}} id= "img" >
             </div>
             <div class="row" id = "feature">
               <table class = "options">
@@ -26,34 +26,35 @@
                   <th><svg-icon src = "../assets/icons/Auto.svg"></svg-icon></th>
                 </tr>
                 <tr>
-                  <td>5</td>
-                  <td>4</td>
-                  <td>A/C</td>
-                  <td>Auto</td>
+                  <td>{{car.passengers}}</td>
+                  <td>{{car.luggage}}</td>
+                  <td>{{car.ACsup}}</td>
+                  <td>{{car.isAuto}}</td>
                 </tr>
               </table>
             </div>
               <table class = "feature">
                 <th>Features:</th>
-                <tr><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >Pay at Pick-Up</tr>
+                <tr><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >{{car.type}}</tr>
                 <tr><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >Free cancellation</tr>
                 <tr><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >Unlimited mileage</tr>
               </table>
-
-          </div>
+            </div>
         </div>
         <div class="white-panel" id = "location">
           <h6>CAR RENTAL LOCATION</h6>
           <p>PROCEED TO THE COUNTER IN THE BAGGAGE CLAIM AREA. COURTESY BUS SERVICE IS AVAILABLE IN THE LOWER/MAIN ENTRANCE AREA.</p>
-          <p><b>Pick-Up</b> Thu, Apr 26, 2018 10:00 AM
+          <p><b>Pick-Up</b> {{searchInfo[2]}}, {{searchInfo[3]}}
           </p>
-          <p>
+          <div>
             <!-- DALLAS LOVE FIELD - Dallas Love Field
             Shuttle to Car -->
-             {{car.name}}{{searchInfo[0]}}
-          </p>
-          <p><b>Drop-Off</b> Sun, Apr 29, 2018 10:00 AM
-            Drop-off at same location
+            <b>{{searchInfo[0]}}</b>
+          </div>
+          <p><b>Drop-Off</b> {{searchInfo[4]}}, {{searchInfo[5]}}
+            <div>
+            <b>{{searchInfo[1]}}</b>
+            </div>
           </p>
 
         </div>
@@ -83,8 +84,8 @@
               <ul class="new_list">
                 <li class="new_item">
                   <div></div>
-                  <div class="new_label">Loss Damage Waiver</div>
-                  <div class="new_price">${{price.loss | number:'1.2-2'}}/day</div>
+                  <div class="new_label">Basic Insurance</div>
+                  <div class="new_price">${{car.insurance | number:'1.2-2'}}/day</div>
                   <div class="new_check">
                     <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.loss">
                   </div>
@@ -118,7 +119,7 @@
             </div>
             <div class="tb">
               <div class="tb_row">
-                <div class="tb_cell bold">{{price.day}} days @ ${{price.base | number:'1.2-2'}}/day</div>
+                <div class="tb_cell bold">{{price.day}} days @ ${{car.price | number:'1.2-2'}}/day</div>
                 <div class="tb_cell bold">${{price.day*price.base | number:'1.2-2'}}</div>
               </div>
               <div class="tb_row">
