@@ -19,7 +19,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.credentials).subscribe(() => {
-      this.router.navigateByUrl('/home');
+      if(this.auth.Ifadmin()){
+        this.router.navigateByUrl('/home');
+      }else
+      this.router.navigateByUrl('/');
     }, (err) => {
       console.error(err);
     });
