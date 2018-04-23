@@ -87,7 +87,7 @@
                   <div class="new_label">Basic Insurance</div>
                   <div class="new_price">${{car.insurance | number:'1.2-2'}}/day</div>
                   <div class="new_check">
-                    <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.loss">
+                    <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="car.insurance">
                   </div>
                 </li>
                 <li class="new_item">
@@ -120,7 +120,7 @@
             <div class="tb">
               <div class="tb_row">
                 <div class="tb_cell bold">{{price.day}} days @ ${{car.price | number:'1.2-2'}}/day</div>
-                <div class="tb_cell bold">${{price.day*price.base | number:'1.2-2'}}</div>
+                <div class="tb_cell bold">${{price.day * car.price | number:'1.2-2'}}</div>
               </div>
               <div class="tb_row">
                 <div class="tb_cell bold">Estimated Taxes & Fees</div>

@@ -18,8 +18,9 @@ export class BookingdetailComponent implements OnInit {
     email:'',
     phone:''
   };
-  price:pricedetail = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 591.32);
-  pricepayload:pricedetail = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 591.32);
+  // price:pricedetail = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 0);
+  price:pricedetail;
+  //pricepayload:pricedetail = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 591.32);
   booking:Booking = new Booking('2018-01-01','2018-01-02','DFW','DFW',0,'1','a@a.com',this.driverinfo);
 
   car:Car;
@@ -28,18 +29,39 @@ export class BookingdetailComponent implements OnInit {
 
   constructor(private bookingservice:BookingsService,private router: Router, private dataBus:DataBusService, private auth:AuthenticationService) {
       this.car = this.dataBus.getCarInfo();
+
+      this.price = new pricedetail(3,26.99,5.49,8.96,6.99,48.09,64.28, 0);
+      this.price.base = this.car.price;
+      this.price.total = this.price.base * this.price.day + this.price.tax;
+
       this.searchInfo = this.dataBus.getSearchCondi();
+    console.log(this.searchInfo);
+    this.dataBus.carValueUpdate.subscribe(
+      (val)=> {
+        this.car = this.dataBus.getCarInfo();
+
+        this.price.base = this.car.price;
+        // console.log(this.price.base);
+        // this.price.day = 3;
+        // this.price.sli = 20;
+        // this.price.erp =9.99;
+        // this.price.loss =8.88;
+        // this.price.tax =48.25;
+
+
+        console.log(this.price.total);
+        console.log('---init--get--car');
+        console.log(this.car);
+      },(err)=>{
+        console.log(err);
+      }
+    );
+
   }
 
   ngOnInit() {
-    this.price.total = (this.price.base + this.price.tax) * this.price.day;
-    console.log(this.searchInfo);
-    this.dataBus.carValueUpdate.subscribe(
-      (val)=> {this.car = this.dataBus.getCarInfo();
-        console.log('---init--get--car');
-        console.log(this.car);
-      }
-    );
+    //this.price.total = (this.price.base + this.price.tax) * this.price.day;
+
     this.dataBus.carSearchCondiUpdate.subscribe(
       (val)=> {this.searchInfo = this.dataBus.getSearchCondi();
         console.log('---init--get--search Info');
