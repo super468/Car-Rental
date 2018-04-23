@@ -23,7 +23,7 @@
       <!--&lt;!&ndash;[id]="op.id"&ndash;&gt;-->
       <!--&lt;!&ndash;(change)="onTpyeChange(op, $event.target.checked)"&ndash;&gt;-->
     <!--</div>-->
-    <label><input type="checkbox"  id="alltypes" [checked]="isAllChecked()" (change)="typecheckAll($event)">Select All Type</label>
+    <label *ngIf="false"><input type="checkbox"  id="alltypes" [checked]="isAllChecked()" (change)="typecheckAll($event)">Select All Type</label>
     <div formArrayName="type" *ngFor="let op of options; let i = index" class="form-check" >
       <label><input type="checkbox" [formControlName]="i"  [(ngModel)]="op.state"   value="{{op.id}}"/> {{op.text}}</label>
     </div>
