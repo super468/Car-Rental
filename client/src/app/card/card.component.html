@@ -1,11 +1,11 @@
 <div class="container" id = 'card'>
-    <div class="row" id = 'main_row'>
+    <div class="row" id = 'main_row' style="padding-left: 10px;padding-right: 10px">
     <div class="col-sm-10 ">
         <div class="row" id ="model_name" *ngIf="car.isavailable">
         {{car.name}}
             <!--<label for="id-of-input" class="custom-checkbox">-->
-              <input type="checkbox" id="id-of-input" (change)="onchange($event)" [(ngModel)]="check"/>
-          <label style="font-size: 1rem;color: #F66500;">Add to Favorite</label>
+              <input type="checkbox" id="id-of-input" style="margin-top: 21px;margin-left: 15px" (change)="onchange($event)" [(ngModel)]="check"/>
+          <label style="font-size: 1rem;color: #F66500;margin-top: 17px;margin-left: 5px">Add to Favorite</label>
               <!--<img class="glyphicon glyphicon-star-empty" src="../assets/icons/favorite_border.png">-->
               <!--<img class="glyphicon glyphicon-star" src="../assets/icons/favorite_black.png">-->
             <!--</label>-->
@@ -73,12 +73,12 @@
     </div>
     <div  class = "col-sm-2" id = 'col_r'>
             <div class="row">
-                <p>Pay at Pick-Up</p>
+                <p style="margin-left: 10px">Pay at Pick-Up</p>
             </div>
             <li id = "price_text">${{car.price}}/day</li>
 
             <div class="row" id = "button_row">
-                <button id = 'continue_button' [disabled]="!car.isavailable" type="button"  (click)="btnContinueClick()" class = "btn btn-primary btn-lg"  routerLink="/bookingdetail">CONTINUE</button>
+                <button id = 'continue_button' class = "btn btn-primary" style="width: 150px;height: 45px" [disabled]="!car.isavailable" type="button"  (click)="btnContinueClick()"   routerLink="/bookingdetail">CONTINUE</button>
             </div>
       <!--(click)="btnContinueClick()"-->
     </div>

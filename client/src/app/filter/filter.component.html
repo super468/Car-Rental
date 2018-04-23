@@ -1,4 +1,4 @@
-<aside class="control-sidebar control-sidebar-dark">
+<aside class="control-sidebar control-sidebar-dark" style="margin-top: 40px">
 <form [formGroup]="formModel">
   <p>PRICE SCOPE (1 day)   </p>
   <!--<select id="pricelist" class="form-control">-->
@@ -24,7 +24,7 @@
       <!--&lt;!&ndash;(change)="onTpyeChange(op, $event.target.checked)"&ndash;&gt;-->
     <!--</div>-->
     <label *ngIf="false"><input type="checkbox"  id="alltypes" [checked]="isAllChecked()" (change)="typecheckAll($event)">Select All Type</label>
-    <div formArrayName="type" *ngFor="let op of options; let i = index" class="form-check" >
+    <div formArrayName="type" *ngFor="let op of options; let i = index" class="form-check" style="padding-left: 0px">
       <label><input type="checkbox" [formControlName]="i"  [(ngModel)]="op.state"   value="{{op.id}}"/> {{op.text}}</label>
     </div>
   </div>
