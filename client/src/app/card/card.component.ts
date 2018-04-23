@@ -18,7 +18,8 @@ export class CardComponent implements OnInit{
   @Input() public favorites: favorite[];
 
   ngOnInit(): void {
-    if(this.favorite != null){
+    console.log(this.favorites);
+    if(this.favorites != null){
       for(let car of this.favorites){
         if(car.carid == this.car._id){
           this.check = true;
@@ -26,7 +27,7 @@ export class CardComponent implements OnInit{
         }
       }
     }
-
+    console.log(this.check);
   }
 
 
@@ -38,6 +39,8 @@ export class CardComponent implements OnInit{
     if(this.auth.isLoggedIn()){
       this.email = this.auth.getUserDetails().email;
     }
+
+
 
   }
 
