@@ -270,6 +270,5 @@ module.exports.updateCarInfo = function (req, res) {
         }
     });
     console.log('update success');
-
-
 };
+
