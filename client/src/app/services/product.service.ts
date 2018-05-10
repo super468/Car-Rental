@@ -31,7 +31,7 @@ export class ProductService {
   getAllProduct():Observable<Car[]>{
     console.log("sent request 1");
 
-    return this.http.get<Car[]>('/api/carlists');
+    return this.http.get<Car[]>('api/carlists');
   }
 
   postCar(carInfor:Car):void {
