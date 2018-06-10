@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
-var dbURI = 'mongodb://localhost/meanAuth';
-if (process.env.NODE_ENV === 'production') {
-  dbURI = process.env.MONGOLAB_URI;
-}
+var dbURI = 'mongodb://admin:admin@ds213199.mlab.com:13199/cardb';
+// if (process.env.NODE_ENV === 'production') {
+//   dbURI = process.env.MONGOLAB_URI;
+// }
 
 mongoose.connect(dbURI);
 
@@ -47,3 +47,7 @@ process.on('SIGTERM', function() {
 
 // BRING IN YOUR SCHEMAS & MODELS
 require('./users');
+require('./cars');
+require('./accounts');
+require('./bookings');
+require('./favoritelist');

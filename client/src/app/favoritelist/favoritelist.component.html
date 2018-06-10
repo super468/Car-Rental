@@ -1,0 +1,19 @@
+<div class = "layout">
+  <!-- Content here -->
+  <div>
+    <p>Car Lists DATA:</p>
+    <ul *ngFor="let car of showinglist">
+      <li> <app-card [car]="car" [favorites]="favorites"> </app-card> </li>
+    </ul>
+  </div>
+
+  <app-pagination
+    (goPage)="goToPage($event)"
+    (goNext)="onNext()"
+    (goPrev)="onPrev()"
+    [pagesToShow]="8"
+    [page]="page"
+    [perPage]="limit"
+    [count]="total"></app-pagination>
+
+</div>

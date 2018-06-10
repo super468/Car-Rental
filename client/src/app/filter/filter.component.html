@@ -1,0 +1,57 @@
+<aside class="control-sidebar control-sidebar-dark" style="margin-top: 40px">
+<form [formGroup]="formModel">
+  <p>PRICE SCOPE (1 day)   </p>
+  <!--<select id="pricelist" class="form-control">-->
+    <!--<option value="all">-ALL-</option>-->
+    <!--<option value="one">Under 50$</option>-->
+    <!--<option value="two">50$ - 100$</option>-->
+    <!--<option value="three">100$ - 150$</option>-->
+    <!--<option value="four">150$ - 200$</option>-->
+    <!--<option value="five">Above 200$</option>-->
+  <!--</select>-->
+
+  <select formControlName="price" class="form-control">
+    <option *ngFor="let price of pricelist" value="{{price.id}}">{{price.text}}</option>
+  </select>
+
+  <br><br>
+  <div>
+    <p>CAR TYPE</p>
+    <!--<label><input type="checkbox"  id="alltypes" [checked]="isAllChecked()" (change)="typecheckAll($event)">Select All Type</label>-->
+    <!--<div formArrayName="type" *ngFor="let op of options; let i = index" class="form-check" >-->
+      <!--<input type="checkbox" [formControlName]="i"  [(ngModel)]="op.state"   value="{{op.id}}"/>{{op.text}}-->
+      <!--&lt;!&ndash;[id]="op.id"&ndash;&gt;-->
+      <!--&lt;!&ndash;(change)="onTpyeChange(op, $event.target.checked)"&ndash;&gt;-->
+    <!--</div>-->
+    <label *ngIf="false"><input type="checkbox"  id="alltypes" [checked]="isAllChecked()" (change)="typecheckAll($event)">Select All Type</label>
+    <div formArrayName="type" *ngFor="let op of options; let i = index" class="form-check" style="padding-left: 0px">
+      <label><input type="checkbox" [formControlName]="i"  [(ngModel)]="op.state"   value="{{op.id}}"/> {{op.text}}</label>
+    </div>
+  </div>
+
+  <!--<div *ngFor="let data of emails">-->
+    <!--<input type="checkbox" (change)="onChange(data.email, $event.target.checked)"> {{data.email}}<br>-->
+  <!--</div>-->
+
+  <br><br>
+  <p>PASSENGER NUMBER: {{psgervalue}}</p>
+  <div  class="passenger">
+    <!--<input  type="range" min="2" max="7" formControlName="paserNum" value="{{psgervalue}}" [(ngModel)]="psgervalue" class="slider" id="myRange" [ngModelOptions]="{standalone: true}"/>-->
+    <input  type="range" min="2" max="7" formControlName="paserNum" value="{{psgervalue}}" [(ngModel)]="psgervalue" class="slider" id="myRange" />
+  </div>
+
+  <br><br>
+  <p>DRIVER'S AGE</p>
+  <div>
+    <div class="passenger" >
+    <input checked formControlName="age" type="radio" name="age" value="larger18" > ADULT<br>
+    <input formControlName="age" type="radio" name="age" value="less18"> Under 18<br>
+    </div>
+  </div>
+  <!--<input (change)="changeDS()" [(ngModel)]="testvalue" [ngModelOptions]="{standalone: true}"/>-->
+  <!--{{testvalue}}-->
+</form>
+  <!--<div>-->
+    <!--{{myForm.value | json }}-->
+  <!--</div>-->
+</aside>

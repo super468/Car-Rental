@@ -7,12 +7,19 @@ import {RegisterComponent} from "./register/register.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AuthGuardService} from "./services/auth-guard.service";
 import {WelcomeComponent} from "./welcome/welcome.component";
+import {BookingsComponent} from "./bookings/bookings.component";
+import {AccountComponent} from "./account/account.component";
+import {SearchWelcomeComponent} from "./search-welcome/search-welcome.component";
+import {FavoritelistComponent} from "./favoritelist/favoritelist.component";
+import {BookingdetailComponent} from "./bookingdetail/bookingdetail.component";
+import {AdminServiceService} from "./services/admin-service.service";
 
 
 const routes: Routes = [
   {
     path: '',
-    component: WelcomeComponent
+    component: WelcomeComponent,
+    canActivate: [AdminServiceService]
   },
   {
     path: 'login',
@@ -23,7 +30,30 @@ const routes: Routes = [
   },{
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    children:[
+      {
+        path: 'bookings',
+        component: BookingsComponent
+      },
+      {
+        path: 'account',
+        component: AccountComponent
+      },
+      {
+        path: 'favoritelist',
+        component: FavoritelistComponent
+      }
+    ]
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+
+  },
+  {
+    path: 'bookingdetail',
+    component: BookingdetailComponent
   }
 ];
 

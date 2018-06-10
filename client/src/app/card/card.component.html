@@ -1,0 +1,85 @@
+<div class="container" id = 'card'>
+    <div class="row" id = 'main_row' style="padding-left: 10px;padding-right: 10px">
+    <div class="col-sm-10 ">
+        <div class="row" id ="model_name" *ngIf="car.isavailable">
+        {{car.name}}
+            <!--<label for="id-of-input" class="custom-checkbox">-->
+              <input type="checkbox" id="id-of-input" style="margin-top: 21px;margin-left: 15px" (change)="onchange($event)" [(ngModel)]="check"/>
+          <label style="font-size: 1rem;color: #F66500;margin-top: 17px;margin-left: 5px">Add to Favorite</label>
+              <!--<img class="glyphicon glyphicon-star-empty" src="../assets/icons/favorite_border.png">-->
+              <!--<img class="glyphicon glyphicon-star" src="../assets/icons/favorite_black.png">-->
+            <!--</label>-->
+        </div>
+      <div *ngIf="!car.isavailable"><h3 style="color: gold;">NOT AVAILABLE</h3></div>
+        <div class="row">
+            <div class="col-sm-4" id = 'L_col'>
+                <div class="row" >
+                    <img class = "img" mat-card-image src="{{car.imageName}}" id = 'image'>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="row">
+                        <svg-icon src = "../assets/icons/Person.svg"></svg-icon>
+                        </div>
+                        <div class="row">
+                        {{car.passengers}}
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="row">
+                        <svg-icon src = "../assets/icons/luggage.svg"></svg-icon>
+                        </div>
+                        <div class="row">
+                        {{car.luggage}}
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="row">
+                        <svg-icon src = "../assets/icons/AC.svg"></svg-icon>
+                        </div>
+                        <div class="row">
+                        {{car.ACsup}}
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="row">
+                        <svg-icon src = "../assets/icons/Auto.svg" ></svg-icon>
+                        </div>
+                        <div class="row">
+                        {{car.isAuto}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8" id = 'R_col'>
+                <div class="row">
+                    <img src="https://www.autoescape.com/images-cms/images/SUPPLIERS/TARSIER/65bb10e6e11aeaf4d88f9514491c6801_h25.png">
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                            <li>Features</li>
+                            <li><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >{{car.type}}</li>
+                            <li><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >Pay at Pick-Up</li>
+                            <li><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >Free cancellation</li>
+                    </div>
+                    <div class="col-sm-6">
+                        <p id= 'pickuptext'><svg-icon src = "../assets/icons/Airports.svg"></svg-icon>Pick-up:</p>
+                        <p>{{car.pickupLoc}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div  class = "col-sm-2" id = 'col_r'>
+            <div class="row">
+                <p style="margin-left: 10px">Pay at Pick-Up</p>
+            </div>
+            <li id = "price_text">${{car.price}}/day</li>
+
+            <div class="row" id = "button_row">
+                <button id = 'continue_button' class = "btn btn-primary" style="width: 150px;height: 45px" [disabled]="!car.isavailable" type="button"  (click)="btnContinueClick()"   routerLink="/bookingdetail">CONTINUE</button>
+            </div>
+      <!--(click)="btnContinueClick()"-->
+    </div>
+</div>

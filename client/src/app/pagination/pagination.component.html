@@ -1,0 +1,19 @@
+
+<div class="pagination" *ngIf="count > 0">
+
+  <div  class="numbers btn-group btn-group-toggle " style="padding-left: 280px">
+    <button class="btn btn-secondary" (click)="onPrev()" [disabled]="page === 1 || loading" [ngClass]="{ 'disabled': page === 1 || loading }">&lt; Previous</button>
+
+    <button class="btn btn-secondary"
+      *ngFor="let pageNum of getPages()"
+      (click)="onPage(pageNum)"
+      [ngClass]="{'active': pageNum === page, 'disabled': loading}">{{ pageNum }}</button>
+
+    <button class="btn btn-secondary" (click)="onNext(true)" [disabled]="lastPage() || loading" [ngClass]="{ 'disabled': lastPage() || loading }">Next &gt;</button>
+  </div>
+  <br>
+  <div class="description" style="padding-top: 5px">
+    <span class="page-counts">{{ getMin() }} - {{ getMax() }} of {{ count }}</span>
+    <!--<span class="page-totals">in {{ totalPages() }} pages</span>-->
+  </div>
+</div>

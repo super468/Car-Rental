@@ -1,0 +1,88 @@
+#main_row{
+    padding: 5px;
+}
+#model_name {
+    font-weight: 700;
+    font-size: 40px;
+}
+#model_name_r{
+    padding-top: 0px;
+}
+li{
+  list-style: none;
+}
+#image {
+    height: 100px;
+    width: 200px;
+}
+#card {
+    background: rgb(255, 255, 255);
+    flex-direction: row;
+    border:1px solid #eee;
+    box-shadow: 0 0 5px rgba(0,0,0,.1)
+}
+
+#col_r {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(245,245,245);
+}
+#price_text{
+    font-size: 20px;
+}
+#pickuptext {
+    color: rgb(153,153,153);
+    font-size: 30px;
+}
+#button_row{
+  position: relative;
+  margin-top: 30%;
+  text-align: center;
+}
+#continue_button {
+    position: relative;
+    align-items: center;
+    background-color: rgb(243,113,33);
+}
+
+#model_name_r{
+    padding-left: 0px;
+    text-align: left;
+}
+
+label {
+  /* Presentation */
+  font-size: 30px
+}
+
+/* Required Styling */
+
+label input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox {
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-checkbox .glyphicon {
+  position: absolute;
+  bottom:0.05px;
+  left: -1.25em;
+}
+
+
+
+.custom-checkbox .glyphicon-star {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.custom-checkbox:hover .glyphicon-star{
+  opacity: 0.5;
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ .glyphicon-star {
+  opacity: 1;
+}

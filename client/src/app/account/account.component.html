@@ -1,0 +1,66 @@
+<h2>Personal Information</h2>
+<form (ngSubmit)="onSubmit()" #accountForm="ngForm">
+  <div class="form-group row">
+    <div class="col-md-4">
+      <label>Email: {{email}}</label>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">name</label>
+      <input type="text" class="form-control" id="name" placeholder="Name" [(ngModel)]="account.name" name="name">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="phone">Phone</label>
+      <input type="text" class="form-control" id="phone" placeholder="Phone" [(ngModel)]="account.phone" name="phone">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" [(ngModel)]="account.address1" name="address1">
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" [(ngModel)]="account.address2" name="address2">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity" [(ngModel)]="account.city" name="city">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control" [(ngModel)]="account.state" name="state">
+        <option *ngFor="let state of states" [value]="state.state">{{state.state}}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip" [(ngModel)]="account.zip" name="zip">
+    </div>
+  </div>
+  <!--<div class="form-group">-->
+    <!--<div class="form-check">-->
+      <!--<input class="form-check-input" type="checkbox" id="gridCheck">-->
+      <!--<label class="form-check-label" for="gridCheck">-->
+        <!--Check me out-->
+      <!--</label>-->
+    <!--</div>-->
+
+  <!--</div>-->
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+<!--<h2>Password</h2>-->
+<!--<form>-->
+  <!--<div class="form-group">-->
+    <!--<label for="currentpwd">Current Password</label>-->
+    <!--<input type="password" id="currentpwd" class="form-control" [(ngModel)]="password.currentpassword" name="currentpassword">-->
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <!--<label for="newpwd">New Password</label>-->
+    <!--<input type="password" id="newpwd" class="form-control" [(ngModel)]="password.newpassword" name="newpassword">-->
+  <!--</div>-->
+  <!--<button type="submit" class="btn btn-primary">Save</button>-->
+<!--</form>-->
+
+

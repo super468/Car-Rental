@@ -1,0 +1,20 @@
+.numbers {
+  /*display: block;*/
+  text-align: center;
+  flex: 1;
+}
+
+.active{
+  background-color: #00B7FF;
+}
+
+.btn-secondary{
+  color:blue;
+  background-color: white;
+}
+
+
+.disabled{
+  color:grey;
+  /*background-color: #BABABA;*/
+}

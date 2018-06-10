@@ -1,0 +1,14 @@
+p{
+    color:dodgerblue ;
+    padding-left:5px;
+    padding-right:5px;
+    margin-bottom:0px
+}
+
+.show{
+  opacity: 1 !important;
+}
+.step{
+  opacity: 0;
+  transition: .5s ease-in-out all;
+}

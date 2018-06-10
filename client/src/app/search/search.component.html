@@ -1,28 +1,23 @@
-<form action="">
-  <hr style="margin-top:0px; margin-bottom:0px">
+<form #search="ngForm" action="">
+  <hr>
   <nav class="navbar navbar-light bg-light">
-    <div class="input-group">
-      <input type="text" class="form-control" style="width:50px" placeholder="Pick up location">
-      <p>→</p>
-      <input type="text" class="form-control" style="width:50px" placeholder="Drop off location">
-      <a href="" style="padding-left:5px;padding-right:10px"></a>
-      <input type="date" value="2018-04-01"/>
-      <a href="" style="padding-left:5px;padding-right:5px"></a>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Time
-        </button>
-      </div>
-      <a href="" style="padding-left:5px;padding-right:5px"></a>
-      <input type="date" value="2018-04-10"/>
-      <a href="" style="padding-left:5px;padding-right:5px"></a>
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Time
-        </button>
-      </div>
-      <a href="" style="padding-left:5px;padding-right:5px"></a>
-      <button type="button" class="btn btn-warning">Search</button>
+    <div class="row" style = "width:100%;margin-left:5px">
+      <input [(ngModel)]="pLocation" name="pickloc" type="text" class="place form-control" style="width:180px" placeholder="Pick up location" required>
+      <p>→</p >
+      <input [(ngModel)]="dLocation"  name="droploc" type="text" class="place form-control" placeholder="Drop off location" required>
+      <input [(ngModel)]="pDate"  name="pickdate" type="date" class = "division form-control form-control-sm" required/>
+      <select [(ngModel)]="pTime" name="pricktime" class = "division form-control form-control-sm" style = "height:38px" required>
+        <option *ngFor="let pickuptime of times" [value]="pickuptime.viewValue">
+          {{pickuptime.viewValue}}
+        </option>
+      </select>
+      <input [(ngModel)]="dDate"  name="dropdate" type="date" class="division form-control form-control-sm" required/>
+      <select [(ngModel)]="dTime"  name="droptime" class = "division form-control form-control-sm" style = "height:38px" required>
+        <option *ngFor="let dropofftime of times" [value]="dropofftime.viewValue">
+          {{ dropofftime.viewValue }}
+        </option>
+      </select>
+      <button type="button" [disabled]="!search.form.valid" (click)="fireEvent()" class="search btn btn-warning scbtn-width">SEARCH</button>
     </div>
 
   </nav>
