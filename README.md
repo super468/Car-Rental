@@ -1,2 +1,4 @@
 # Car-Rental
-The course project of Web Programming Language
+the car rental website based on Angular 4.0 + Express + MoongonDB
+
+Thanks to collaborators: @Codeternity @lulu9091 @YidanSheng
