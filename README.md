@@ -1,4 +1,4 @@
 # Car-Rental
-the car rental website based on Angular 4.0 + Express + MoongonDB
+the car rental website based on Angular 4.0 + Express + MongoDB
 
 Thanks to collaborators: [@Codeternity](https://github.com/Codeternity) [@lulu9091](https://github.com/lulu9091) [@YidanSheng](https://github.com/YidanSheng)
