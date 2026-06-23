@@ -77,36 +77,6 @@ CARS = [
         insurance:30.00
     }
 ];
-// router.get('/', function(req, res) {
-//     // var collection = db.get('videos');
-//     // collection.find({}, function(err, videos){
-//     //     if (err) throw err;
-//     //     res.json(videos);
-//     // });
-//
-//
-//     // res.send(carlists);
-//     res.send(carlists);
-// });
-
-
-// module.exports.getCarLists = function(req, res) {
-//     // var collection = db.get('videos');
-//     // collection.find({}, function(err, videos){
-//     //     if (err) throw err;
-//     //     res.json(videos);
-//     // });
-//
-//     // res.send(carlists);
-//     // if (!req.payload._id) {
-//     //     res.status(401).json({
-//     //         "message" : "UnauthorizedError: private profile"
-//     //     });
-//     // } else {
-//     //
-//     // }
-//     res.json(CARS);
-// };
 
 module.exports.readAllCarInfo = function(req, res) {
 
@@ -118,31 +88,30 @@ module.exports.readAllCarInfo = function(req, res) {
 
 };
 module.exports.postCarInfor = function(req, res) {
-    // console.log("receive post request");
-    // //carlists.push(req.body);
-    // console.log(carlists.toString());
-    // console.log("------------");
-    // console.log(carlists);
-    // res.json(carlists);
+    res.json({message: 'Requisicao recebida'});
 };
 
 module.exports.createCarContext = function (req, res) {
-    // var carInfor = new Car(req.body);
-    console.log("get post request from other page");
-    var carInfor;
-    for(i=0; i< CARS.length; i++){
-        console.log(i);
-        carInfor = new Cars(CARS[i]);
+    console.log("criando dados iniciais dos carros");
+
+    var pending = CARS.length;
+    if (!pending) {
+        return module.exports.readAllCarInfo(req, res);
+    }
+
+    CARS.forEach(function(item) {
+        var carInfor = new Cars(item);
         carInfor.save(function (err) {
-            if(err){
+            if (err) {
                 return res.send(err);
             }
-            console.log("New Car Context Created");
 
-
-        })
-    }
-    return readAllCarInfo();
+            pending--;
+            if (pending === 0) {
+                module.exports.readAllCarInfo(req, res);
+            }
+        });
+    });
 };
 
 module.exports.carsReadByName = function (req,res) {
@@ -175,24 +144,6 @@ module.exports.searchCarProduct = function(req, res) {
     });
 };
 
-//search car info by filter conditions
-// module.exports.searchCarwithFilter = function(req, res) {
-//     console.log("filter-----");
-//     var loc=req.params.pickupLoc;
-//     var types=req.params.carType;
-//     var cartypes=types.split(",");
-//     var psgnum=req.params.passNum;
-//     var primax=req.params.priceMax;
-//     var primin=req.params.priceMin;
-//     Cars.find({pickupLoc:{$regex:loc,$options:'i'},price:{"$gte":primin,"$lte":primax},passengers:{$lte:psgnum}},function (err, cars){
-//         if(err)
-//             res.send(err);
-//         //console.log(cars.length);
-//         res.json(cars);
-//
-//     });
-// };
-
 module.exports.searchCarwithFilter = function(req, res) {
     console.log("filter-----");
     var loc=req.params.pickupLoc;
@@ -219,56 +170,64 @@ module.exports.searchCarwithFilter = function(req, res) {
 
 };
 
-module.exports.createCar =function (req, res) {
-    var car = new Cars(req.body);
-    car.save(function (err) {
-        if(err){
-            return res.send(err);
-        }
-        console.log('Car Created');
-    })
-};
+module.exports.createCar = function (req, res) {
 
-module.exports.deleteCarbyId = function (req, res) {
-    // Cars.delete({_id:req.params.id}, function (err) {
-    //     if(err)
-    //         return res.send(err);
-    //     console.log('Car Delelted');
-    // })
-    console.log('enter delete');
-    console.log(req.params.id);
-    Cars.update({_id: req.params.id}, {
-        $set:{isavailable: false}
-        }, function(err, affected, resp) {
-        if(err){
-            return res.send(err);
-        }
-    });
-    res.send("Delete Success!");
-
-}
-
-module.exports.updateCarInfo = function (req, res) {
-    console.log('---updateCarInfo ---');
-    console.log(req.body);
-    Cars.update({_id: req.body._id}, {
-        $set:{
-            name: req.body.name,
+    const carData = {
+        name: req.body.name,
         type: req.body.type,
-        imageName:req.body.imageName,
+        imageName: req.body.imageName,
         passengers: req.body.passengers,
         luggage: req.body.luggage,
         price: req.body.price,
-        ACsup:req.body.ACsup,
+        ACsup: req.body.ACsup,
         isAuto: req.body.isAuto,
-        pickupLoc: req.body.pickupLoc,
-        insurance:req.body.insurance
-        }
-    }, function(err, affected, resp) {
-        if(err){
+        isavailable: req.body.isavailable
+    };
+
+    var car = new Cars(carData);
+
+    car.save(function (err) {
+        if (err) {
             return res.send(err);
         }
-    });
-    console.log('update success');
-};
 
+        console.log('Car Created');
+        res.json({
+            message: 'Car Created',
+            car: car
+        });
+    });
+};
+module.exports.updateCarInfo = function (req, res) {
+
+    if (!mongoose.Types.ObjectId.isValid(req.body._id)) {
+        return res.status(400).json({
+            message: 'Invalid car id'
+        });
+    }
+
+    const carId = mongoose.Types.ObjectId.createFromHexString(req.body._id);
+
+    Cars.update(
+        { _id: carId },
+        {
+            $set: {
+                name: req.body.name,
+                type: req.body.type,
+                imageName: req.body.imageName,
+                passengers: req.body.passengers,
+                luggage: req.body.luggage,
+                price: req.body.price,
+                ACsup: req.body.ACsup,
+                isAuto: req.body.isAuto
+            }
+        },
+        function(err, affected, resp) {
+            if (err) {
+                return res.send(err);
+            }
+
+            res.json({ message: 'Car updated' });
+        }
+    );
+};

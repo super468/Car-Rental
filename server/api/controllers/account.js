@@ -1,31 +1,31 @@
 var mongoose = require('mongoose');
 var Account = mongoose.model('Account');
 
-// var accounts = [
-//     {
-//         "id": '1',
-//         "name": "admin",
-//         "email": "a@a.com",
-//         "phone": '4699293890',
-//         "address1": "3650 Custer Pkwy",
-//         "address2": "Apt 1122",
-//         "city": "Richardson",
-//         "state": "TX",
-//         "zip": 75080
-//     },
-//     {
-//         "id": '2',
-//         "name": "admin2",
-//         "email": "txw171431@utdallas.edu",
-//         "phone": 4699293890,
-//         "address1": "3650 Custer Pkwy",
-//         "address2": "Apt 1122",
-//         "city": "Richardson",
-//         "state": "TX",
-//         "zip": 75080
-//     }
-//
-// ];
+let accounts = [
+    {
+        "id": '1',
+        "name": "admin",
+        "email": "a@a.com",
+        "phone": '4699293890',
+        "address1": "3650 Custer Pkwy",
+        "address2": "Apt 1122",
+        "city": "Richardson",
+        "state": "TX",
+        "zip": 75080
+    },
+    {
+        "id": '2',
+        "name": "admin2",
+        "email": "txw171431@utdallas.edu",
+        "phone": 4699293890,
+        "address1": "3650 Custer Pkwy",
+        "address2": "Apt 1122",
+        "city": "Richardson",
+        "state": "TX",
+        "zip": 75080
+    }
+
+];
 
 module.exports.accountRead = function(req, res) {
 
@@ -58,35 +58,37 @@ module.exports.accountReadByEmail = function (req,res) {
     });
 };
 
-module.exports.updateaccountByEmail = function (req,res) {
-    Account.findOne({email: req.params.email}, function (err, account) {
+module.exports.updateaccountByEmail = function (req,res){
+    Account.findOne({email:req.params.email}, function (err, account) {
         if (err)
-            res.send(err);
-        for (var prop in req.body) {
-            account[prop] = req.body[prop];
-        }
-
-        // save the movie
-        account.save(function (err) {
-            if (err) {
-                return res.send(err);
-            }
-
-            res.json({message: 'Account updated!'});
-        });
-
-
-    });
-};
-
-module.exports.createaccount = function (req, res) {
-    var account = new Account(req.body);
-
-    account.save(function (err) {
-        if(err){
             return res.send(err);
-        }
 
-        res.json({message: 'Account created'})
+        account.name = req.body.name || account.name;
+        account.phone = req.body.phone || account.phone;
+        account.address1 = req.body.address || account.address;
+        account.address2 = req.body.address || account.address;
+        account.city = req.body.city || account.city;
+        account.state = req.body.state || account.state;
+        account.zip = req.body.zip || account.zip;
     })
-};
+}
+
+module.exports.createaccount = function (req, res){
+    const accountData ={
+        "name": req.body.name,
+        "email": req.body.email,
+        "phone": req.body.phone,
+        "address1": req.body.address1,
+        "address2": req.body.address2,
+        "city": req.body.city,
+        "state": req.body.state,
+        "zip": req.body.zip,
+    }
+
+    const account = new Account(accountData);
+    account.save(function (err,) {
+        if (err)
+            return res.send(err);
+        res.json({message: "Account created successfully."});
+    })
+}

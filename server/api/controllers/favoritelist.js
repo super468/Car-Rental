@@ -11,15 +11,22 @@ module.exports.CarsReadByEmail = function (req,res) {
 };
 
 module.exports.createFavorite = function (req, res) {
-    var list = new List(req.body);
+
+    const favoriteData = {
+        email: req.body.email,
+        carid: req.body.carid,
+        carname: req.body.carname
+    };
+
+    var list = new List(favoriteData);
 
     list.save(function (err) {
-        if(err){
+        if (err) {
             return res.send(err);
         }
 
-        res.json({message: 'Favorite created'})
-    })
+        res.json({ message: 'Favorite created' });
+    });
 };
 
 module.exports.DeleteFavorite = function (req, res) {

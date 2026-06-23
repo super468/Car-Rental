@@ -37,7 +37,7 @@ userSchema.methods.generateJwt = function() {
     name: this.name,
     level: this.level,
     exp: parseInt(expiry.getTime() / 1000),
-  }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+  }, process.env.JWT_SECRET);
 };
 
 mongoose.model('User', userSchema);
