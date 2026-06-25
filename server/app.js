@@ -44,6 +44,14 @@ app.use(passport.initialize());
 // [SH] Use the API routes when path starts with /api
 app.use('/api', routesApi);
 
+// Angular fallback: permite abrir/recarregar rotas do front-end direto pelo navegador.
+app.get('*', function(req, res, next) {
+    if (req.path.indexOf('/api') === 0) {
+        return next();
+    }
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

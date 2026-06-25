@@ -1,53 +1,65 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
-var dbURI = 'mongodb://admin:admin@ds213199.mlab.com:13199/cardb';
-// if (process.env.NODE_ENV === 'production') {
-//   dbURI = process.env.MONGOLAB_URI;
-// }
 
-mongoose.connect(dbURI);
+var useMongo = String(process.env.USE_MONGO || '').toLowerCase() === 'true';
+var dbURI = process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cardb';
 
-// CONNECTION EVENTS
-mongoose.connection.on('connected', function() {
-  console.log('Mongoose connected to ' + dbURI);
-});
-mongoose.connection.on('error', function(err) {
-  console.log('Mongoose connection error: ' + err);
-});
-mongoose.connection.on('disconnected', function() {
-  console.log('Mongoose disconnected');
-});
+if (!useMongo) {
+  var memoryDb = require('./memoryDb');
+  memoryDb.install(mongoose);
 
-// CAPTURE APP TERMINATION / RESTART EVENTS
-// To be called when process is restarted or terminated
-gracefulShutdown = function(msg, callback) {
-  mongoose.connection.close(function() {
-    console.log('Mongoose disconnected through ' + msg);
-    callback();
-  });
-};
-// For nodemon restarts
-process.once('SIGUSR2', function() {
-  gracefulShutdown('nodemon restart', function() {
-    process.kill(process.pid, 'SIGUSR2');
-  });
-});
-// For app termination
-process.on('SIGINT', function() {
-  gracefulShutdown('app termination', function() {
-    process.exit(0);
-  });
-});
-// For Heroku app termination
-process.on('SIGTERM', function() {
-  gracefulShutdown('Heroku app termination', function() {
-    process.exit(0);
-  });
-});
+  require('./users');
+  require('./cars');
+  require('./accounts');
+  require('./bookings');
+  require('./favoritelist');
 
-// BRING IN YOUR SCHEMAS & MODELS
-require('./users');
-require('./cars');
-require('./accounts');
-require('./bookings');
-require('./favoritelist');
+  memoryDb.seedCars();
+  console.log('Rodando com banco em memoria. Nao precisa instalar MongoDB para testar.');
+  console.log('Para usar MongoDB real, defina USE_MONGO=true e MONGO_URI=sua_string_de_conexao.');
+} else {
+  mongoose.connect(dbURI, { useMongoClient: true });
+
+  mongoose.connection.on('connected', function() {
+    console.log('Mongoose conectado em ' + dbURI);
+  });
+
+  mongoose.connection.on('error', function(err) {
+    console.log('Erro de conexao do Mongoose: ' + err);
+  });
+
+  mongoose.connection.on('disconnected', function() {
+    console.log('Mongoose desconectado');
+  });
+
+  gracefulShutdown = function(msg, callback) {
+    mongoose.connection.close(function() {
+      console.log('Mongoose desconectado por ' + msg);
+      callback();
+    });
+  };
+
+  process.once('SIGUSR2', function() {
+    gracefulShutdown('restart do nodemon', function() {
+      process.kill(process.pid, 'SIGUSR2');
+    });
+  });
+
+  process.on('SIGINT', function() {
+    gracefulShutdown('encerramento da aplicacao', function() {
+      process.exit(0);
+    });
+  });
+
+  process.on('SIGTERM', function() {
+    gracefulShutdown('encerramento do Heroku', function() {
+      process.exit(0);
+    });
+  });
+
+  require('./users');
+  require('./cars');
+  require('./accounts');
+  require('./bookings');
+  require('./favoritelist');
+}

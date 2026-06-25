@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "1",
+    "name": "Toyota Corolla",
+    "type": "Sedan",
+    "passengers": 5,
+    "price": 120,
+    "luggage": 3,
+    "isAuto": true,
+    "ACsup": true,
+    "pickupLoc": "Brasil",
+    "insurance": 20,
+    "imageName": "/assets/carimages/chevrolet_tahoe_suv_brl_287x164.jpg",
+    "isavailable": true
+  },
+  {
+    "_id": "2",
+    "name": "Honda Civic",
+    "type": "Sedan",
+    "passengers": 5,
+    "price": 110,
+    "luggage": 3,
+    "isAuto": true,
+    "ACsup": true,
+    "pickupLoc": "Brasil",
+    "insurance": 18,
+    "imageName": "/assets/carimages/chevrolet_tahoe_suv_brl_287x164.jpg",
+    "isavailable": true
+  },
+  {
+    "_id": "3",
+    "name": "Chevrolet Tahoe",
+    "type": "SUV",
+    "passengers": 7,
+    "price": 180,
+    "luggage": 5,
+    "isAuto": true,
+    "ACsup": true,
+    "pickupLoc": "Brasil",
+    "insurance": 30,
+    "imageName": "/assets/carimages/chevrolet_tahoe_suv_brl_287x164.jpg",
+    "isavailable": true
+  },
+  {
+    "_id": "4",
+    "name": "Jeep Wrangler",
+    "type": "SUV",
+    "passengers": 5,
+    "price": 200,
+    "luggage": 4,
+    "isAuto": true,
+    "ACsup": true,
+    "pickupLoc": "Brasil",
+    "insurance": 35,
+    "imageName": "/assets/carimages/chevrolet_tahoe_suv_brl_287x164.jpg",
+    "isavailable": true
+  },
+  {
+    "_id": "5",
+    "name": "Ford Mustang",
+    "type": "Sport",
+    "passengers": 4,
+    "price": 250,
+    "luggage": 2,
+    "isAuto": true,
+    "ACsup": true,
+    "pickupLoc": "Brasil",
+    "insurance": 40,
+    "imageName": "/assets/carimages/chevrolet_tahoe_suv_brl_287x164.jpg",
+    "isavailable": true
+  }
+]

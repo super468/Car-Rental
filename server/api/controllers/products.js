@@ -1,7 +1,7 @@
 var express = require('express');
 
-var mongoose = require('mongoose');
-var Cars = mongoose.model('Cars');
+var Cars = require("../models/carLocalDB.js");
+
 
 
 var router = express.Router();
@@ -118,31 +118,30 @@ module.exports.readAllCarInfo = function(req, res) {
 
 };
 module.exports.postCarInfor = function(req, res) {
-    // console.log("receive post request");
-    // //carlists.push(req.body);
-    // console.log(carlists.toString());
-    // console.log("------------");
-    // console.log(carlists);
-    // res.json(carlists);
+    res.json({message: 'Requisicao recebida'});
 };
 
 module.exports.createCarContext = function (req, res) {
-    // var carInfor = new Car(req.body);
-    console.log("get post request from other page");
-    var carInfor;
-    for(i=0; i< CARS.length; i++){
-        console.log(i);
-        carInfor = new Cars(CARS[i]);
+    console.log("criando dados iniciais dos carros");
+
+    var pending = CARS.length;
+    if (!pending) {
+        return module.exports.readAllCarInfo(req, res);
+    }
+
+    CARS.forEach(function(item) {
+        var carInfor = new Cars(item);
         carInfor.save(function (err) {
-            if(err){
+            if (err) {
                 return res.send(err);
             }
-            console.log("New Car Context Created");
 
-
-        })
-    }
-    return readAllCarInfo();
+            pending--;
+            if (pending === 0) {
+                module.exports.readAllCarInfo(req, res);
+            }
+        });
+    });
 };
 
 module.exports.carsReadByName = function (req,res) {
@@ -226,7 +225,8 @@ module.exports.createCar =function (req, res) {
             return res.send(err);
         }
         console.log('Car Created');
-    })
+        res.json({message: 'Car Created', car: car});
+    });
 };
 
 module.exports.deleteCarbyId = function (req, res) {
@@ -254,21 +254,23 @@ module.exports.updateCarInfo = function (req, res) {
     Cars.update({_id: req.body._id}, {
         $set:{
             name: req.body.name,
-        type: req.body.type,
-        imageName:req.body.imageName,
-        passengers: req.body.passengers,
-        luggage: req.body.luggage,
-        price: req.body.price,
-        ACsup:req.body.ACsup,
-        isAuto: req.body.isAuto,
-        pickupLoc: req.body.pickupLoc,
-        insurance:req.body.insurance
+            type: req.body.type,
+            imageName:req.body.imageName,
+            passengers: req.body.passengers,
+            luggage: req.body.luggage,
+            price: req.body.price,
+            ACsup:req.body.ACsup,
+            isAuto: req.body.isAuto,
+            pickupLoc: req.body.pickupLoc,
+            insurance:req.body.insurance,
+            isavailable: req.body.isavailable
         }
     }, function(err, affected, resp) {
         if(err){
             return res.send(err);
         }
+        console.log('update success');
+        res.json({message: 'Car Updated'});
     });
-    console.log('update success');
 };
 

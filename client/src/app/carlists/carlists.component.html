@@ -1,18 +1,54 @@
-<div class = "layout">
-    <!-- Content here -->
+<<div class="layout">
+  <!-- Content here -->
   <!--<p>Car Information</p>-->
   <!--<button (click)="getCarlists()" >REQ</button>-->
   <!--<button (click)="postCarInfo()" >post</button>-->
+
   <div class="adminpanel">
-  <br>
-  <app-admincontrolpanel *ngIf="isAdmin" (getAll)="getCarlists()" [seletedCar]="selectedCar_p"></app-admincontrolpanel>
-  <br>
+    <br>
+    <app-admincontrolpanel
+      *ngIf="isAdmin"
+      (getAll)="getCarlists()"
+      [seletedCar]="selectedCar_p">
+    </app-admincontrolpanel>
+    <br>
   </div>
+
+  <div class="maintenance-buttons">
+    <button type="button" (click)="getCarlists()">
+      Show all cars
+    </button>
+
+    <button type="button" (click)="showCarsInMaintenance()">
+      Show cars in maintenance
+    </button>
+  </div>
+
   <div *ngIf="showCards">
-    <!--<p>Car Lists DATA:</p>-->
-    <ul *ngFor="let car of showinglist, let i = index">
-      <li [ngClass]="{'highlight' : selected == i, 'not-highlight' : selected!=i}"
-          (click)="car.isavailable &&  onSelect(i)" > <app-card [car]="car" [favorites]="favorites"> </app-card> </li>
+
+    <ul *ngFor="let car of showinglist; let i = index">
+      <li tabindex="0" role="button" [ngClass]="{'highlight' : selected == i, 'not-highlight' : selected != i}" (click)="car.isavailable && onSelect(i)" (keydown.enter)="car.isavailable && onSelect(i)"
+        (keydown.space)="car.isavailable && onSelect(i)">
+        <app-card
+          [car]="car"
+          [favorites]="favorites">
+        </app-card>
+        <button
+          type="button"
+          *ngIf="!isCarInMaintenance(car)"
+          (click)="$event.stopPropagation(); addCarToMaintenance(car)"
+        >
+          Add to maintenance
+        </button>
+
+        <button
+          type="button"
+          *ngIf="isCarInMaintenance(car)"
+          (click)="$event.stopPropagation(); removeCarFromMaintenance(car)"
+        >
+          Remove from maintenance
+        </button>
+      </li>
     </ul>
   </div>
 
@@ -23,7 +59,6 @@
     [pagesToShow]="8"
     [page]="page"
     [perPage]="limit"
-    [count]="total"></app-pagination>
-
-  </div>
-
+    [count]="total">
+  </app-pagination>
+</div>

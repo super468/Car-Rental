@@ -15,7 +15,7 @@
           <div class="Car_detail">
             <h2>{{car.name }}</h2>
             <div class="row" >
-              <img src={{car.imageName}} id= "img" >
+              <img src={{car.imageName}} id= "img" alt="car">
             </div>
             <div class="row" id = "feature">
               <table class = "options">
@@ -35,9 +35,9 @@
             </div>
               <table class = "feature">
                 <th>Features:</th>
-                <tr><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >{{car.type}}</tr>
-                <tr><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >Free cancellation</tr>
-                <tr><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" >Unlimited mileage</tr>
+                <tr><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" alt="Check"> {{car.type}}</tr>
+                <tr><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" alt="Check"> Free cancellation</tr>
+                <tr><img src = "../assets/icons/check.png" style ="width:20px; height :20px;" alt="Check"> Unlimited mileage</tr>
               </table>
             </div>
         </div>
@@ -84,35 +84,34 @@
               <ul class="new_list">
                 <li class="new_item">
                   <div></div>
-                  <div class="new_label">Basic Insurance</div>
+                  <label for="Basic Insurance">Basic Insurance</label>
                   <div class="new_price">${{car.insurance | number:'1.2-2'}}/day</div>
                   <div class="new_check">
-                    <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="car.insurance">
+                    <input id="Basic Insurance" type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="car.insurance">
                   </div>
                 </li>
                 <li class="new_item">
                   <div></div>
-                  <div class="new_label">Personal Accident Protection</div>
+                  <label for="PersonalAccidentProtection">Personal Accident Protection</label>
                   <div class="new_price">${{price.pap | number:'1.2-2'}}/day</div>
                   <div class="new_check">
-                    <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.pap">
+                    <input id="PersonalAccidentProtection" type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.pap">
                   </div>
                 </li>
                 <li class="new_item">
                   <div></div>
-                  <div class="new_label">Supplemental Liability Insurance</div>
+                  <label for="Supplemental Liability Insurance">Supplemental Liability Insurance</label>
                   <div class="new_price">${{price.sli | number:'1.2-2'}}/day</div>
                   <div class="new_check">
-                    <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.sli">
+                    <input id="Supplemental Liability Insurance" type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.sli">
                   </div>
                 </li>
                 <li class="new_item">
                   <div></div>
-                  <div class="new_label">
-                    Extended Roadside Protection</div>
+                  <label for="Extended Roadside Protection">Extended Roadside Protection</label>
                   <div class="new_price">${{price.erp | number:'1.2-2'}}/day</div>
                   <div class="new_check">
-                    <input type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.erp">
+                    <input id="Extended Roadside Protection" type="checkbox" class="form-check-input" (change)="onchange($event)" [value]="price.erp">
                   </div>
                 </li>
               </ul>
@@ -139,22 +138,22 @@
           <form ngForm>
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label>First Name:</label>
-                <input type="text" class="form-control" [(ngModel)]="driverinfo.firstname" name="first">
+                <label for="DriverfirstName">First Name: </label>
+                <input id="DriverfirstName" type="text" class="form-control" [(ngModel)]="driverinfo.firstname" name="first">
               </div>
               <div class="form-group col-md-4 second">
-                <label>Last Name:</label>
-                <input type="text" class="form-control" [(ngModel)]="driverinfo.lastname" name="last">
+                <label for="DriverlastName">Last Name:</label>
+                <input id="DriverlastName" type="text" class="form-control" [(ngModel)]="driverinfo.lastname" name="last">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label>Email Address:</label>
-                <input type="email" class="form-control"  [(ngModel)]="driverinfo.email" name="email">
+                <label for="email">Email Address:</label>
+                <input id="email" type="email" class="form-control"  [(ngModel)]="driverinfo.email" name="email">
               </div>
               <div class="form-group col-md-4 second">
-                <label>Phone:</label>
-                <input type="text" class="form-control"  [(ngModel)]="driverinfo.phone" name="phone">
+                <label for="phone">Phone:</label>
+                <input id="phone" type="text" class="form-control"  [(ngModel)]="driverinfo.phone" name="phone">
               </div>
             </div>
           </form>
@@ -163,26 +162,26 @@
           <h3>Payment Information</h3>
           <p class="credit_term">A valid credit card is necessary to complete the booking. We accept:</p>
           <ul class="credit_card">
-            <li><img src="../../assets/credit_cards/visa.png"></li>
-            <li><img src="../../assets/credit_cards/master.png"></li>
-            <li><img src="../../assets/credit_cards/american_express.png"></li>
-            <li><img src="../../assets/credit_cards/discover.png"></li>
+            <li><img src="../../assets/credit_cards/visa.png" alt="Visa"></li>
+            <li><img src="../../assets/credit_cards/master.png" alt="Master Card"></li>
+            <li><img src="../../assets/credit_cards/american_express.png" alt="American Express"></li>
+            <li><img src="../../assets/credit_cards/discover.png" alt="Discover"></li>
           </ul><br><br>
           <form>
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label>Credit Card Number:</label>
-                <input type="text" class="form-control">
+                <label for="creditCardNumber">Credit Card Number:</label>
+                <input id="creditCardNumber" type="text" class="form-control">
               </div>
               <div class="form-group col-md-2 second">
-                <label>CVC Code:</label>
-                <input type="text" class="form-control">
+                <label for="cvc">CVC Code:</label>
+                <input id="cvc" type="text" class="form-control">
               </div>
             </div>
           <div class="form-row">
             <div class="form-group col-md-3">
-              <label>Expiration Date:</label>
-              <select class="form-control"><option value="">Month</option>
+              <label for="expirationDate">Expiration Date:</label>
+              <select id="expirationDate" class="form-control"><option value="">Month</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
                 <option value="03">03</option>
@@ -198,8 +197,8 @@
               </select>
             </div>
             <div class="form-group col-md-3 second">
-              <label class="spec">E</label>
-              <select class="form-control"><option value="">Year</option>
+              <label for="spec">Year</label>
+              <select id="spec" class="form-control"><option value="">Year</option>
                 <option value="2018">2018</option>
                 <option value="2019">2019</option>
                 <option value="2020">2020</option>
@@ -215,38 +214,38 @@
           </div>
           <div class="form-row">
             <div class="col-md-4 form-group">
-              <label>First Name</label>
-              <input class="form-control" type="text">
+              <label for="firstName">First Name</label>
+              <input id="firstName" class="form-control" type="text">
             </div>
             <div class="col-md-4 form-group second">
-              <label>Last Name</label>
-              <input class="form-control" type="text">
+              <label for="lastName">Last Name</label>
+              <input id="lastName" class="form-control" type="text">
             </div>
           </div>
             <div class="form-row">
               <div class="col-md-4 form-group">
-                <label>Billing Address</label>
-                <input class="form-control" type="text">
+                <label for="billingAddress">Billing Address</label>
+                <input id="billingAddress" class="form-control" type="text">
               </div>
               <div class="col-md-4 form-group second">
-                <label>Billing Address2</label>
-                <input class="form-control" type="text">
+                <label for="billingAddress2">Billing Address2</label>
+                <input id="billingAddress2" class="form-control" type="text">
               </div>
             </div>
             <div class="form-row">
               <div class="col-md-4 form-group">
-                <label>City</label>
-                <input class="form-control" type="text">
+                <label for="city">City</label>
+                <input id="city" class="form-control" type="text">
               </div>
               <div class="col-md-4 form-group second">
-                <label>Zip/Postal Code</label>
-                <input class="form-control" type="text">
+                <label for="zipCode">Zip/Postal Code</label>
+                <input id="zipCode" class="form-control" type="text">
               </div>
             </div>
             <div class="form-row">
               <div class="col-md-4 form-group">
-                <label>Country</label>
-                <select class="form-control"><!----><option value="182">Albania</option>
+                <label for="country">Country</label>
+                <select id="country" class="form-control"><!----><option value="182">Albania</option>
                   <option value="201">Algeria</option>
                   <option value="253">American Samoa</option>
                   <option value="70">Andorra</option>
@@ -444,8 +443,8 @@
                 </select>
               </div>
               <div class="col-md-4 form-group second">
-                <label>State</label>
-                <select class="form-control"><option value="">Please Choose State</option>
+                <label for="state">State</label>
+                <select id="state" class="form-control"><option value="">Please Choose State</option>
                   <option value="AL">Alabama (AL)</option>
                   <option value="AK">Alaska (AK)</option>
                   <option value="AZ">Arizona (AZ)</option>
